@@ -1,10 +1,4 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<!--
-***************************************************************************************************
- Copyright (C) 2023 The Qt Company Ltd.
- SPDX-License-Identifier: LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only
-***************************************************************************************************
--->
 <Project DefaultTargets="Build" ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|x64">
@@ -17,7 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{7A686C9D-2011-4F86-A51B-6DD9348571C9}</ProjectGuid>
+    <ProjectGuid>{EAE0FD3B-DED3-41F9-8CB5-CD64946382F3}</ProjectGuid>
     <Keyword>QtVS_v304</Keyword>
     <WindowsTargetPlatformVersion Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">10.0.22621.0</WindowsTargetPlatformVersion>
     <WindowsTargetPlatformVersion Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">10.0.22621.0</WindowsTargetPlatformVersion>
@@ -27,12 +21,11 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <PlatformToolset>v143</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <PlatformToolset>v143</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt_defaults.props')">
@@ -72,12 +65,12 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>$(SolutionDir)\MyLoginWindow\include\LoginWindow_BLogic;$(ProjectDir)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)\include\LoginWindow_UI;$(ProjectDir)\include\LoginWindow_BLogic</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>$(SolutionDir)\MyLoginWindow\include\LoginWindow_BLogic;$(ProjectDir)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)\include\LoginWindow_UI;$(ProjectDir)\include\LoginWindow_BLogic</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="Configuration">
@@ -105,11 +98,28 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <QtRcc Include="ui\qrc\PasswordGenerator.qrc" />
-    <QtUic Include="ui\window\PasswordGenerator.ui" />
-    <QtMoc Include="include\PasswordGenerator.h" />
-    <ClCompile Include="src\PasswordGenerator.cpp" />
+    <QtRcc Include="ui\LoginWindow.qrc" />
+    <QtUic Include="ui\DialogRegist.ui" />
+    <QtUic Include="ui\LoginWindow.ui" />
+    <QtMoc Include="include\LoginWindow_UI\LoginWindow.h" />
+    <ClCompile Include="src\LoginWindow_BLogic\registAbstract.cpp" />
+    <ClCompile Include="src\LoginWindow_BLogic\accountStore.cpp" />
+    <ClCompile Include="src\LoginWindow_UI\accountStoreTranmist.cpp" />
+    <ClCompile Include="src\LoginWindow_UI\DialogRegist.cpp" />
+    <ClCompile Include="src\LoginWindow_BLogic\login.cpp" />
+    <ClCompile Include="src\LoginWindow_BLogic\loginAbstract.cpp" />
+    <ClCompile Include="src\LoginWindow_UI\loginTransmit.cpp" />
+    <ClCompile Include="src\LoginWindow_UI\LoginWindow.cpp" />
     <ClCompile Include="src\main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\LoginWindow_BLogic\accountStore.h" />
+    <ClInclude Include="include\LoginWindow_BLogic\registAbstract.h" />
+    <ClInclude Include="include\LoginWindow_UI\accountStoreTranmist.h" />
+    <ClInclude Include="include\LoginWindow_BLogic\login.h" />
+    <ClInclude Include="include\LoginWindow_BLogic\loginAbstract.h" />
+    <ClInclude Include="include\LoginWindow_UI\loginTransmit.h" />
+    <QtMoc Include="include\LoginWindow_UI\DialogRegist.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="README.md" />

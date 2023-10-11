@@ -1,11 +1,13 @@
-#include "accountStore.h"
+#include "accountStoreSaveInTxt.h"
 #include<iostream>
 #include<algorithm>
 #include<fstream>
 
-void AccountStore::ini_file()
+AccountStoreSaveInTxt* AccountStoreSaveInTxt::my_instance = nullptr;
+
+void AccountStoreSaveInTxt::ini_accountTable()
 {
-    if (!m_accountTable.empty()) {
+     if (!m_accountTable.empty()) {
         m_accountTable.clear();
     }
     std::ifstream m_file;
@@ -34,20 +36,19 @@ void AccountStore::ini_file()
     m_file.close();
 }
 
-void AccountStore::clear_registTable()
+void AccountStoreSaveInTxt::clear_registTable()
 {
     m_accountTable.clear();
-    std::ofstream file(m_fileName,std::ios::out);
+    std::ofstream file(m_fileName, std::ios::out);
     file.close();
 }
 
-bool AccountStore::search_account(const std::string& account)
+bool AccountStoreSaveInTxt::search_account(const std::string& account)
 {
-    ini_file();
     auto result = std::find_if(
         m_accountTable.begin(),
         m_accountTable.end(),
-        [account](const Account & item) {
+        [account](const Account& item) {
             if (item.account == account) { return true; }
             else { return false; }
         });
@@ -59,13 +60,12 @@ bool AccountStore::search_account(const std::string& account)
     }
 }
 
-void AccountStore::save_account(const std::string &account, const std::string & password)
+void AccountStoreSaveInTxt::save_account(const std::string& account, const std::string& password)
 {
-    ini_file();
-    std::ofstream file(m_fileName,std::ios::out|std::ios::app);
+    std::ofstream file(m_fileName, std::ios::out | std::ios::app);
     file << account << std::endl;
-    file << password <<std::endl;
-    
+    file << password << std::endl;
+
     Account maccount{};
     maccount.account = account;
     maccount.password = password;
@@ -73,27 +73,27 @@ void AccountStore::save_account(const std::string &account, const std::string & 
     file.close();
 }
 
-bool AccountStore::save_account_exceptExist(const std::string& account, const std::string& password)
+bool AccountStoreSaveInTxt::save_account_exceptExist(const std::string& account, const std::string& password)
 {
     if (search_account(account)) {
         return false;
     }
     else {
-        save_account(account,password);
+        save_account(account, password);
         return true;
     }
 }
 
-bool AccountStore::check_password(const std::string& account, const std::string& password)
+bool AccountStoreSaveInTxt::check_password(const std::string& account, const std::string& password)
 {
-    ini_file();
     auto iter = std::find_if(
         m_accountTable.begin(),
         m_accountTable.end(),
-        [account,password](const Account& item) {
+        [account, password](const Account& item) {
             if (item.account == account && item.password == password) { return true; }
             else { return false; }
         });
     if (iter == m_accountTable.end()) { return false; }
     else { return true; }
 }
+

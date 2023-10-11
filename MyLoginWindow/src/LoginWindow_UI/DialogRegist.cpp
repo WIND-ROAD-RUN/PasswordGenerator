@@ -1,6 +1,6 @@
 #include "DialogRegist.h"
-#include "accountStoreTranmist.h"
 #include <QMessageBox>
+#include "RegistTransmit.h"
 
 DialogRegist::DialogRegist(QWidget* parent)
     : QDialog(parent)
@@ -9,13 +9,11 @@ DialogRegist::DialogRegist(QWidget* parent)
     ui->setupUi(this);
     build_ui();
     build_connect();
-    m_accountStoreTranmsit = new AccountStoreTranmsit;
 }
 
 DialogRegist::~DialogRegist()
 {
     delete ui;
-    delete m_accountStoreTranmsit;
 }
 
 void DialogRegist::build_ui()
@@ -36,11 +34,11 @@ void DialogRegist::build_connect()
 
 bool DialogRegist::registAccount()
 {
-    AccountStoreTranmsit::AccountStoreTranmsitResult result =m_accountStoreTranmsit->saveAccountInfo(ui->ledit_account->text().toStdString(),
-                                            ui->ledit_password->text().toStdString());
-    return result == AccountStoreTranmsit::
-        AccountStoreTranmsitResult::SavedAccountSucceed
-        ? true : false;
+    RegistTransmit* m_regist=new RegistTransmit(ui->ledit_account->text().toStdString(),
+        ui->ledit_password->text().toStdString());
+    bool result = m_regist->isRegistSuccessful();
+    delete m_regist;
+    return result;
 }
 
 void DialogRegist::on_pbtn_ok_clicked() {

@@ -1,5 +1,3 @@
-#pragma once
-
 #include <QtWidgets/QMainWindow>
 #include "ui_LoginWindow.h"
 
@@ -7,8 +5,7 @@ QT_BEGIN_NAMESPACE
 namespace Ui { class LoginWindowClass; };
 QT_END_NAMESPACE
 
-class LoginTransmit;
-
+class PasswordGenerator;
 class LoginWindow : public QMainWindow
 {
     Q_OBJECT
@@ -19,9 +16,7 @@ public:
 
 private:
     Ui::LoginWindowClass* ui;
-    LoginTransmit* m_login;
-
-
+    PasswordGenerator* generatorWindow{nullptr};
 private slots:
     void pbtn_login_clicked();
     void label_AccountPassError_cancel();
@@ -33,4 +28,5 @@ private:
     inline void  set_label_accountPassError();
     inline void set_loginGroup();
     inline void set_WindowBackground();
+    
 };

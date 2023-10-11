@@ -1,9 +1,6 @@
-#pragma once
-
 #include <QDialog>
 #include "ui_DialogRegist.h"
 
-class AccountStoreTranmsit;
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class DialogRegistClass; };
@@ -18,7 +15,6 @@ public:
     ~DialogRegist();
 private:
     Ui::DialogRegistClass* ui;
-    AccountStoreTranmsit * m_accountStoreTranmsit;
 private:
     void build_ui();
     void build_connect();

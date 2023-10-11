@@ -3,11 +3,11 @@
 
 #include<String>
 
-class AccountStore;
+class AccountStoreAbstract;
 
 class AccountStoreTranmsit {
 private:
-    AccountStore* m_accountStore;
+    AccountStoreAbstract* m_accountStoreAbstract;
 public:
     enum AccountStoreTranmsitResult {
         EmptyAccount = 0, ExistingAccount = 1,

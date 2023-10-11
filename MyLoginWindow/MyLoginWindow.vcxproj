@@ -65,12 +65,16 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>$(ProjectDir)\include\LoginWindow_UI;$(ProjectDir)\include\LoginWindow_BLogic</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\PasswordGenerator\x64\Debug\uic;$(SolutionDir)\PasswordGenerator\include;$(ProjectDir)\include\LoginWindow_BLogic;$(ProjectDir)\include\LoginWindow_UI;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>$(SolutionDir)\PasswordGenerator\build\x64\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>PasswordGenerator.obj;moc_PasswordGenerator.obj;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>$(ProjectDir)\include\LoginWindow_UI;$(ProjectDir)\include\LoginWindow_BLogic</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="Configuration">
@@ -102,8 +106,10 @@
     <QtUic Include="ui\DialogRegist.ui" />
     <QtUic Include="ui\LoginWindow.ui" />
     <QtMoc Include="include\LoginWindow_UI\LoginWindow.h" />
+    <ClCompile Include="src\LoginWindow_UI\RegistTransmit.cpp" />
+    <ClCompile Include="src\LoginWindow_BLogic\regist.cpp" />
+    <ClCompile Include="src\LoginWindow_BLogic\accountStoreSaveInTxt.cpp" />
     <ClCompile Include="src\LoginWindow_BLogic\registAbstract.cpp" />
-    <ClCompile Include="src\LoginWindow_BLogic\accountStore.cpp" />
     <ClCompile Include="src\LoginWindow_UI\accountStoreTranmist.cpp" />
     <ClCompile Include="src\LoginWindow_UI\DialogRegist.cpp" />
     <ClCompile Include="src\LoginWindow_BLogic\login.cpp" />
@@ -113,16 +119,24 @@
     <ClCompile Include="src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\LoginWindow_BLogic\accountStore.h" />
+    <ClInclude Include="include\LoginWindow_BLogic\accountStoreAbstract.h" />
+    <ClInclude Include="include\LoginWindow_BLogic\accountStoreSaveInTxt.h" />
+    <ClInclude Include="include\LoginWindow_BLogic\regist.h" />
     <ClInclude Include="include\LoginWindow_BLogic\registAbstract.h" />
     <ClInclude Include="include\LoginWindow_UI\accountStoreTranmist.h" />
     <ClInclude Include="include\LoginWindow_BLogic\login.h" />
     <ClInclude Include="include\LoginWindow_BLogic\loginAbstract.h" />
     <ClInclude Include="include\LoginWindow_UI\loginTransmit.h" />
+    <ClInclude Include="include\LoginWindow_UI\RegistTransmit.h" />
     <QtMoc Include="include\LoginWindow_UI\DialogRegist.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PasswordGenerator\PasswordGenerator.vcxproj">
+      <Project>{7a686c9d-2011-4f86-a51b-6dd9348571c9}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

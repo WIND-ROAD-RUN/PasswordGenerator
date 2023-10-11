@@ -1,17 +1,18 @@
 #ifndef LOGINABSTRACT_H_
 #define LOGINABSTRACT_H_
-#include<String>
+#include<string>
 class LoginAbstract {
 private:
     std::string m_account;
     std::string m_password;
+private:
+    virtual bool check_Account() = 0;
 public:
     LoginAbstract(const std::string& account, const std::string& password)
         : m_account(account), m_password(password) {}
     ~LoginAbstract() {}
 public:
-    virtual bool login();
-    virtual bool check_Account() = 0;
+    bool login();
     void setAccount(const std::string& account, const std::string& password);
     void set_account(const std::string& account) { m_account = account; }
     void set_password(const std::string& password) { m_password = password; }

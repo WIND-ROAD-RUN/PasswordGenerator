@@ -5,6 +5,7 @@
 #include<QString>
 #include"DialogRegist.h"
 #include<QPainter>
+#include"PasswordGenerator.h"
 
 LoginWindow::LoginWindow(QWidget* parent)
     : QMainWindow(parent)
@@ -13,12 +14,16 @@ LoginWindow::LoginWindow(QWidget* parent)
     ui->setupUi(this);
     build_ui();
     build_connect();
+    this->setWindowFlag(Qt::WindowMinimizeButtonHint,true);
+    this->setWindowFlag(Qt::WindowMaximizeButtonHint, false);
+    this->setWindowFlag(Qt::CustomizeWindowHint, false);
+    this->setWindowTitle(QString("登录"));
 }
 
 LoginWindow::~LoginWindow()
 {
     delete ui;
-    delete m_login;
+    delete generatorWindow;
 }
 
 void LoginWindow::build_ui()
@@ -68,9 +73,6 @@ inline void LoginWindow::set_loginGroup()
     ui->cBox_savePassword->setFont(font);
     ui->ledit_account->setText("");
     ui->lEdit_password->setText("");
-    m_login = new LoginTransmit(
-        ui->ledit_account->text().toStdString(),
-        ui->lEdit_password->text().toStdString());
 }
 
 inline void LoginWindow::set_WindowBackground()
@@ -89,16 +91,17 @@ inline void LoginWindow::set_WindowBackground()
 }
 
 void LoginWindow::pbtn_login_clicked() {
-    m_login->setAccount(
-        ui->ledit_account->text().toStdString(),
+    LoginTransmit* login = new LoginTransmit(ui->ledit_account->text().toStdString(),
         ui->lEdit_password->text().toStdString());
 
-    if (this->m_login->isLoginSuccess()) {
-        QMessageBox::information(this, "登录成功", "进入游戏", QMessageBox::Ok, QMessageBox::NoButton);
+    if (login->isLoginSuccess()) {
+        if (!generatorWindow) { generatorWindow = new PasswordGenerator(this); }
+        generatorWindow->show();
     }
     else {
         ui->label_accountPassError->setVisible(true);
     }
+    delete login;
 
 }
 

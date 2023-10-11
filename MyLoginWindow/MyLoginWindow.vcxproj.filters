@@ -55,10 +55,16 @@
     <ClCompile Include="src\LoginWindow_UI\DialogRegist.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\LoginWindow_BLogic\accountStore.cpp">
+    <ClCompile Include="src\LoginWindow_BLogic\registAbstract.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\LoginWindow_BLogic\registAbstract.cpp">
+    <ClCompile Include="src\LoginWindow_BLogic\accountStoreSaveInTxt.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\LoginWindow_BLogic\regist.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\LoginWindow_UI\RegistTransmit.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -75,10 +81,19 @@
     <ClInclude Include="include\LoginWindow_UI\loginTransmit.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\LoginWindow_BLogic\accountStore.h">
+    <ClInclude Include="include\LoginWindow_BLogic\registAbstract.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\LoginWindow_BLogic\registAbstract.h">
+    <ClInclude Include="include\LoginWindow_BLogic\accountStoreAbstract.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LoginWindow_BLogic\accountStoreSaveInTxt.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LoginWindow_UI\RegistTransmit.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LoginWindow_BLogic\regist.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

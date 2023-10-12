@@ -1,35 +1,19 @@
-#include "pugixml.hpp"
+ï»¿#include<string>
 #include<iostream>
-#include<string>
+#include"LocalizationStringModule-XML.h"
+#define LOCAT R"(database\LocalizationStringDatabase.xml)"
+
 using namespace std;
+
 int main() {
-    pugi::xml_document doc;
-    if (doc.load_file(R"(database\LocalizationStringDatabase.xml)")) {
-        cout << "true"<<endl;
-    }
-    else {
-        cout << "false"<<endl;
-    }
-
-
-    pugi::xml_node root = doc.child("MyLocalizationStringModele_strings");
-
-    // ±éÀú×Ó½Úµã
-    for (pugi::xml_node node : root.children()) {
-        std::cout << "Node name: " << node.name() << std::endl;
-
-        // ±éÀú×Ó½ÚµãµÄ×Ó½Úµã
-        for (pugi::xml_node child : node.children()) {
-            std::cout << "  String ID: " << child.attribute("id").value() << std::endl;
-
-            // ±éÀúÓïÑÔ½Úµã
-            for (pugi::xml_node lang : child.children()) {
-                std::cout << "    Language: " << lang.attribute("local").value() << std::endl;
-                std::cout << "    Text: " << lang.text().get() << std::endl;
-            }
-
-            std::cout << std::endl;
-        }
-    }
+    LocalizationStringXML l;
+    l.setFilePath(LOCAT);
+    cout << l.loadFile() << endl;
+    string s{"NO"};
+    cout <<l.localString(s,"11","USA")<<endl;
+    cout << s << endl;
+    cout << l.localString("1","CHN") << endl;
+    
     return 0;
 }
+

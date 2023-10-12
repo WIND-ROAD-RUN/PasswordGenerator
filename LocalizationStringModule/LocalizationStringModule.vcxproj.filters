@@ -18,12 +18,18 @@
     <ClCompile Include="src\main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="src\LocalizationStringModule-XML.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Xml Include="database\LocalizationStringDatabase.xml" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\LocalizationStringModuleAbstact.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LocalizationStringModule-XML.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

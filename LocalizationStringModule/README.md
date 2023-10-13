@@ -20,7 +20,10 @@ LocalizationStringModule 模块使用与软件中所使用的字符串的本地�
 # 抽象基类接口说明
 
 - `virtual std::string localString(const std::string & id,const std::string & local="CHN") = 0`:这个接口根据id和local来查询对应的本地化字符串，若查询到了应该返回一个string若没有查询到则返回空的string这个接口应该由`virtual bool localString(std::string & target ,const std::string & id,const std::string & local="CHN")=0`实现
-- `virtual bool localString(std::string & target ,const std::string & id,const std::string & local="CHN")=0`:这个接口根据id，local查询对应的本地化字符串，若查询到了将其赋值给target并返回true，若没有查询到则返回false，且target不应该改变。
+- `virtual bool localString(std::string & target ,const std::string & id,const std::string & local="CHN")=0`:这个接口根据id，local查询对应的本地化字符串，若查询到了将其赋值给target并返回`true`，若没有查询到则返回`false`，且target不应该改变。
+- `virtual bool storeLocalString(const std::string & id, const std::string& language,const std::string & src) = 0`:保存本地化字符串，形参对应id（字符串id），language（存储的语言），src（存储的字符串），在找不到对应节点的情况下保存，并且返回`true`，如果已有对应节点则返回`false`
+- `virtual bool changeLocalString(const std::string& id, const std::string& language, const std::string& src)=0`:更改本地化字符串，形参对应id（字符串id），language（存储的语言），src（要更改为的字符串）在找到对应节点的情况下更改，并且返回`true`，如果没有对应节点则返回`false`
+- `virtual bool saveFile() = 0`:保存所有更改的数据到文件中如果保存成功返回`true`,如果保存失败返回`false`
 - `virtual bool loadFile()=0`:这个接口用于加载数据文件，如果加载成功返回`true`,如果加载失败返回`false`
 
 # 如何实现新的LocalizationStringModule（子类）

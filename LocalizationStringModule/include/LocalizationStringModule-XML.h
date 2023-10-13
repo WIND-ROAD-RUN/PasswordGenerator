@@ -22,20 +22,26 @@ private:
     std::string m_filePath{};
     pugi::xml_document  m_doc;
 public:
-    LocalizationStringXML(const std::string& filePath) :m_filePath(filePath) {}
+    LocalizationStringXML(const std::string& filePath) :m_filePath(filePath) {}//最好使用这个方式初始化类
     LocalizationStringXML() {}
     ~LocalizationStringXML() {}
 public:
-    void setFilePath(const std::string& filePath) { m_filePath = filePath; }
+    void setFilePath(const std::string& filePath) { m_filePath = filePath; }//设置文件路径
 public:
     // 通过 LocalizationStringModuleAbstract 继承
-    std::string localString(const std::string& id, const std::string &local) override;
+    std::string localString(const std::string& id, const std::string & language) override;
 
-    bool storeLocalString(const std::string& id, const std::string& local, const std::string& src) override;
+    bool localString(std::string& target, const std::string& id, const std::string& language) override;
+
+    bool storeLocalString(const std::string& id, const std::string& language, const std::string& src) override;
    
-    bool localString(std::string& target, const std::string& id, const std::string& local) override;
-    
     bool loadFile()override;
+
+    // 通过 LocalizationStringModuleAbstract 继承
+    bool saveFile() override;
+
+    // 通过 LocalizationStringModuleAbstract 继承
+    bool changeLocalString(const std::string& id, const std::string& language, const std::string& src) override;
 };
 
 

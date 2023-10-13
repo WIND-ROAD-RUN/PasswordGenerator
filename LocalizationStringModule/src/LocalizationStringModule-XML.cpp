@@ -1,14 +1,33 @@
 #include "LocalizationStringModule-XML.h"
 
-std::string LocalizationStringXML::localString(const std::string& id, const std::string & local)
+std::string LocalizationStringXML::localString(const std::string& id, const std::string & language)
 {
     std::string result{};
-    localString(result,id,local);
+    localString(result,id, language);
     return result;
 }
 
-bool LocalizationStringXML::storeLocalString(const std::string& id, const std::string& local, const std::string& src)
+bool LocalizationStringXML::storeLocalString(const std::string& id, const std::string& language, const std::string& src)
 {
+    auto LocalStringNode = m_doc.child("MyLocalizationStringModele_strings");
+    auto findStringNode = LocalStringNode.find_child_by_attribute("id", id.c_str());
+    if (!findStringNode) {
+        auto newStringNode=LocalStringNode.append_child("string");
+        newStringNode.append_attribute("id").set_value( id.c_str());
+
+        auto newLanguage=newStringNode.append_child("language");
+        newLanguage.append_attribute("language").set_value(language.c_str());
+
+        return newLanguage.text().set(src.c_str());
+    }
+    else {
+        if(!findStringNode.find_child_by_attribute("language", language.c_str())) {
+            auto newLanguage = findStringNode.append_child("language");
+            newLanguage.append_attribute("language").set_value(language.c_str());
+ 
+            return newLanguage.text().set(src.c_str());
+        }
+    }
     return false;
 }
 
@@ -18,13 +37,31 @@ bool LocalizationStringXML::loadFile()
     else { return false; }
 }
 
-bool LocalizationStringXML::localString(std::string& target, const std::string& id, const std::string& local)
+bool LocalizationStringXML::saveFile()
+{
+    return m_doc.save_file(m_filePath.c_str());
+}
+
+bool LocalizationStringXML::changeLocalString(const std::string& id, const std::string& language, const std::string& src)
+{
+    auto LocalStringNode = m_doc.child("MyLocalizationStringModele_strings");
+
+    auto findStringNode = LocalStringNode.find_child_by_attribute("id", id.c_str());
+    if (!findStringNode) { return false; }
+
+    auto findLanguageNode = findStringNode.find_child_by_attribute("language",language.c_str());
+    if (!findLanguageNode) { return false; }
+
+    return findLanguageNode.text().set(src.c_str());
+}
+
+bool LocalizationStringXML::localString(std::string& target, const std::string& id, const std::string& language)
 {
     auto LocalStringNode = m_doc.child("MyLocalizationStringModele_strings");
     auto stringNode = LocalStringNode.find_child_by_attribute("id",id.c_str());
     if (stringNode.empty()) { return false; }
     
-    auto languageNode = stringNode.find_child_by_attribute("local",local.c_str());
+    auto languageNode = stringNode.find_child_by_attribute("language", language.c_str());
     if (languageNode.empty()) { return false; }
     target = move(std::string(languageNode.text().get()));
     

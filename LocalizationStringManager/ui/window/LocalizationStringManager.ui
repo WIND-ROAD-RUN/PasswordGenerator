@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1079</width>
-    <height>297</height>
+    <height>247</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -101,7 +101,18 @@
            </widget>
           </item>
           <item>
-           <widget class="QComboBox" name="cBox_search_local"/>
+           <widget class="QComboBox" name="cBox_search_local">
+            <item>
+             <property name="text">
+              <string>CHN</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>USA</string>
+             </property>
+            </item>
+           </widget>
           </item>
          </layout>
         </item>
@@ -135,7 +146,7 @@
        <property name="frameShadow">
         <enum>QFrame::Sunken</enum>
        </property>
-       <layout class="QVBoxLayout" name="verticalLayout_2" stretch="0,1,1,1,1">
+       <layout class="QVBoxLayout" name="verticalLayout_2" stretch="0,1,1,0,1">
         <item>
          <widget class="QLabel" name="label_2">
           <property name="text">
@@ -170,37 +181,48 @@
            </widget>
           </item>
           <item>
-           <widget class="QComboBox" name="cBox_store_local"/>
+           <widget class="QComboBox" name="cBox_store_local">
+            <item>
+             <property name="text">
+              <string>CHN</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>USA</string>
+             </property>
+            </item>
+           </widget>
           </item>
          </layout>
-        </item>
-        <item>
-         <widget class="QPushButton" name="ptbn_store">
-          <property name="text">
-           <string>存储</string>
-          </property>
-         </widget>
         </item>
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout_6">
           <item>
            <widget class="QLabel" name="label_8">
             <property name="text">
-             <string>存储结果：</string>
+             <string>要存储的字符串：</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="ledit_store_result"/>
+           <widget class="QLineEdit" name="ledit_store_string"/>
           </item>
          </layout>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pbtn_store">
+          <property name="text">
+           <string>存储</string>
+          </property>
+         </widget>
         </item>
        </layout>
       </widget>
      </widget>
     </item>
     <item row="2" column="0">
-     <widget class="QPushButton" name="pushButton">
+     <widget class="QPushButton" name="pbtn_saveData">
       <property name="text">
        <string>保存</string>
       </property>

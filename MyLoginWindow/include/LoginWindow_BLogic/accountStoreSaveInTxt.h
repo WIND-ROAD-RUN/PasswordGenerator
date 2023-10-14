@@ -5,7 +5,8 @@
 #include<vector>
 
 /*实现为单例类*/
-class AccountStoreSaveInTxt:public AccountStoreAbstract {
+class AccountStoreSaveInTxt
+    :public AccountStoreAbstract {
 private:
     static AccountStoreSaveInTxt* my_instance;
     AccountStoreSaveInTxt() {}

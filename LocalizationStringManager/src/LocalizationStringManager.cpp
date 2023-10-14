@@ -3,6 +3,8 @@
 #include<QMessageBox>
 #include"LocalizationStringModule-XML.h"
 #include<string>
+#include<QEvent>
+#include<QCloseEvent>
 
 LocalizationStringManager::LocalizationStringManager(QWidget *parent)
     : QMainWindow(parent)
@@ -32,6 +34,18 @@ void LocalizationStringManager::build_ui()
     ui->frame_store->setEnabled(false);
     ui->ledit_filePath->setEnabled(false);
     ui->pbtn_saveData->setEnabled(false);
+}
+
+void LocalizationStringManager::closeEvent(QCloseEvent* event)
+{
+    QMessageBox::StandardButton result = QMessageBox::question(this, "数据可能还未保存", "是否要保存并退出？");
+    if (result == QMessageBox::Yes) {
+        this->pbtn_saveData_clicked();
+        event->accept();
+    }
+    else {
+        event->accept();
+    }
 }
 
 void LocalizationStringManager::pbtn_search_clicked()

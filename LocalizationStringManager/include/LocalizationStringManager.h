@@ -22,6 +22,8 @@ private:
 private:
     void build_connect();
     void build_ui();
+private:
+    virtual void closeEvent(QCloseEvent* event)override;
 private slots:
     void pbtn_openFile_clicked();
     void pbtn_search_clicked();

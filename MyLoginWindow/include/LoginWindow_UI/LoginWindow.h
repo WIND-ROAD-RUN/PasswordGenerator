@@ -24,7 +24,7 @@ private slots:
 private:
     inline void build_ui();
     inline void build_connect();
-    void closeEvent(QCloseEvent* event);
+    virtual void closeEvent(QCloseEvent* event)override;
     inline void  set_label_accountPassError();
     inline void set_loginGroup();
     inline void set_WindowBackground();

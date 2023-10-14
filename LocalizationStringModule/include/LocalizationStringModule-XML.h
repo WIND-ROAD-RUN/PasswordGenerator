@@ -15,6 +15,7 @@ LocalizationStringXML是LocalizationStringModuleAbstract的子类，通过XML作
 #include"LocalizationStringModuleAbstact.h"
 #include<pugixml.hpp>
 #include<string>
+#include <unordered_map>
 
 class LocalizationStringXML 
     :public LocalizationStringModuleAbstract {
@@ -27,6 +28,7 @@ public:
     ~LocalizationStringXML() {}
 public:
     void setFilePath(const std::string& filePath) { m_filePath = filePath; }//设置文件路径
+    bool getMap(std::unordered_map<std::string,std::string> & map,const std::string & language);
 public:
     // 通过 LocalizationStringModuleAbstract 继承
     std::string localString(const std::string& id, const std::string & language) override;

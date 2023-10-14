@@ -18,18 +18,28 @@
     <ClCompile Include="src\main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="src\ConfigurationLoader-XML.cpp">
+    <ClCompile Include="src\ConfigurationLoader\ConfigurationLoader-XML.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\LocalizationStringLoader\LocalizationStringLoader-XML.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Xml Include="database\configuration.xml" />
+    <Xml Include="database\string.xml" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\ConfigurationLoaderAbstract.h">
+    <ClInclude Include="include\ConfigurationLoader\ConfigurationLoaderAbstract.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="include\ConfigurationLoader-XML.h">
+    <ClInclude Include="include\ConfigurationLoader\ConfigurationLoader-XML.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LocalizationStringLoader\LocalizationStringLoaderAbstract.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LocalizationStringLoader\LocalizationStringLoader-XML.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

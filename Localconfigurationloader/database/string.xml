@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<MyLocalizationStringModele_strings>
+	<string id="1">
+		<language language="CHN">测试89</language>
+		<language language="USA">testing1</language>
+		<language language="CHN" />
+	</string>
+	<string id="2">
+		<language language="CHN">测试4</language>
+		<language language="USA">testing2</language>
+	</string>
+	<string id="3">
+		<language language="CHN">测试111</language>
+		<language language="USA">testing3</language>
+	</string>
+	<string id="7">
+		<language language="USA">hello</language>
+		<language language="CHN">hello</language>
+	</string>
+	<string id="8">
+		<language language="CHN">NO</language>
+	</string>
+	<string id="18">
+		<language language="sCHN">NO</language>
+	</string>
+	<string id="123">
+		<language language="CHN">1</language>
+	</string>
+	<string id="12345">
+		<language language="CHN">1</language>
+	</string>
+	<string id="123467">
+		<language language="CHN">1</language>
+	</string>
+	<string id="z">
+		<language language="CHN">z</language>
+	</string>
+	<string id="r">
+		<language language="CHN">r</language>
+	</string>
+	<string id="78">
+		<language language="CHN">90</language>
+	</string>
+	<string id="67687">
+		<language language="CHN">467</language>
+	</string>
+</MyLocalizationStringModele_strings>

@@ -1,13 +1,28 @@
 #include "LocalizationStringModule-XML.h"
 
-std::string LocalizationStringXML::localString(const std::string& id, const std::string & language)
+bool LocalizationStringXML::getMap
+(std::unordered_map<std::string, std::string>& map, const std::string& language)
+{
+    auto LocalStringNode = m_doc.child("MyLocalizationStringModele_strings");
+    if (!LocalStringNode) { return false; }
+    pugi::xml_node languagaNode{};
+    for (const auto & stringNode:LocalStringNode.children()) {
+        languagaNode = stringNode.find_child_by_attribute("language", language.c_str());
+        map[stringNode.attribute("id").value()] = languagaNode.text().get();
+    }
+    return true;
+}
+
+std::string LocalizationStringXML::localString
+(const std::string& id, const std::string & language)
 {
     std::string result{};
     localString(result,id, language);
     return result;
 }
 
-bool LocalizationStringXML::storeLocalString(const std::string& id, const std::string& language, const std::string& src)
+bool LocalizationStringXML::storeLocalString
+(const std::string& id, const std::string& language, const std::string& src)
 {
     auto LocalStringNode = m_doc.child("MyLocalizationStringModele_strings");
     auto findStringNode = LocalStringNode.find_child_by_attribute("id", id.c_str());
@@ -42,7 +57,8 @@ bool LocalizationStringXML::saveFile()
     return m_doc.save_file(m_filePath.c_str());
 }
 
-bool LocalizationStringXML::changeLocalString(const std::string& id, const std::string& language, const std::string& src)
+bool LocalizationStringXML::changeLocalString
+(const std::string& id, const std::string& language, const std::string& src)
 {
     auto LocalStringNode = m_doc.child("MyLocalizationStringModele_strings");
 
@@ -55,7 +71,8 @@ bool LocalizationStringXML::changeLocalString(const std::string& id, const std::
     return findLanguageNode.text().set(src.c_str());
 }
 
-bool LocalizationStringXML::localString(std::string& target, const std::string& id, const std::string& language)
+bool LocalizationStringXML::localString
+(std::string& target, const std::string& id, const std::string& language)
 {
     auto LocalStringNode = m_doc.child("MyLocalizationStringModele_strings");
     auto stringNode = LocalStringNode.find_child_by_attribute("id",id.c_str());

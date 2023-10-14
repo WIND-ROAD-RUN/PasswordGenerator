@@ -24,14 +24,14 @@ private:
 
 public:
     static ConfigurationLoaderXML* 
-        getInstacnce(const std::string& configFilePath) {
+        getInstance(const std::string& configFilePath) {
         if (!m_instance) {
             m_instance = new ConfigurationLoaderXML(configFilePath);
         }
         return m_instance;
     }
     static ConfigurationLoaderXML*
-        getInstacnce() {
+        getInstance() {
         if (!m_instance) {
             m_instance = new ConfigurationLoaderXML();
         }

@@ -6,18 +6,21 @@
 #include"DialogRegist.h"
 #include<QPainter>
 #include"PasswordGenerator.h"
+#include"LocalizationStringLoader-XML.h"
+#include"ConfigurationLoader-XML.h"
+#include<string>
 
-LoginWindow::LoginWindow(QWidget* parent)
-    : QMainWindow(parent)
+LoginWindow::LoginWindow(LocalizationStringLoaderXML* locStCom, ConfigurationLoaderXML* cfgLoCom,QWidget* parent)
+    : m_locStCom(locStCom), m_cfgLoCom(cfgLoCom), QMainWindow(parent)
     , ui(new Ui::LoginWindowClass())
 {
     ui->setupUi(this);
     build_ui();
     build_connect();
+    this->setLanguageString(m_locStCom);
     this->setWindowFlag(Qt::WindowMinimizeButtonHint,true);
     this->setWindowFlag(Qt::WindowMaximizeButtonHint, false);
     this->setWindowFlag(Qt::CustomizeWindowHint, false);
-    this->setWindowTitle(QString("登录"));
 }
 
 LoginWindow::~LoginWindow()
@@ -26,11 +29,41 @@ LoginWindow::~LoginWindow()
     delete generatorWindow;
 }
 
+void LoginWindow::setLanguageString(LocalizationStringLoaderXML* locStCom)
+{
+    ui->pbtn_login->setText(QString::fromStdString(locStCom->getString("1")));
+    ui->pbtn_regist->setText(QString::fromStdString(locStCom->getString("2")));
+    ui->label_password->setText(QString::fromStdString(locStCom->getString("6")));
+    ui->label_account->setText(QString::fromStdString(locStCom->getString("5")));
+    ui->cBox_LoginAuto->setText(QString::fromStdString(locStCom->getString("4")));
+    ui->cBox_savePassword->setText(QString::fromStdString(locStCom->getString("3")));
+    this->setWindowTitle(QString::fromStdString(locStCom->getString("1")));
+    ui->label_accountPassError->setText(QString::fromStdString(locStCom->getString("7")));
+    
+}
+
+void LoginWindow::setlocStCom(LocalizationStringLoaderXML* locStCom)
+{
+    m_locStCom = locStCom;
+}
+
+void LoginWindow::setConfigLoadCom(ConfigurationLoaderXML* cfgLoCom)
+{
+    m_cfgLoCom = cfgLoCom;
+}
+
 void LoginWindow::build_ui()
 {
     set_WindowBackground();
     set_label_accountPassError();
     set_loginGroup();
+    auto language = m_cfgLoCom->Language();
+    if (language == "CHN") {
+        ui->cBox_languageChange->setCurrentIndex(0);
+    }
+    else if (language == "USA") {
+        ui->cBox_languageChange->setCurrentIndex(1);
+    }
 }
 
 inline void LoginWindow::build_connect()
@@ -39,7 +72,7 @@ inline void LoginWindow::build_connect()
     QObject::connect(ui->pbtn_regist, SIGNAL(clicked()), this, SLOT(pbtn_regist_clicked()));
     QObject::connect(ui->ledit_account, &QLineEdit::textChanged, this, &LoginWindow::label_AccountPassError_cancel);
     QObject::connect(ui->lEdit_password, &QLineEdit::textChanged, this, &LoginWindow::label_AccountPassError_cancel);
-
+    QObject::connect(ui->cBox_languageChange,&QComboBox::currentIndexChanged,this,&LoginWindow::cBox_languageChanged_indexChanged);
 }
 
 void LoginWindow::closeEvent(QCloseEvent* event)
@@ -110,7 +143,7 @@ void LoginWindow::label_AccountPassError_cancel() {
 }
 
 void LoginWindow::pbtn_regist_clicked() {
-    DialogRegist* dlgRegist = new DialogRegist(this);
+    DialogRegist* dlgRegist = new DialogRegist(m_locStCom,this);
     dlgRegist->setWindowFlag(Qt::MSWindowsFixedSizeDialogHint);
     int ret = dlgRegist->exec();
     if (ret == QDialog::Accepted) {
@@ -120,4 +153,36 @@ void LoginWindow::pbtn_regist_clicked() {
     else {
         return;
     }
+}
+
+void LoginWindow::cBox_languageChanged_indexChanged()
+{
+    auto index = ui->cBox_languageChange->currentIndex();
+    switch (index) {
+    case 0 :
+        if (m_cfgLoCom->Language()==std::string("CHN")) {
+            break;
+        }
+        else {
+            m_cfgLoCom->setLocalLanguage("CHN");
+            m_cfgLoCom->storeConfig();
+            m_locStCom->setLanguage("CHN");
+            m_locStCom->loadData();
+            this->setLanguageString(m_locStCom);
+            break;
+        }
+    case 1:
+        if (m_cfgLoCom->Language() == std::string("USA")) {
+            break;
+        }
+        else {
+            m_cfgLoCom->setLocalLanguage("USA");
+            m_cfgLoCom->storeConfig();
+            m_locStCom->setLanguage("USA");
+            m_locStCom->loadData();
+            this->setLanguageString(m_locStCom);
+            break;
+        }
+    }
+
 }

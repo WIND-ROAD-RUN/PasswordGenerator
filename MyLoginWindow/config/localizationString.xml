@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<MyLocalizationStringModele_strings>
+	<string id="1">
+		<language language="USA">login</language>
+		<language language="CHN">登录</language>
+	</string>
+	<string id="2">
+		<language language="CHN">注册</language>
+		<language language="USA">regist</language>
+	</string>
+	<string id="3">
+		<language language="CHN">保存密码</language>
+		<language language="USA">Save Password</language>
+	</string>
+	<string id="4">
+		<language language="CHN">自动登录</language>
+		<language language="USA">automatic logon</language>
+	</string>
+	<string id="5">
+		<language language="CHN">账户</language>
+		<language language="USA">account</language>
+	</string>
+	<string id="6">
+		<language language="CHN">密码</language>
+		<language language="USA">password</language>
+	</string>
+	<string id="7">
+		<language language="CHN">账户或密码错误</language>
+		<language language="USA">Account or password error</language>
+	</string>
+	<string id="8">
+		<language language="CHN">账户的注册</language>
+		<language language="USA">Account registration</language>
+	</string>
+	<string id="9">
+		<language language="CHN">请再次输入你的密码</language>
+		<language language="USA">Please enter your password again</language>
+	</string>
+	<string id="10">
+		<language language="CHN">两次输入的密码不一致</language>
+		<language language="USA">Entered passwords differ!</language>
+	</string>
+	<string id="11">
+		<language language="CHN">确定</language>
+		<language language="USA">ok</language>
+	</string>
+	<string id="12">
+		<language language="CHN">取消</language>
+		<language language="USA">cancel</language>
+	</string>
+	<string id="13">
+		<language language="CHN">更改语言</language>
+		<language language="USA">Change language</language>
+	</string>
+</MyLocalizationStringModele_strings>

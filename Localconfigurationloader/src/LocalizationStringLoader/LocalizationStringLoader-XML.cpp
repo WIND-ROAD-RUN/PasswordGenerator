@@ -22,7 +22,7 @@ bool LocalizationStringLoaderXML::loadData()
     return m_LocalStringComponet->getMap(m_map,m_language);
 }
 
-std::string LocalizationStringLoaderXML::getString(const std::string id)
+const std::string& LocalizationStringLoaderXML::getString(const std::string id)
 {
     return m_map[id];
 }

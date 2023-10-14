@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="README.md" />
+    <None Include="include\ConfigurationLoader\README.md" />
+    <None Include="include\LocalizationStringLoader\README.md" />
   </ItemGroup>
 </Project>

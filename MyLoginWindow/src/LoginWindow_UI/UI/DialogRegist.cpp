@@ -1,14 +1,16 @@
 #include "DialogRegist.h"
 #include <QMessageBox>
 #include "RegistTransmit.h"
+#include"LocalizationStringLoader-XML.h"
 
-DialogRegist::DialogRegist(QWidget* parent)
-    : QDialog(parent)
+DialogRegist::DialogRegist(LocalizationStringLoaderXML* locStCom, QWidget* parent )
+    : m_locStCom(locStCom), QDialog(parent)
     , ui(new Ui::DialogRegistClass())
 {
     ui->setupUi(this);
+    setLanguageString(locStCom);
     build_ui();
-    build_connect();
+    build_connect();   
 }
 
 DialogRegist::~DialogRegist()
@@ -72,4 +74,16 @@ void DialogRegist::on_ledit_password_changed() {
 }
 void DialogRegist::on_ledit_password_again_changed() {
     ui->label_error->setText("");
+}
+
+void DialogRegist::setLanguageString(LocalizationStringLoaderXML* locStCom)
+{
+    this->setWindowTitle(QString::fromStdString(locStCom->getString("2")));
+    ui->label_account->setText(QString::fromStdString(locStCom->getString("5")));
+    ui->label_accountRegist->setText(QString::fromStdString(locStCom->getString("8")));
+    ui->label_error->setText(QString::fromStdString(locStCom->getString("10")));
+    ui->label_password->setText(QString::fromStdString(locStCom->getString("6")));
+    ui->label_passwordAgain->setText(QString::fromStdString(locStCom->getString("9")));
+    ui->pbtn_cancel->setText(QString::fromStdString(locStCom->getString("12")));
+    ui->pbtn_ok->setText(QString::fromStdString(locStCom->getString("11")));
 }

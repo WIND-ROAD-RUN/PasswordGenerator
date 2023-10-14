@@ -171,8 +171,9 @@
     <ClInclude Include="include\LocalizationStringLoader\LocalizationStringLoader-XML.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="include\LocalizationStringLoader\README.md" />
     <None Include="packages.config" />
-    <None Include="README.md" />
+    <None Include="include\ConfigurationLoader\README.md" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LocalizationStringModule\LocalizationStringModule.vcxproj">

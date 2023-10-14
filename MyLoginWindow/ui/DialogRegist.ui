@@ -17,7 +17,7 @@
    <item row="1" column="0" colspan="2">
     <layout class="QGridLayout" name="gridLayout_3">
      <item row="0" column="0">
-      <widget class="QLabel" name="label_8">
+      <widget class="QLabel" name="label_account">
        <property name="text">
         <string>账户：</string>
        </property>
@@ -27,7 +27,7 @@
       <widget class="QLineEdit" name="ledit_account"/>
      </item>
      <item row="1" column="0">
-      <widget class="QLabel" name="label_9">
+      <widget class="QLabel" name="label_password">
        <property name="text">
         <string>密码：</string>
        </property>
@@ -37,7 +37,7 @@
       <widget class="QLineEdit" name="ledit_password"/>
      </item>
      <item row="2" column="0">
-      <widget class="QLabel" name="label_10">
+      <widget class="QLabel" name="label_passwordAgain">
        <property name="text">
         <string>请确认你的密码：</string>
        </property>
@@ -67,7 +67,7 @@
     </layout>
    </item>
    <item row="0" column="0" colspan="2">
-    <widget class="QLabel" name="label_4">
+    <widget class="QLabel" name="label_accountRegist">
      <property name="font">
       <font>
        <pointsize>16</pointsize>

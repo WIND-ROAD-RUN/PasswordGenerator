@@ -43,7 +43,7 @@ public:
     // 通过 LocalizationStringLoaderAbstract 继承
     bool loadData() override;
 
-    std::string getString(const std::string id) override;
+    const std::string& getString(const std::string id) override;
 
 };
     

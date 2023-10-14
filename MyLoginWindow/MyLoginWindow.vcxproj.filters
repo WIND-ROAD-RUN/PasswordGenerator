@@ -29,10 +29,10 @@
     <QtUic Include="ui\LoginWindow.ui">
       <Filter>Form Files</Filter>
     </QtUic>
-    <QtMoc Include="include\LoginWindow_UI\LoginWindow.h">
+    <QtMoc Include="include\LoginWindow_UI\UI\LoginWindow.h">
       <Filter>Header Files</Filter>
     </QtMoc>
-    <ClCompile Include="src\LoginWindow_UI\LoginWindow.cpp">
+    <ClCompile Include="src\LoginWindow_UI\UI\LoginWindow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -40,65 +40,65 @@
     <ClCompile Include="src\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\LoginWindow_UI\accountStoreTranmist.cpp">
+    <ClCompile Include="src\LoginWindow_UI\UI_tranmist\accountStoreTranmist.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\LoginWindow_BLogic\login.cpp">
+    <ClCompile Include="src\LoginWindow_BLogic\login_regist\login.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\LoginWindow_BLogic\loginAbstract.cpp">
+    <ClCompile Include="src\LoginWindow_BLogic\login_regist\loginAbstract.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\LoginWindow_UI\loginTransmit.cpp">
+    <ClCompile Include="src\LoginWindow_UI\UI_tranmist\loginTransmit.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\LoginWindow_UI\DialogRegist.cpp">
+    <ClCompile Include="src\LoginWindow_UI\UI\DialogRegist.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\LoginWindow_BLogic\registAbstract.cpp">
+    <ClCompile Include="src\LoginWindow_BLogic\login_regist\registAbstract.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\LoginWindow_BLogic\accountStoreSaveInTxt.cpp">
+    <ClCompile Include="src\LoginWindow_BLogic\accountStore\accountStoreSaveInTxt.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\LoginWindow_BLogic\regist.cpp">
+    <ClCompile Include="src\LoginWindow_BLogic\login_regist\regist.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\LoginWindow_UI\RegistTransmit.cpp">
+    <ClCompile Include="src\LoginWindow_UI\UI_tranmist\RegistTransmit.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\LoginWindow_UI\accountStoreTranmist.h">
+    <ClInclude Include="include\LoginWindow_UI\UI_tranmist\accountStoreTranmist.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\LoginWindow_BLogic\login.h">
+    <ClInclude Include="include\LoginWindow_BLogic\login_regist\login.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\LoginWindow_BLogic\loginAbstract.h">
+    <ClInclude Include="include\LoginWindow_BLogic\login_regist\loginAbstract.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\LoginWindow_UI\loginTransmit.h">
+    <ClInclude Include="include\LoginWindow_UI\UI_tranmist\loginTransmit.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\LoginWindow_BLogic\registAbstract.h">
+    <ClInclude Include="include\LoginWindow_BLogic\login_regist\registAbstract.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\LoginWindow_BLogic\accountStoreAbstract.h">
+    <ClInclude Include="include\LoginWindow_BLogic\accountStore\accountStoreAbstract.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\LoginWindow_BLogic\accountStoreSaveInTxt.h">
+    <ClInclude Include="include\LoginWindow_BLogic\accountStore\accountStoreSaveInTxt.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\LoginWindow_UI\RegistTransmit.h">
+    <ClInclude Include="include\LoginWindow_UI\UI_tranmist\RegistTransmit.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\LoginWindow_BLogic\regist.h">
+    <ClInclude Include="include\LoginWindow_BLogic\login_regist\regist.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="include\LoginWindow_UI\DialogRegist.h">
+    <QtMoc Include="include\LoginWindow_UI\UI\DialogRegist.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>
@@ -109,5 +109,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="README.md" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="config\config.xml" />
+    <Xml Include="config\localizationString.xml" />
   </ItemGroup>
 </Project>

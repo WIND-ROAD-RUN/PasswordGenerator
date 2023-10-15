@@ -20,6 +20,7 @@ public:
     ~LoginWindow();
 private:
     Ui::LoginWindowClass* ui;
+private:
     PasswordGenerator* generatorWindow{nullptr};
     LocalizationStringLoaderXML* m_locStCom{ nullptr };
     ConfigurationLoaderXML* m_cfgLoCom{nullptr};
@@ -28,6 +29,8 @@ private slots:
     void label_AccountPassError_cancel();
     void pbtn_regist_clicked();
     void cBox_languageChanged_indexChanged();
+    void cBox_savePassword_checkd();
+    void cBox_LoginAuto_checked();
 private:
     virtual void closeEvent(QCloseEvent* event)override;
 private:

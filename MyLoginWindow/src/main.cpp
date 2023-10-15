@@ -2,13 +2,10 @@
 #include <QtWidgets/QApplication>
 #include"LocalizationStringLoader-XML.h"
 #include"ConfigurationLoader-XML.h"
+#include"config.h"
 
-#define CONFIGPATH R"(G:\project\code_place\vs_code_place\MyPasswordGenerator\PasswordGeneratorProject\MyLoginWindow\config\config.xml)"
-#define LOCALIZATIONSTRINGPATH R"(G:\project\code_place\vs_code_place\MyPasswordGenerator\PasswordGeneratorProject\MyLoginWindow\config\localizationString.xml)"
-
-ConfigurationLoaderXML* configCom = ConfigurationLoaderXML::getInstance();
-LocalizationStringLoaderXML* loStrCom = LocalizationStringLoaderXML::getInstance();
-
+ConfigurationLoaderXML* configCom;
+LocalizationStringLoaderXML* loStrCom;
 
 void preparate_for_run();
 void preparate_for_exit();
@@ -22,17 +19,17 @@ int main(int argc, char *argv[])
     return a.exec();
 }
 
-void preparate_for_run()
-{
+void preparate_for_run() {
+    configCom = ConfigurationLoaderXML::getInstance();
+    loStrCom = LocalizationStringLoaderXML::getInstance();
+
     configCom->setFilePath(CONFIGPATH);
     configCom->loadConfig();
     loStrCom->setFilePath(LOCALIZATIONSTRINGPATH);
     loStrCom->setLanguage(configCom->Language());
     loStrCom->loadData();
 }
-
-void preparate_for_exit()
-{
+void preparate_for_exit() {
     delete loStrCom;
     delete configCom;
 }

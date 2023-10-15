@@ -65,7 +65,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>$(SolutionDir)\PasswordGenerator\x64\Debug\uic;$(SolutionDir)\LocalconfigurationLoader\include\LocalizationStringLoader;$(SolutionDir)\LocalconfigurationLoader\include\ConfigurationLoader;$(SolutionDir)\PasswordGenerator\include;$(ProjectDir)\include\LoginWindow_BLogic\login_regist;$(ProjectDir)\include\LoginWindow_BLogic\accountStore;$(ProjectDir)\include\LoginWindow_UI\UI_tranmist;$(ProjectDir)\include\LoginWindow_UI\UI;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)\include\config;$(SolutionDir)\PasswordGenerator\build\x64\Debug\uic;$(SolutionDir)\LocalconfigurationLoader\include\LocalizationStringLoader;$(SolutionDir)\LocalconfigurationLoader\include\ConfigurationLoader;$(SolutionDir)\PasswordGenerator\include;$(ProjectDir)\include\LoginWindow_BLogic\login_regist;$(ProjectDir)\include\LoginWindow_BLogic\accountStore;$(ProjectDir)\include\LoginWindow_UI\UI_tranmist;$(ProjectDir)\include\LoginWindow_UI\UI;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(SolutionDir)\LocalizationStringModule\build\x64\Debug;$(SolutionDir)\PasswordGenerator\build\x64\Debug;$(SolutionDir)\Localconfigurationloader\build\x64\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -106,7 +106,7 @@
     <QtUic Include="ui\DialogRegist.ui" />
     <QtUic Include="ui\LoginWindow.ui" />
     <QtMoc Include="include\LoginWindow_UI\UI\LoginWindow.h" />
-    <ClCompile Include="include\LoginWindow_BLogic\accountStore\accountStoreSaveInXML.cpp" />
+    <ClCompile Include="src\LoginWindow_BLogic\accountStore\accountStoreSaveInXML.cpp" />
     <ClCompile Include="src\LoginWindow_UI\UI_tranmist\RegistTransmit.cpp" />
     <ClCompile Include="src\LoginWindow_BLogic\login_regist\regist.cpp" />
     <ClCompile Include="src\LoginWindow_BLogic\accountStore\accountStoreSaveInTxt.cpp" />
@@ -120,6 +120,7 @@
     <ClCompile Include="src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\config\config.h" />
     <ClInclude Include="include\LoginWindow_BLogic\accountStore\accountStoreAbstract.h" />
     <ClInclude Include="include\LoginWindow_BLogic\accountStore\accountStoreSaveInTxt.h" />
     <ClInclude Include="include\LoginWindow_BLogic\accountStore\accountStoreSaveInXML.h" />

@@ -67,7 +67,7 @@
     <ClCompile Include="src\LoginWindow_UI\UI_tranmist\RegistTransmit.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="include\LoginWindow_BLogic\accountStore\accountStoreSaveInXML.cpp">
+    <ClCompile Include="src\LoginWindow_BLogic\accountStore\accountStoreSaveInXML.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -100,6 +100,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\LoginWindow_BLogic\accountStore\accountStoreSaveInXML.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\config\config.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

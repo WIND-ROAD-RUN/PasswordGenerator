@@ -21,7 +21,9 @@ private:
     pugi::xml_document m_doc;
 private:
     std::string m_localLanguage{};
-
+    std::pair<std::string, std::string> m_lastLoginAccount{};
+    bool m_isRememberPassword{};
+    bool m_isAutoLogin{};
 public:
     static ConfigurationLoaderXML* 
         getInstance(const std::string& configFilePath) {
@@ -44,6 +46,12 @@ public:
     void setFilePath(const std::string& configFilePath) { m_configFilePath = configFilePath; }
     const std::string Language() const { return m_localLanguage; }
     void setLocalLanguage(const std::string& language) { m_localLanguage = language; }
+    void setLastLoginAccount(const std::string& account, const std::string password) { m_lastLoginAccount=std::move(std::pair<std::string, std::string>(account, password)); }
+    const std::pair<std::string, std::string>& LastLoginAccount()const { return m_lastLoginAccount; }
+    void set_isRememberPassword(bool is) { m_isRememberPassword = is; }
+    bool isRememberPassword() const{ return m_isRememberPassword; }
+    void set_isAutoLogin(bool is) { m_isAutoLogin = is; }
+    bool isAutoLogin() { return m_isAutoLogin; }
 public:
     // 通过 ConfigurationLoaderAbstract 继承
     bool loadConfig() override;

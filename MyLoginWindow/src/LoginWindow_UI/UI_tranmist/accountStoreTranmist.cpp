@@ -1,9 +1,12 @@
 #include "accountStoreTranmist.h"
 #include"accountStoreSaveInTxt.h"
+#include"accountStoreSaveInXML.h"
+#include"config.h"
 
 AccountStoreTranmsit::AccountStoreTranmsit()
 {
-    m_accountStoreAbstract = AccountStoreSaveInTxt::getInstance();
+    m_accountStoreAbstract = AccountStoreSaveInXML::getInstance(ACCOUNTTABLEPATH);
+    m_accountStoreAbstract->ini_accountTable();
 }
 
 AccountStoreTranmsit::~AccountStoreTranmsit()

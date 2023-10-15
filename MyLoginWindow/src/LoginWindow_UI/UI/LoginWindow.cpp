@@ -21,6 +21,9 @@ LoginWindow::LoginWindow(LocalizationStringLoaderXML* locStCom, ConfigurationLoa
     this->setWindowFlag(Qt::WindowMinimizeButtonHint,true);
     this->setWindowFlag(Qt::WindowMaximizeButtonHint, false);
     this->setWindowFlag(Qt::CustomizeWindowHint, false);
+    if (ui->cBox_LoginAuto->isChecked()) {
+        this->pbtn_login_clicked();
+    }
 }
 
 LoginWindow::~LoginWindow()
@@ -64,6 +67,19 @@ void LoginWindow::build_ui()
     else if (language == "USA") {
         ui->cBox_languageChange->setCurrentIndex(1);
     }
+    ui->cBox_savePassword->setChecked(m_cfgLoCom->isRememberPassword());
+    if (ui->cBox_savePassword->isChecked()) {
+        ui->cBox_LoginAuto->setChecked(m_cfgLoCom->isAutoLogin());
+        ui->cBox_LoginAuto->setEnabled(true);
+    }
+    else {
+        ui->cBox_LoginAuto->setEnabled(false);
+    }
+    ui->ledit_account->setText(QString::fromStdString(m_cfgLoCom->LastLoginAccount().first));
+    if (m_cfgLoCom->isRememberPassword()) {
+        ui->lEdit_password->setText(QString::fromStdString(m_cfgLoCom->LastLoginAccount().second));
+    }
+    
 }
 
 inline void LoginWindow::build_connect()
@@ -73,6 +89,8 @@ inline void LoginWindow::build_connect()
     QObject::connect(ui->ledit_account, &QLineEdit::textChanged, this, &LoginWindow::label_AccountPassError_cancel);
     QObject::connect(ui->lEdit_password, &QLineEdit::textChanged, this, &LoginWindow::label_AccountPassError_cancel);
     QObject::connect(ui->cBox_languageChange,&QComboBox::currentIndexChanged,this,&LoginWindow::cBox_languageChanged_indexChanged);
+    QObject::connect(ui->cBox_savePassword,&QCheckBox::stateChanged,this,&LoginWindow::cBox_savePassword_checkd);
+    QObject::connect(ui->cBox_LoginAuto, &QCheckBox::stateChanged, this, &LoginWindow::cBox_LoginAuto_checked);
 }
 
 void LoginWindow::closeEvent(QCloseEvent* event)
@@ -134,6 +152,12 @@ void LoginWindow::pbtn_login_clicked() {
     else {
         ui->label_accountPassError->setVisible(true);
     }
+
+    m_cfgLoCom->setLastLoginAccount(ui->ledit_account->text().toStdString(),
+        ui->lEdit_password->text().toStdString());
+
+    m_cfgLoCom->storeConfig();
+
     delete login;
 
 }
@@ -185,4 +209,26 @@ void LoginWindow::cBox_languageChanged_indexChanged()
         }
     }
 
+}
+
+void LoginWindow::cBox_savePassword_checkd()
+{
+    bool isSavePassword= ui->cBox_savePassword->isChecked();
+    if (isSavePassword) {
+        ui->cBox_LoginAuto->setEnabled(true);
+    }
+    else {
+        ui->cBox_LoginAuto->setEnabled(false);
+        ui->cBox_LoginAuto->setChecked(false);
+        m_cfgLoCom->set_isAutoLogin(false);
+    }
+    m_cfgLoCom->set_isRememberPassword(isSavePassword);
+    m_cfgLoCom->storeConfig();
+    
+}
+
+void LoginWindow::cBox_LoginAuto_checked()
+{
+    m_cfgLoCom->set_isAutoLogin(ui->cBox_LoginAuto->isChecked());
+    m_cfgLoCom->storeConfig();
 }

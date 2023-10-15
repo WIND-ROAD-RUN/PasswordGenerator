@@ -1,4 +1,12 @@
 <?xml version="1.0"?>
 <Localization>
 	<stringLanguage>USA</stringLanguage>
+	<LastRunInformation>
+		<LastRunAccount>
+			<Account>1</Account>
+			<Password>1</Password>
+		</LastRunAccount>
+		<IsRemerberPassword>true</IsRemerberPassword>
+		<IsAutoLogin>false</IsAutoLogin>
+	</LastRunInformation>
 </Localization>

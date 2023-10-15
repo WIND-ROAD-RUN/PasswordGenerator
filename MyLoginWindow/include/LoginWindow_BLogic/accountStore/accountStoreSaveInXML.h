@@ -6,6 +6,7 @@
 #include<string>
 #include<pugixml.hpp>
 
+/*实现为单例类*/
 class AccountStoreSaveInXML
     :public AccountStoreAbstract {
 private:
@@ -13,9 +14,24 @@ private:
 private:
     std::string m_accountFilePath{};
     pugi::xml_document m_doc;
-public:
+private:
+    static AccountStoreSaveInXML* my_instance;
     AccountStoreSaveInXML() {}
-    AccountStoreSaveInXML(const std::string & filePath):m_accountFilePath(filePath) {}
+    AccountStoreSaveInXML(const std::string& filePath) :m_accountFilePath(filePath) {}
+public:
+    static AccountStoreSaveInXML* getInstance() {
+        if (!my_instance) {
+            my_instance = new AccountStoreSaveInXML();
+        }
+        return my_instance;
+    }
+    static AccountStoreSaveInXML* getInstance(const std::string& filePath) {
+        if (!my_instance) {
+            my_instance = new AccountStoreSaveInXML(filePath);
+        }
+        return my_instance;
+    }
+
     ~AccountStoreSaveInXML() {}
 public:
     void setFilePath(const std::string& filePath) { m_accountFilePath = filePath; }

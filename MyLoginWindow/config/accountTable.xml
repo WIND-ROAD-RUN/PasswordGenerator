@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0"?>
 <accountTable>
-	<account id="root">
-			root
-		</account>
+	<account id="root">root</account>
+	<account id="1">1</account>
 </accountTable>

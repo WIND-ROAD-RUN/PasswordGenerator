@@ -106,6 +106,7 @@
     <QtUic Include="ui\DialogRegist.ui" />
     <QtUic Include="ui\LoginWindow.ui" />
     <QtMoc Include="include\LoginWindow_UI\UI\LoginWindow.h" />
+    <ClCompile Include="include\LoginWindow_BLogic\accountStore\accountStoreSaveInXML.cpp" />
     <ClCompile Include="src\LoginWindow_UI\UI_tranmist\RegistTransmit.cpp" />
     <ClCompile Include="src\LoginWindow_BLogic\login_regist\regist.cpp" />
     <ClCompile Include="src\LoginWindow_BLogic\accountStore\accountStoreSaveInTxt.cpp" />
@@ -121,6 +122,7 @@
   <ItemGroup>
     <ClInclude Include="include\LoginWindow_BLogic\accountStore\accountStoreAbstract.h" />
     <ClInclude Include="include\LoginWindow_BLogic\accountStore\accountStoreSaveInTxt.h" />
+    <ClInclude Include="include\LoginWindow_BLogic\accountStore\accountStoreSaveInXML.h" />
     <ClInclude Include="include\LoginWindow_BLogic\login_regist\regist.h" />
     <ClInclude Include="include\LoginWindow_BLogic\login_regist\registAbstract.h" />
     <ClInclude Include="include\LoginWindow_UI\UI_tranmist\accountStoreTranmist.h" />
@@ -143,6 +145,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Xml Include="config\accountTable.xml" />
     <Xml Include="config\config.xml" />
     <Xml Include="config\localizationString.xml" />
   </ItemGroup>

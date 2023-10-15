@@ -67,6 +67,9 @@
     <ClCompile Include="src\LoginWindow_UI\UI_tranmist\RegistTransmit.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="include\LoginWindow_BLogic\accountStore\accountStoreSaveInXML.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\LoginWindow_UI\UI_tranmist\accountStoreTranmist.h">
@@ -96,6 +99,9 @@
     <ClInclude Include="include\LoginWindow_BLogic\login_regist\regist.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\LoginWindow_BLogic\accountStore\accountStoreSaveInXML.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="include\LoginWindow_UI\UI\DialogRegist.h">
@@ -114,5 +120,6 @@
   <ItemGroup>
     <Xml Include="config\config.xml" />
     <Xml Include="config\localizationString.xml" />
+    <Xml Include="config\accountTable.xml" />
   </ItemGroup>
 </Project>

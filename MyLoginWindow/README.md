@@ -17,6 +17,7 @@
    - [AccountStoreTranmist 类 ](#AccountStoreTranmist-类 )
    - [AccountStoreAbstract 类](#AccountStoreAbstract-类)
       - [AccountStoreSaveInTxt 类](#AccountStoreSaveInTxt-类)
+- [项目配置](#项目配置)
 
 
 -------------------------------------------
@@ -305,7 +306,27 @@ password
 
 --------------------------------------------------------
 
+# 项目配置
 
+## 常规
+
+> 所有配置-所有平台
+
+- 输出目录：$(ProjectDir)\bin\$(Platform)\$(Configuration)\
+- 中间目录$(ProjectDir)\build\$(Platform)\$(Configuration)\
+
+## c/c++
+
+> 所有配置-所有平台
+
+- 常规-附加包含目录：$(ProjectDir)\include\config;$(SolutionDir)\PasswordGenerator\build\x64\Debug\uic;$(SolutionDir)\LocalconfigurationLoader\include\LocalizationStringLoader;$(SolutionDir)\LocalconfigurationLoader\include\ConfigurationLoader;$(SolutionDir)\PasswordGenerator\include;$(ProjectDir)\include\LoginWindow_BLogic\login_regist;$(ProjectDir)\include\LoginWindow_BLogic\accountStore;$(ProjectDir)\include\LoginWindow_UI\UI_tranmist;$(ProjectDir)\include\LoginWindow_UI\UI;%(AdditionalIncludeDirectories)
+
+# 链接器
+
+> 所有配置-所有平台
+
+- 常规-附加库目录：$(SolutionDir)\LocalizationStringModule\build\x64\Debug;$(SolutionDir)\PasswordGenerator\build\x64\Debug;$(SolutionDir)\Localconfigurationloader\build\x64\Debug;%(AdditionalLibraryDirectories)
+- 输入-附加依赖项：PasswordGenerator.obj;moc_PasswordGenerator.obj;ConfigurationLoader-XML.obj;LocalizationStringLoader-XML.obj;LocalizationStringModule-XML.obj;%(AdditionalDependencies)
 
 
 

@@ -6,7 +6,7 @@
 			<Account>1</Account>
 			<Password>1</Password>
 		</LastRunAccount>
-		<IsRemerberPassword>true</IsRemerberPassword>
+		<IsRemerberPassword>false</IsRemerberPassword>
 		<IsAutoLogin>false</IsAutoLogin>
 	</LastRunInformation>
 </Localization>

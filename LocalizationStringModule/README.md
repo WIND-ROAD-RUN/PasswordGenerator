@@ -8,6 +8,7 @@
 - [设计说明](#设计说明)
 - [抽象基类接口说明](#抽象基类接口说明)
 - [如何实现新的LocalizationStringModule（子类）](#如何实现新的LocalizationStringModule（子类）)
+- [项目配置](#项目配置)
 
 # 简介
 
@@ -31,3 +32,18 @@ LocalizationStringModule 模块使用与软件中所使用的字符串的本地�
 通过继承`LocalizationStringModuleAbstract`抽象基类，满足其对应的接口标准即可写新的实现。
 
 > 新的实现的头文件名应该为LocalizationStringModule-XXX.h，类名为LocalizationStringXXX，XXX为分类名，宏定义为LOCALIZATIONSTRINGMODULE_XXX_H_，XXX为具体的分类名。
+
+# 项目配置
+
+## 常规 
+
+> 所有配置-所有属性
+
+- 输出目录：$(ProjectDir)\bin\$(Platform)\$(Configuration)\
+- 中间目录：$(ProjectDir)\build\$(Platform)\$(Configuration)\
+
+## c/c++
+
+> 所有配置-所有属性
+
+- 附加包含目录：$(ProjectDir)\include;%(AdditionalIncludeDirectories)

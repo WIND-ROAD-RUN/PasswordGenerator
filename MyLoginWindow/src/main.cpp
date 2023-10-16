@@ -14,7 +14,7 @@ int main(int argc, char *argv[])
 {
     preparate_for_run();
     QApplication a(argc, argv);
-    LoginWindow w(loStrCom,configCom);
+    LoginWindow w;
     w.show();
     return a.exec();
 }

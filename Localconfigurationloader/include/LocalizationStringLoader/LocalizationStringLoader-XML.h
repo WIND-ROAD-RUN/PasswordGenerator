@@ -36,6 +36,7 @@ public:
         return m_instance;
     }
     ~LocalizationStringLoaderXML();
+
 public:
     void setFilePath(const std::string& filePath) { m_XMLFilePath = filePath; }
     void setLanguage(const std::string& language) { m_language = language; }

@@ -1,6 +1,8 @@
 #ifndef LOGINABSTRACT_H_
 #define LOGINABSTRACT_H_
+
 #include<string>
+
 class LoginAbstract {
 private:
     std::string m_account;

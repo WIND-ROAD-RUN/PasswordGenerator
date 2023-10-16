@@ -3,12 +3,12 @@
 #include "RegistTransmit.h"
 #include"LocalizationStringLoader-XML.h"
 
-DialogRegist::DialogRegist(LocalizationStringLoaderXML* locStCom, QWidget* parent )
-    : m_locStCom(locStCom), QDialog(parent)
+DialogRegist::DialogRegist( QWidget* parent )
+    : m_locStCom(LocalizationStringLoaderXML::getInstance()), QDialog(parent)
     , ui(new Ui::DialogRegistClass())
 {
     ui->setupUi(this);
-    setLanguageString(locStCom);
+    setLanguageString(m_locStCom);
     build_ui();
     build_connect();   
 }

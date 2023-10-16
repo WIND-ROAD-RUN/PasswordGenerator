@@ -10,8 +10,8 @@
 #include"ConfigurationLoader-XML.h"
 #include<string>
 
-LoginWindow::LoginWindow(LocalizationStringLoaderXML* locStCom, ConfigurationLoaderXML* cfgLoCom,QWidget* parent)
-    : m_locStCom(locStCom), m_cfgLoCom(cfgLoCom), QMainWindow(parent)
+LoginWindow::LoginWindow(QWidget* parent)
+    : m_locStCom(LocalizationStringLoaderXML::getInstance()), m_cfgLoCom(ConfigurationLoaderXML::getInstance()), QMainWindow(parent)
     , ui(new Ui::LoginWindowClass())
 {
     ui->setupUi(this);
@@ -167,7 +167,7 @@ void LoginWindow::label_AccountPassError_cancel() {
 }
 
 void LoginWindow::pbtn_regist_clicked() {
-    DialogRegist* dlgRegist = new DialogRegist(m_locStCom,this);
+    DialogRegist* dlgRegist = new DialogRegist(this);
     dlgRegist->setWindowFlag(Qt::MSWindowsFixedSizeDialogHint);
     int ret = dlgRegist->exec();
     if (ret == QDialog::Accepted) {

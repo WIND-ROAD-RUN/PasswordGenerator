@@ -12,6 +12,7 @@ private:
 public:
     RegistTransmit(const std::string& account, const std::string& password);
     ~RegistTransmit() {};
+public:
     void setAccount(const std::string& account, const std::string& password) 
     {
         m_account = account;

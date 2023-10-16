@@ -3,7 +3,6 @@
 
 #include<string>
 
-
 /*
 LocalizationStringModule类体系的抽象接口定义了本地化字符串保存的所必须的接口标准
 */

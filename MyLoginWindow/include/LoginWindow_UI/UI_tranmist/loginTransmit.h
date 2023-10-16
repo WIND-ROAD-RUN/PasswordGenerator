@@ -14,6 +14,7 @@ private:
 public:
     LoginTransmit(const std::string& account, const std::string& password);
     ~LoginTransmit() {};
+public:
     bool isLoginSuccess();
     void setAccount(const std::string& account, const std::string& password);
 };

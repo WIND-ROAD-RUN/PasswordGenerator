@@ -1,4 +1,5 @@
 #include "LocalizationStringLoader-XML.h"
+
 #include"LocalizationStringModule-XML.h"
 
 LocalizationStringLoaderXML* LocalizationStringLoaderXML::m_instance = nullptr;

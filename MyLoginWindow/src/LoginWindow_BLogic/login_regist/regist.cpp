@@ -1,5 +1,7 @@
 #include "regist.h"
+
 #include"accountStoreTranmist.h"
+
 Regist::Regist(const std::string& account, const std::string& password)
     :RegistAbstract(account,password),m_accountStoreTranmsit(new AccountStoreTranmsit())
 {

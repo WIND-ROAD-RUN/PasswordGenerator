@@ -1,4 +1,5 @@
 #include "RegistTransmit.h"
+
 #include"regist.h"
 
 RegistTransmit::RegistTransmit(const std::string& account, const std::string& password)

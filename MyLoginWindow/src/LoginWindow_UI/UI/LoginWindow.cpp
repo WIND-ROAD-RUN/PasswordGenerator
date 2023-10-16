@@ -1,14 +1,19 @@
 #include "LoginWindow.h"
+
 #include <QMessageBox>
+
 #include<QCloseEvent>
-#include"loginTransmit.h"
 #include<QString>
-#include"DialogRegist.h"
 #include<QPainter>
+
+#include<string>
+
+#include"loginTransmit.h"
+#include"DialogRegist.h"
 #include"PasswordGenerator.h"
 #include"LocalizationStringLoader-XML.h"
 #include"ConfigurationLoader-XML.h"
-#include<string>
+
 
 LoginWindow::LoginWindow(QWidget* parent)
     : m_locStCom(LocalizationStringLoaderXML::getInstance()), m_cfgLoCom(ConfigurationLoaderXML::getInstance()), QMainWindow(parent)

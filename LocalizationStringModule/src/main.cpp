@@ -1,6 +1,7 @@
-﻿#include<string>
+﻿#include"LocalizationStringModule-XML.h"
+#include<string>
 #include<iostream>
-#include"LocalizationStringModule-XML.h"
+
 #define LOCAT R"(database\LocalizationStringDatabase.xml)"
 
 using namespace std;

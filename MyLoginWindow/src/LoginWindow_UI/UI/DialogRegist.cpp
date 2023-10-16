@@ -1,5 +1,7 @@
 #include "DialogRegist.h"
+
 #include <QMessageBox>
+
 #include "RegistTransmit.h"
 #include"LocalizationStringLoader-XML.h"
 

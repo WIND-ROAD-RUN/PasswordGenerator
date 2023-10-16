@@ -1,4 +1,5 @@
 #include"loginTransmit.h"
+
 #include"login.h"
 
 LoginTransmit::LoginTransmit(const std::string& account, const std::string& password)

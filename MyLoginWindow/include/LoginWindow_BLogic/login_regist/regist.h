@@ -2,6 +2,7 @@
 #define REGIST_H_
 
 #include"registAbstract.h"
+
 #include<string>
 
 class AccountStoreTranmsit;

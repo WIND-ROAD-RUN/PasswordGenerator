@@ -2,6 +2,7 @@
 #define ACCOUNTSTORESAVEINTXT_H_
 
 #include"accountStoreAbstract.h"
+
 #include<vector>
 
 /*实现为单例类*/

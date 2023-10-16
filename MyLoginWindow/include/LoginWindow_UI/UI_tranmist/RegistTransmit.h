@@ -2,6 +2,7 @@
 #define REGISTTRANSMIT_H_
 
 #include<string>
+
 class Regist;
 
 class RegistTransmit {

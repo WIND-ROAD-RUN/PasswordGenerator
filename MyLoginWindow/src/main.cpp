@@ -1,8 +1,11 @@
-#include "LoginWindow.h"
 #include <QtWidgets/QApplication>
+
+#include "LoginWindow.h"
 #include"LocalizationStringLoader-XML.h"
 #include"ConfigurationLoader-XML.h"
 #include"config.h"
+
+
 
 ConfigurationLoaderXML* configCom;
 LocalizationStringLoaderXML* loStrCom;

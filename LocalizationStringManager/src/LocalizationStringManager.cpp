@@ -1,10 +1,15 @@
 #include "LocalizationStringManager.h"
+
 #include <QFileDialog>
-#include<QMessageBox>
-#include"LocalizationStringModule-XML.h"
-#include<string>
 #include<QEvent>
 #include<QCloseEvent>
+#include<QMessageBox>
+
+#include<string>
+
+#include"LocalizationStringModule-XML.h"
+
+
 
 LocalizationStringManager::LocalizationStringManager(QWidget *parent)
     : QMainWindow(parent)

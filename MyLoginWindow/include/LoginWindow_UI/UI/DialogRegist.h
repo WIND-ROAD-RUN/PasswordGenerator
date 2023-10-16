@@ -1,5 +1,6 @@
-#include <QDialog>
 #include "ui_DialogRegist.h"
+#include <QDialog>
+
 
 
 QT_BEGIN_NAMESPACE

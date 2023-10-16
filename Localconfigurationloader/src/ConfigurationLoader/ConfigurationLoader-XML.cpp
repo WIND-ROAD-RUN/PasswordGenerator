@@ -1,4 +1,5 @@
 #include "ConfigurationLoader-XML.h"
+
 #include<pugixml.hpp>
 
 ConfigurationLoaderXML* ConfigurationLoaderXML::m_instance = nullptr;

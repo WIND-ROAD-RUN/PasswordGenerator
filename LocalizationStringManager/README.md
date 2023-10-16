@@ -5,6 +5,7 @@
 - [项目简介](#项目简介)
 - [项目功能](#项目功能)
 - [使用事项](#使用事项)
+- [项目配置](#项目配置)
 
 # 项目简介
 项目LocalizationStringManager是一个基于LocalizationStringModule模块的可视化本地化字符串（XML资源文件）的一个微型管理器，注意使用该项目，依赖于LocalizationStringModule模块。在拷贝这个项目的时候，务必添加依赖项，或者将LocalizationStringModule模块的源代码添加到这个项目中
@@ -36,3 +37,21 @@
 找出对应的XML数据文件,然后将需要更改的字符串节点删除,然后保存文件在打开本管理器进行存储操作,避免编码问题产生的影响.
 
 > 再次提醒,更改字符串的时候一定要使用管理器的存储功能,这保证了所使用的编码一致,避免中文乱码的问题,切勿直接在数据文件中更改.
+
+# 项目配置
+
+## 常规
+
+> 所有配置-所有平台
+
+- 输出目录：`$(ProjectDir)\bin\$(Platform)\$(Configuration)\`
+- 中间目录: `$(ProjectDir)\build\$(Platform)\$(Configuration)\`
+
+## c/c++
+
+- 附加包含目录：`$(SolutionDir)\LocalizationStringModule\include;$(ProjectDir)\include;%(AdditionalIncludeDirectories)`
+
+## 链接器
+
+- 附加包含目录:`$(SolutionDir)\LocalizationStringModule\build\x64\Debug;%(AdditionalLibraryDirectories)`
+- 输入-附加依赖项：`LocalizationStringModule-XML.obj;%(AdditionalDependencies)`

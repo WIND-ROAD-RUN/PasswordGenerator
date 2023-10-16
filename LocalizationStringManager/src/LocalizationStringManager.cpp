@@ -43,14 +43,20 @@ void LocalizationStringManager::build_ui()
 
 void LocalizationStringManager::closeEvent(QCloseEvent* event)
 {
-    QMessageBox::StandardButton result = QMessageBox::question(this, "数据可能还未保存", "是否要保存并退出？");
-    if (result == QMessageBox::Yes) {
-        this->pbtn_saveData_clicked();
+    if (this->m_filePath.isEmpty()) {
         event->accept();
     }
     else {
-        event->accept();
+        QMessageBox::StandardButton result = QMessageBox::question(this, "数据可能还未保存", "是否要保存并退出？");
+        if (result == QMessageBox::Yes) {
+            this->pbtn_saveData_clicked();
+            event->accept();
+        }
+        else {
+            event->accept();
+        }
     }
+    
 }
 
 void LocalizationStringManager::pbtn_search_clicked()

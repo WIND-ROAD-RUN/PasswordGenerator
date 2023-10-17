@@ -46,16 +46,17 @@ bool DialogRegist::registAccount()
 }
 
 void DialogRegist::on_pbtn_ok_clicked() {
+    auto locLoader=LocalizationStringLoaderXML::getInstance();
     if (ui->ledit_account->text().isEmpty()) {
-        ui->label_error->setText("用户名不合法或为空");
+        ui->label_error->setText(QString::fromStdString(locLoader->getString("17")));
         return;
     }
     else if (ui->ledit_password->text().isEmpty()) {
-        ui->label_error->setText("密码不能为空");
+        ui->label_error->setText(QString::fromStdString(locLoader->getString("18")));
         return;
     }
     else if (ui->ledit_password->text() != ui->ledit_passwordAgin->text()) {
-        ui->label_error->setText("两次密码输入不一致");
+        ui->label_error->setText(QString::fromStdString(locLoader->getString("19")));
         return;
     }
     else {
@@ -63,7 +64,7 @@ void DialogRegist::on_pbtn_ok_clicked() {
             this->accept();
         }
         else {
-            QMessageBox::warning(this, "警告", "已经注册过该账户");
+            QMessageBox::warning(this, QString::fromStdString(locLoader->getString("21")), QString::fromStdString(locLoader->getString("20")));
         }
 
     }

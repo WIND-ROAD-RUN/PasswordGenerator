@@ -100,7 +100,10 @@ inline void LoginWindow::build_connect()
 
 void LoginWindow::closeEvent(QCloseEvent* event)
 {
-    QMessageBox::StandardButton result = QMessageBox::question(this, "确认", "真的要退出登录器么？");
+    QMessageBox::StandardButton result = 
+        QMessageBox::question(this, 
+            QString::fromStdString(m_locStCom->getString("14")), 
+            QString::fromStdString(m_locStCom->getString("15")));
     if (result == QMessageBox::Yes) {
         event->accept();
     }
@@ -176,7 +179,9 @@ void LoginWindow::pbtn_regist_clicked() {
     dlgRegist->setWindowFlag(Qt::MSWindowsFixedSizeDialogHint);
     int ret = dlgRegist->exec();
     if (ret == QDialog::Accepted) {
-        QMessageBox::information(this, "注册成功", "注册成功");
+        QMessageBox::information(this, 
+            QString::fromStdString(m_locStCom->getString("16")), 
+            QString::fromStdString(m_locStCom->getString("16")));
         return;
     }
     else {

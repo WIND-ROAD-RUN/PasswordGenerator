@@ -52,4 +52,36 @@
 		<language language="CHN">更改语言</language>
 		<language language="USA">Change language</language>
 	</string>
+	<string id="14">
+		<language language="CHN">确认</language>
+		<language language="USA">Are you sure</language>
+	</string>
+	<string id="15">
+		<language language="CHN">真的要退出登录器么</language>
+		<language language="USA">Do you really want to exit the login device？</language>
+	</string>
+	<string id="16">
+		<language language="CHN">注册成功</language>
+		<language language="USA">login was successful</language>
+	</string>
+	<string id="17">
+		<language language="CHN">用户名不合法或为空</language>
+		<language language="USA">The username is illegal or empty</language>
+	</string>
+	<string id="18">
+		<language language="CHN">密码不能为空</language>
+		<language language="USA">Password cannot be empty！</language>
+	</string>
+	<string id="19">
+		<language language="CHN">两次密码输入不一致</language>
+		<language language="USA">The two password inputs are inconsistent</language>
+	</string>
+	<string id="20">
+		<language language="CHN">已经注册过该账户</language>
+		<language language="USA">The account has already been registered</language>
+	</string>
+	<string id="21">
+		<language language="CHN">警告</language>
+		<language language="USA">warning</language>
+	</string>
 </MyLocalizationStringModele_strings>

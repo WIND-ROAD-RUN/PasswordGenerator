@@ -1,0 +1,37 @@
+#ifndef NAMEDEFINEFORABSTRACT_H_
+#define NAMEDEFINEFORABSTRACT_H_
+
+#include<string>
+
+using ATMAstring = std::string;
+using ATMAint = int;
+using ATMbool = bool;
+
+enum ErrorAccountTableModule
+{
+    No_ERROR=1,
+    NewAccount_ERROR,
+    NewPassword_ERROR,
+    NewPoheNumber_ERROR,
+    NewUser_ERROR,
+    NewEncrpyProperty_ERROR,
+    NewPasswordLength_ERROR,
+    NewhaveSpecialSymbols_ERROR,
+    NewhaveUppercaseLowercase_ERROR,
+    NewEncrpyIsIrreversible_ERROR,
+    setAccount_ERROR,
+    setPassword_ERROR,
+    setPhoneNumber_ERROR,
+    setUser_ERROR,
+    setEncrpyProperty_ERROR,
+    setPasswordLength_ERROR,
+    sethaveSpecialSymbols_ERROR,
+    sethaveUppercaseLowercase_ERROR,
+    setEncrpyIsIrreversible_ERROR,
+    NewPlatform_ERROR,
+    NewAccountTable_ERROR,
+    Initialization_ERROR
+};
+
+#endif // !NAMEDEFINEFORABSTRACT_H_
+

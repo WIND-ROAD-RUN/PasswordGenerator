@@ -1,32 +1,27 @@
-<?xml version="1.0" encoding="utf-8"?>
-
+<?xml version="1.0"?>
 <AccountTable UID="root">
-	
-	<!-- 平台节点，用于检索平台类别 -->
-	
-	<Platform NAME="">
-		
-		<!-- 账户节点用于检索一个账户的信息 -->
-		<Account USERNAME="root">
-			
-			<!-- 账户节点下的存储的基本信息 -->
-			<Password>root</Password>
-			<PhoneNumber></PhoneNumber>
-			<User></User>
-			
-			<!-- 加密属性用于存储加密属性 -->
+	<Platform NAME="qq">
+		<Account USERNAME="user">
+			<Password />
+			<PhoneNumber />
+			<User />
 			<EncrypyProperty>
-				<PasswordLength>
-					<Minimum></Minimum>
-					<Maximum></Maximum>
-				</PasswordLength>
-				<haveSpecialSymbols></haveSpecialSymbols>
-				<haveUppercaseLowercase></haveUppercaseLowercase>
-				<EncrpyIsIrreversible></EncrpyIsIrreversible>
+				<PasswordLength Minimum="" Maximum="" />
+				<haveSpecialSymbols />
+				<haveUppercaseLowercase />
+				<EncrpyIsIrreversible />
 			</EncrypyProperty>
-		
 		</Account>
-	
+		<Account USERNAME="root1">
+			<Password />
+			<PhoneNumber />
+			<User />
+			<EncrypyProperty>
+				<PasswordLength Minimum="" Maximum="" />
+				<haveSpecialSymbols />
+				<haveUppercaseLowercase />
+				<EncrpyIsIrreversible />
+			</EncrypyProperty>
+		</Account>
 	</Platform>
-
 </AccountTable>

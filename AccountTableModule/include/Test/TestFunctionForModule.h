@@ -12,7 +12,7 @@ std::string ERRORINFORMATION(ErrorAccountTableModule error) {
         return std::move(std::string("NewAccount_ERROR"));
     case NewPassword_ERROR:
         return std::move(std::string("NewPassword_ERROR"));
-    case NewPoheNumber_ERROR:
+    case NewPhoneNumber_ERROR:
         return std::move(std::string("NewPoheNumber_ERROR"));
     case NewUser_ERROR:
         return std::move(std::string("NewUser_ERROR"));
@@ -50,7 +50,20 @@ std::string ERRORINFORMATION(ErrorAccountTableModule error) {
         return std::move(std::string("NewAccountTable_ERROR"));
     case Initialization_ERROR:
         return std::move(std::string("Initialization_ERROR"));
+    case SaveData_ERROR:
+        return std::move(std::string("SaveData_ERROR"));
+    case PlatformAlreadyExist:
+        return std::move(std::string("PlatformAlreadyExist"));
+    case AccountAlreadyExist:
+        return std::move(std::string("AccountAlreadyExist"));
+    case NoPlatformNode:
+        return std::move(std::string("NoPlatformNode"));
+    case NoAccountNode:
+        return std::move(std::string("NoAccountNode"));
+    case NoAccounTable:
+        return std::move(std::string("NoAccounTable"));
     }
+
 
 }
 

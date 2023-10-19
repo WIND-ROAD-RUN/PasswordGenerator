@@ -9,34 +9,28 @@ class AccountTableXML
     :public AccountTableModuleAbstract {
 private:
     pugi::xml_document m_doc;
-    std::string m_filePath{};
-    std::string m_UID{};
+    ATMAstring m_filePath{};
+    ATMAstring m_UID{};
 public:
     AccountTableXML() {}
     AccountTableXML(const std::string & filePath, const std::string& UID)
         :m_filePath(filePath), m_UID(UID){}
     ~AccountTableXML() {}
-protected:
+public:
+    void setFilePath(const std::string& filePath) { m_filePath = filePath; }
+    void setUID(const std::string& UID) { m_UID = UID; }
+public:
     // 通过 AccountTableModuleAbstract 继承
     ErrorAccountTableModule NewAccount(const ATMAstring& platform, const ATMAstring& account) override;
 
-    ErrorAccountTableModule NewPassword() override;
+    ErrorAccountTableModule NewAccountTable(const ATMAstring& fileName) override;
 
-    ErrorAccountTableModule NewPhoneNumber() override;
+    ErrorAccountTableModule NewPlatform(const ATMAstring& fileName) override;
 
-    ErrorAccountTableModule NewUser() override;
+    ErrorAccountTableModule ini_module() override;
 
-    ErrorAccountTableModule NewEncrpyProperty() override;
 
-    ErrorAccountTableModule NewPasswordLength() override;
-
-    ErrorAccountTableModule NewhaveSpecialSymbols() override;
-
-    ErrorAccountTableModule NewhaveUppercaseLowercase() override;
-
-    ErrorAccountTableModule NewEncrpyIsIrreversible() override;
-public:
-    ErrorAccountTableModule setAccount(const ATMAstring& platform, const ATMAstring& account) override;
+    // 通过 AccountTableModuleAbstract 继承
 
     ErrorAccountTableModule setPassword(const ATMAstring& platform, const ATMAstring& account, const ATMAstring& password) override;
 
@@ -54,12 +48,25 @@ public:
 
     ErrorAccountTableModule setEncrpyIsIrreversible(const ATMAstring& platform, const ATMAstring& account, ATMbool EncrpyIsIrreversible) override;
 
-    ErrorAccountTableModule NewAccountTable(const ATMAstring& fileName) override;
 
-    ErrorAccountTableModule NewPlatform(const ATMAstring& fileName) override;
+    // 通过 AccountTableModuleAbstract 继承
+    ErrorAccountTableModule save() override;
 
-    ErrorAccountTableModule ini_module() override;
 
+    // 通过 AccountTableModuleAbstract 继承
+    ErrorAccountTableModule setAccount(const ATMAstring& platform, const ATMAstring& orginalAccount, const ATMAstring& newAccount) override;
+
+
+    // 通过 AccountTableModuleAbstract 继承
+    ErrorAccountTableModule deletePlatform(const ATMAstring& platform) override;
+
+    ErrorAccountTableModule deletePlatform(const ATMAstring& platform, const ATMAstring& account) override;
+public :
+    /*以下用于实现重复操作*/
+    ErrorAccountTableModule findPlatformNode(const ATMAstring & platform,pugi::xml_node & platformNode);
+    ErrorAccountTableModule findAccountNode(const ATMAstring & platform,const ATMAstring & account, pugi::xml_node& accountNode);
+    ErrorAccountTableModule findPlatformNode(const ATMAstring& platform);
+    ErrorAccountTableModule findAccountNode(const ATMAstring& platform, const ATMAstring& account);
 };
 
 

@@ -12,7 +12,7 @@ enum ErrorAccountTableModule
     No_ERROR=1,
     NewAccount_ERROR,
     NewPassword_ERROR,
-    NewPoheNumber_ERROR,
+    NewPhoneNumber_ERROR,
     NewUser_ERROR,
     NewEncrpyProperty_ERROR,
     NewPasswordLength_ERROR,
@@ -30,7 +30,13 @@ enum ErrorAccountTableModule
     setEncrpyIsIrreversible_ERROR,
     NewPlatform_ERROR,
     NewAccountTable_ERROR,
-    Initialization_ERROR
+    Initialization_ERROR,
+    SaveData_ERROR,
+    PlatformAlreadyExist,
+    AccountAlreadyExist,
+    NoPlatformNode,
+    NoAccountNode,
+    NoAccounTable
 };
 
 #endif // !NAMEDEFINEFORABSTRACT_H_

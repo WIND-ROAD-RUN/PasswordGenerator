@@ -148,7 +148,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="include\achieve\AccountTableXML.cpp" />
-    <ClCompile Include="src\Abstract\AccountTableModuleAbstract.cpp" />
     <ClCompile Include="src\main.cpp" />
   </ItemGroup>
   <ItemGroup>

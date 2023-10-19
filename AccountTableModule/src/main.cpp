@@ -2,19 +2,15 @@
 #include"TestFunctionForModule.h"
 
 using namespace std;
-#define PATH R"(G:\project\code_place\vs_code_place\MyPasswordGenerator1\1.xml)"
+#define PATH R"(database\AccountTable.xml)"
 
 #include"AccountTableXML.h"
 
 int main() {
     AccountTableXML a(PATH,"root");
-
-    cout << ERRORINFORMATION(a.ini_module())<<endl;
-    auto result = a.ini_module();
-    if (result!=ErrorAccountTableModule::No_ERROR) {
-        std::cout << ERRORINFORMATION(a.NewAccountTable(PATH)) << endl;
-    }
+    a.ini_module();
+    cout << ERRORINFORMATION(a.setAccount("qq", "root1", "root1"));
+    a.save();
     
-    std::cout << ERRORINFORMATION(a.ini_module());
     return 0;
 }

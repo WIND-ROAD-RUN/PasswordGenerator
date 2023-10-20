@@ -20,7 +20,13 @@ public:
     virtual ErrorAccountTableModule 
         NewAccount(const ATMAstring& platform, const ATMAstring& account) = 0;
 
+    virtual ErrorAccountTableModule
+        NewAccount(const ATMAstring& platform, const AccountInfo& account) = 0;
+
     /*设置元素值*/
+    virtual ErrorAccountTableModule
+        setAccount(const ATMAstring& platform, const AccountInfo& account) = 0;
+
     virtual ErrorAccountTableModule 
         setAccount(const ATMAstring& platform, const ATMAstring& orginalAccount,const ATMAstring & newAccount)=0;
 
@@ -35,26 +41,46 @@ public:
 
 
     virtual ErrorAccountTableModule 
-        setEncrpyProperty(const ATMAstring& platform, const ATMAstring& account)=0;
+        setPasswordLength(const ATMAstring& platform, const ATMAstring& account, ATMAint minimum, ATMAint maximum)=0;
 
     virtual ErrorAccountTableModule 
-        setPasswordLength(const ATMAstring& platform, const ATMAstring& account, ATMAint minimum, ATMAint Maximum)=0;
+        sethaveSpecialSymbols(const ATMAstring& platform, const ATMAstring& account, ATMAbool haveSpecialSymbols)=0;
 
     virtual ErrorAccountTableModule 
-        sethaveSpecialSymbols(const ATMAstring& platform, const ATMAstring& account, ATMbool haveSpecialSymbols)=0;
+        sethaveUppercaseLowercase(const ATMAstring& platform, const ATMAstring& account, ATMAbool haveUppercaseLowercase)=0;
 
     virtual ErrorAccountTableModule 
-        sethaveUppercaseLowercase(const ATMAstring& platform, const ATMAstring& account, ATMbool haveUppercaseLowercase)=0;
-
-    virtual ErrorAccountTableModule 
-        setEncrpyIsIrreversible(const ATMAstring& platform, const ATMAstring& account, ATMbool EncrpyIsIrreversible)=0;
+        setEncrpyIsIrreversible(const ATMAstring& platform, const ATMAstring& account, ATMAbool EncrpyIsIrreversible)=0;
     
     /*删除节点*/
     virtual ErrorAccountTableModule
         deletePlatform(const ATMAstring & platform)=0;
     virtual ErrorAccountTableModule
-        deletePlatform(const ATMAstring & platform,const ATMAstring & account) = 0;
+        deleteAccount(const ATMAstring & platform,const ATMAstring & account) = 0;
+    /*返回对应节点的信息*/
+    virtual AccountInfo
+        Account(const ATMAstring& platform, const ATMAstring& account) = 0;
+    
+    virtual ATMAstring
+        Password(const ATMAstring& platform, const ATMAstring& account) = 0;
 
+    virtual ATMAstring
+        PhoneNumber(const ATMAstring& platform, const ATMAstring& account) = 0;
+
+    virtual ATMAstring
+        User(const ATMAstring& platform, const ATMAstring& account) = 0;
+
+    virtual ATMApair
+        PasswordLength(const ATMAstring& platform, const ATMAstring& account) = 0;
+
+    virtual ATMAbool
+        haveSpecialSymbols(const ATMAstring& platform, const ATMAstring& account) = 0;
+
+    virtual ATMAbool
+        haveUppercaseLowercase(const ATMAstring& platform, const ATMAstring& account) = 0;
+
+    virtual ATMAbool
+        EncrpyIsIrreversible(const ATMAstring& platform, const ATMAstring& account) = 0;
 };
 
 

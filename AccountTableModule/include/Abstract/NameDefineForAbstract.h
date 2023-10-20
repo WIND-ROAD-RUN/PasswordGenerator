@@ -5,7 +5,19 @@
 
 using ATMAstring = std::string;
 using ATMAint = int;
-using ATMbool = bool;
+using ATMAbool = bool;
+using ATMApair = std::pair<ATMAint, ATMAint>;
+
+struct AccountInfo {
+    ATMAstring accountName;
+    ATMAstring password;
+    ATMAstring phoneNumber;
+    ATMAstring User;
+    ATMApair passwordLength;
+    ATMAbool haveSpecialSymbols;
+    ATMAbool haveUppercaseLowercase;
+    ATMAbool EncrpyIsIrreversible;
+};
 
 enum ErrorAccountTableModule
 {
@@ -36,7 +48,9 @@ enum ErrorAccountTableModule
     AccountAlreadyExist,
     NoPlatformNode,
     NoAccountNode,
-    NoAccounTable
+    NoAccounTable,
+    deletePlatform_ERROR,
+    deleteAccount_ERROR
 };
 
 #endif // !NAMEDEFINEFORABSTRACT_H_

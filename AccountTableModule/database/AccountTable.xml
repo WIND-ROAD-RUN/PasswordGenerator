@@ -12,15 +12,26 @@
 				<EncrpyIsIrreversible />
 			</EncrypyProperty>
 		</Account>
-		<Account USERNAME="root1">
-			<Password />
-			<PhoneNumber />
-			<User />
+		<Account USERNAME="root">
+			<Password>123</Password>
+			<PhoneNumber>1223233</PhoneNumber>
+			<User>123425323523</User>
 			<EncrypyProperty>
-				<PasswordLength Minimum="" Maximum="" />
-				<haveSpecialSymbols />
-				<haveUppercaseLowercase />
-				<EncrpyIsIrreversible />
+				<PasswordLength Minimum="4564" Maximum="2" />
+				<haveSpecialSymbols>true</haveSpecialSymbols>
+				<haveUppercaseLowercase>true</haveUppercaseLowercase>
+				<EncrpyIsIrreversible>true</EncrpyIsIrreversible>
+			</EncrypyProperty>
+		</Account>
+		<Account USERNAME="test">
+			<Password>1</Password>
+			<PhoneNumber>1</PhoneNumber>
+			<User>jklj</User>
+			<EncrypyProperty>
+				<PasswordLength Minimum="0" Maximum="90" />
+				<haveSpecialSymbols>false</haveSpecialSymbols>
+				<haveUppercaseLowercase>true</haveUppercaseLowercase>
+				<EncrpyIsIrreversible>false</EncrpyIsIrreversible>
 			</EncrypyProperty>
 		</Account>
 	</Platform>

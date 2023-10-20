@@ -62,6 +62,10 @@ std::string ERRORINFORMATION(ErrorAccountTableModule error) {
         return std::move(std::string("NoAccountNode"));
     case NoAccounTable:
         return std::move(std::string("NoAccounTable"));
+    case deletePlatform_ERROR:
+        return std::move(std::string("deletePlatform_ERROR"));
+    case deleteAccount_ERROR:
+        return std::move(std::string("deleteAccount_ERROR"));
     }
 
 

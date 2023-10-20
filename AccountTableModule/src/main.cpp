@@ -9,7 +9,8 @@ using namespace std;
 int main() {
     AccountTableXML a(PATH,"root");
     a.ini_module();
-    cout << ERRORINFORMATION(a.setAccount("qq", "root1", "root1"));
+    AccountInfo sad{"test","1","1","jklj",std::pair<int,int>(0,90),false,true ,false };
+    cout << ERRORINFORMATION(a.setAccount("qq", sad)) ;
     a.save();
     
     return 0;

@@ -7,10 +7,10 @@
 using namespace std;
 
 int main() {
-    PortalAccountTable m_Protal;
-    m_Protal.setFilePath(PATH);
-    m_Protal.setUID("root");
-    cout << ERRORINFORMATION(m_Protal.ini_portal());
+    PortalAccountTable *  m_Prota=PortalAccountTable::getInstance();
+    m_Prota->setFilePath(PATH);
+    m_Prota->setUID("root");
+    cout << ERRORINFORMATION(m_Prota->ini_portal());
     
     return 0;
 }

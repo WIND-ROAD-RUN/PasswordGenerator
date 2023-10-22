@@ -3,6 +3,8 @@
 #include"AccountTableXML.h"
 #include"PasswordEncrpySimplyAch.h"
 
+PortalAccountTable* PortalAccountTable::m_instance = nullptr;
+
 PortalAccountTable::PortalAccountTable
 (const ATMAstring& filePath, const ATMAstring& UID)
     :m_filePath(filePath),m_UID(UID),m_accountTableXML(new AccountTableXML),m_EncrpyCom(new PasswordEncrpySimplyAch)

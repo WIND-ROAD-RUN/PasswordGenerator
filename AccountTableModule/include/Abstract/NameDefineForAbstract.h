@@ -9,14 +9,14 @@ using ATMAbool = bool;
 using ATMApair = std::pair<ATMAint, ATMAint>;
 
 struct AccountInfo {
-    ATMAstring accountName;
-    ATMAstring password;
-    ATMAstring phoneNumber;
-    ATMAstring User;
-    ATMApair passwordLength;
-    ATMAbool haveSpecialSymbols;
-    ATMAbool haveUppercaseLowercase;
-    ATMAbool EncrpyIsIrreversible;
+    ATMAstring accountName{};
+    ATMAstring password{};
+    ATMAstring phoneNumber{};
+    ATMAstring User{};
+    ATMApair passwordLength{};
+    ATMAbool haveSpecialSymbols{false};
+    ATMAbool haveUppercaseLowercase{ false };
+    ATMAbool EncrpyIsIrreversible{ false };
 };
 
 enum ErrorAccountTableModule

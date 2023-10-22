@@ -10,7 +10,8 @@ int main() {
     PortalAccountTable *  m_Prota=PortalAccountTable::getInstance();
     m_Prota->setFilePath(PATH);
     m_Prota->setUID("root");
-    cout << ERRORINFORMATION(m_Prota->ini_portal());
-    
+    cout << ERRORINFORMATION(m_Prota->ini_portal())<<endl;
+    cout << ERRORINFORMATION(m_Prota->deleteAccount("qq", "root")) << endl;
+
     return 0;
 }

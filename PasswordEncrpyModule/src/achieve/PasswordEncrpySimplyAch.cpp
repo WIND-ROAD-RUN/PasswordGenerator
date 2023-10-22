@@ -1,11 +1,11 @@
 #include "PasswordEncrpySimplyAch.h"
 
-AccountInfo& PasswordEncrpySimplyAch::encrpyForSave(AccountInfo& accountInfo)
+AccountInfo PasswordEncrpySimplyAch::encrpyForSave(const AccountInfo& accountInfo)
 {
     return accountInfo;
 }
 
-AccountInfo& PasswordEncrpySimplyAch::decrptForUser(AccountInfo& accountInfo)
+AccountInfo PasswordEncrpySimplyAch::decrptForUser(const AccountInfo& accountInfo)
 {
     return accountInfo;
 }

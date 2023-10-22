@@ -1,4 +1,4 @@
-#ifndef PORTALACCOUNTTABLE_H_
+﻿#ifndef PORTALACCOUNTTABLE_H_
 #define PORTALACCOUNTTABLE_H_
 
 #include"NameDefineForPAT.h"
@@ -6,7 +6,7 @@
 class AccountTableXML;
 class PasswordEncrpySimplyAch;
 
-/*ʵ��Ϊ����ģʽ*/
+/*实现为单例模式*/
 
 class PortalAccountTable {
 private:
@@ -42,12 +42,15 @@ public:
     void setUID(const ATMAstring& UID) { m_UID = UID; }
 public:
     ErrorPortalAccountTable ini_portal();
+    ErrorAccountTableModule save_change();
 public:
     AccountInfo search_account(const  ATMAstring& platform, const  ATMAstring& accountName);
-    void set_account(const AccountInfo & accountInfo);
+    ErrorAccountTableModule set_account(const ATMAstring& platform, const AccountInfo & accountInfo);
     ErrorAccountTableModule newAccount(const  ATMAstring& platform,const AccountInfo& accountInfo);
     ErrorAccountTableModule deletePlatform(const  ATMAstring& platform);
     ErrorAccountTableModule deleteAccount(const  ATMAstring& platform, const ATMAstring& accountName);
+    ATMAStringList  PlatformList();
+    ATMAAccountList AccountList(const  ATMAstring& platform);
 };
 
 

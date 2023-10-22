@@ -8,9 +8,9 @@ class PasswordEncrpySimplyAch
 
 public:
     // Í¨¹ý PasswordEncrpyModuleAbstract ¼Ì³Ð
-    AccountInfo& encrpyForSave(AccountInfo& accountInfo) override;
+    AccountInfo encrpyForSave(const AccountInfo& accountInfo) override;
 
-    AccountInfo& decrptForUser(AccountInfo& accountInfo) override;
+    AccountInfo decrptForUser(const AccountInfo& accountInfo) override;
 
     void encrpy_PasswordLength(AccountInfo& accountInfo) override;
 

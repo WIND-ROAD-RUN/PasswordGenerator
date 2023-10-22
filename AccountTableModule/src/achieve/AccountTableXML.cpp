@@ -432,11 +432,17 @@ ErrorAccountTableModule AccountTableXML::setAccount(const ATMAstring& platform, 
     ErrorAccountTableModule result;
 
     result=setPassword(platform,account.accountName,account.password);
+    if (result != ErrorAccountTableModule::No_ERROR) { return result; }
     result=setPhoneNumber(platform, account.accountName, account.phoneNumber);
+    if (result != ErrorAccountTableModule::No_ERROR) { return result; }
     result=setUser(platform,account.accountName,account.User);
+    if (result != ErrorAccountTableModule::No_ERROR) { return result; }
     result=setPasswordLength(platform,account.accountName,account.passwordLength.first,account.passwordLength.second);
+    if (result != ErrorAccountTableModule::No_ERROR) { return result; }
     result=sethaveSpecialSymbols(platform,account.accountName,account.haveSpecialSymbols);
+    if (result != ErrorAccountTableModule::No_ERROR) { return result; }
     result=sethaveUppercaseLowercase(platform,account.accountName,account.haveUppercaseLowercase);
+    if (result != ErrorAccountTableModule::No_ERROR) { return result; }
     result=setEncrpyIsIrreversible(platform,account.accountName,account.EncrpyIsIrreversible);
     
     return result;

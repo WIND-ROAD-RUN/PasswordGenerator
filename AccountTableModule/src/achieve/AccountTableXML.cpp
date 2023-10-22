@@ -442,6 +442,26 @@ ErrorAccountTableModule AccountTableXML::setAccount(const ATMAstring& platform, 
     return result;
 }
 
+ATMAStringList AccountTableXML::getPlatformList()
+{
+    ATMAStringList result;
+    for (const auto & PlatformNode:m_doc.child("AccountTable").children()) {
+        result.push_back(ATMAstring(PlatformNode.attribute("NAME").value()));
+    }
+    return std::move(result);
+}
+
+ATMAAccountList AccountTableXML::getAccountList(const ATMAstring& platform)
+{
+    ATMAAccountList result;
+    pugi::xml_node platformNode;
+    findPlatformNode(platform, platformNode);
+    for (const auto & accountNode: platformNode.children()) {
+        result.push_back(Account(platform, accountNode.attribute("USERNAME").value()));
+    }
+    return std::move(result);
+}
+
 
 
 ErrorAccountTableModule AccountTableXML::NewAccount(const ATMAstring& platform, const ATMAstring& account)

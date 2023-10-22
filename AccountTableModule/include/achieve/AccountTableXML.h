@@ -81,6 +81,13 @@ public :
     // 通过 AccountTableModuleAbstract 继承
     ErrorAccountTableModule NewAccount(const ATMAstring& platform, const AccountInfo& account) override;
     ErrorAccountTableModule setAccount(const ATMAstring& platform, const AccountInfo& account) override;
+
+
+    // 通过 AccountTableModuleAbstract 继承
+    ATMAStringList getPlatformList() override;
+
+    ATMAAccountList getAccountList(const ATMAstring& platform) override;
+
 };
 
 

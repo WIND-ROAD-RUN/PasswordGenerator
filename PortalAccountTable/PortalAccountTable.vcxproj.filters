@@ -18,22 +18,25 @@
     <ClCompile Include="src\main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="src\Abstract\PasswordEncrpyModuleAbstract.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="src\achieve\PasswordEncrpySimplyAch.cpp">
+    <ClCompile Include="src\PortalAccountTable.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\Abstract\PasswordEncrpyModuleAbstract.h">
+    <ClInclude Include="include\PortalAccountTable.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="include\Abstract\NameDefineForPEMA.h">
+    <ClInclude Include="include\NameDefineForPAT.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="include\achieve\PasswordEncrpySimplyAch.h">
+    <ClInclude Include="include\Test\TestForPortalAccountTable.h">
       <Filter>头文件</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="database\accountTable.xml" />
   </ItemGroup>
 </Project>

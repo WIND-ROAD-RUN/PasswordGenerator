@@ -2,11 +2,18 @@
 #define NAMEDEFINEFORABSTRACT_H_
 
 #include<string>
+#include<vector>
+#include<unordered_map>
+
 
 using ATMAstring = std::string;
 using ATMAint = int;
 using ATMAbool = bool;
 using ATMApair = std::pair<ATMAint, ATMAint>;
+
+using ATMAStringList = std::vector<std::string>;
+
+
 
 struct AccountInfo {
     ATMAstring accountName{};
@@ -18,6 +25,9 @@ struct AccountInfo {
     ATMAbool haveUppercaseLowercase{ false };
     ATMAbool EncrpyIsIrreversible{ false };
 };
+
+using ATMAAccountList = std::vector<AccountInfo>;
+using PATmap = std::unordered_map<ATMAstring, ATMAAccountList>;
 
 enum ErrorAccountTableModule
 {
@@ -52,7 +62,6 @@ enum ErrorAccountTableModule
     deletePlatform_ERROR,
     deleteAccount_ERROR
 };
-
 
 
 

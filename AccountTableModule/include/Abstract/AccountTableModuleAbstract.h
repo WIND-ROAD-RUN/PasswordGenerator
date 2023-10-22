@@ -81,6 +81,10 @@ public:
 
     virtual ATMAbool
         EncrpyIsIrreversible(const ATMAstring& platform, const ATMAstring& account) = 0;
+    virtual ATMAStringList
+        getPlatformList()=0;
+    virtual ATMAAccountList
+        getAccountList(const ATMAstring& platform) = 0;
 };
 
 

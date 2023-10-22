@@ -1,7 +1,7 @@
 #ifndef ACCOUNTTABLEMODULEABSTRACT_H_
 #define ACCOUNTTABLEMODULEABSTRACT_H_
 
-#include"NameDefineForAbstract.h"
+#include"NameDefineForATMA.h"
 
 class AccountTableModuleAbstract {
 public:

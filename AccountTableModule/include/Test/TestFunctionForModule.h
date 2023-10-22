@@ -2,7 +2,7 @@
 #define TESTFUNCTIONFORMODULE_H_
 
 #include<string>
-#include"NameDefineForAbstract.h"
+#include"NameDefineForATMA.h"
 
 std::string ERRORINFORMATION(ErrorAccountTableModule error) {
     switch (error) {

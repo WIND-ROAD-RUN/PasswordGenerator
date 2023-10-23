@@ -1,4 +1,4 @@
-#ifndef NAMEDEFINEFORABSTRACT_H_
+﻿#ifndef NAMEDEFINEFORABSTRACT_H_
 #define NAMEDEFINEFORABSTRACT_H_
 
 #include<string>

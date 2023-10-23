@@ -1,12 +1,12 @@
 ﻿#include "PasswordGenerator.h"
 
 #include"PortalAccountTable.h"
+#include"DialogNewAccount.h"
 
 #include<QStandardItemModel>
 #include<QItemSelectionModel>
 #include<QTreeView>
-
-#define PATH R"(E:\vs_project_work_place\PasswordGenerator\PasswordGenerator\database\AccountTable.xml)"
+#include<QSortFilterProxyModel>
 
 PasswordGenerator::PasswordGenerator(QWidget *parent)
     : QMainWindow(parent)
@@ -14,102 +14,65 @@ PasswordGenerator::PasswordGenerator(QWidget *parent)
 {
     ui->setupUi(this);
     build_ui();
-
+    build_connect();
 }
 
 PasswordGenerator::~PasswordGenerator()
 {
     delete ui;
-    delete m_model;
-    delete m_selection;
+    delete m_treeModel;
+    delete m_treeSelection;
     delete m_portalAccountTable;
 }
 
 void PasswordGenerator::build_ui()
 {
-    m_model = new QStandardItemModel(this);
-    m_selection = new QItemSelectionModel(m_model, this);
+    m_treeModel = new QStandardItemModel(this);
+    m_tableModel = new QStandardItemModel(this);
+    m_treeSelection = new QItemSelectionModel(m_treeModel, this);
+
     m_portalAccountTable = PortalAccountTable::getInstance();
 
-    m_portalAccountTable->setFilePath(PATH);
+    m_portalAccountTable->setFilePath(m_filePath);
     m_portalAccountTable->setUID("root");
     m_portalAccountTable->ini_portal();
 
-    ui->tableView->setModel(m_model);
-    ui->tableView->setSelectionModel(m_selection);
-    ui->treeView->setModel(m_model);
+    ui->tableView->setModel(m_tableModel);
 
-    build_model();
-    
+    ui->treeView->setSelectionModel(m_treeSelection);
+    ui->treeView->setModel(m_treeModel);
+
+    build_tree_model();
+    build_table_model_all_account();
 
 }
 
-void PasswordGenerator::update_ui()
+void PasswordGenerator::build_connect()
 {
-  
+    QObject::connect(ui->treeView,&QTreeView::clicked, this, &PasswordGenerator::build_treeSelectChange_for_table);
+    QObject::connect(ui->act_storeNewAccount,&QAction::triggered,this,&PasswordGenerator::act_newAccount_trigger);
+    QObject::connect(ui->pbtn_storeNewAccount,&QPushButton::clicked,ui->act_storeNewAccount,&QAction::trigger);
+
 }
 
-void PasswordGenerator::build_model()
+
+void PasswordGenerator::build_tree_model()
 {
-    auto root = m_model->invisibleRootItem();
+    auto root = m_treeModel->invisibleRootItem();
 
     /*节点*/
     auto  platformList = m_portalAccountTable->PlatformList();
     for (const auto & platform: platformList) {
         QStandardItem* platforItem = new QStandardItem();
         platforItem->setText(QString::fromStdString(platform));
+        platforItem->setData("platform", Qt::UserRole);
         auto accountList=m_portalAccountTable->AccountList(platform);
         for (const auto & account:accountList) {
             QStandardItem* accountItem = new QStandardItem();
-            accountItem->setData("accountName", Qt::UserRole);
+            accountItem->setData("account", Qt::UserRole);
             accountItem->setText(QString::fromStdString(account.accountName));
             ui->treeView->setExpanded(accountItem->index(), true);
             accountItem->setEditable(false);
-
-            QStandardItem* passwordItem = new QStandardItem();
-            accountItem->setData("password", Qt::UserRole);
-            passwordItem->setText(QString::fromStdString(account.password));
-            accountItem->appendRow(passwordItem);
-
-            QStandardItem* phoneNumberItem = new QStandardItem();
-            accountItem->setData("phoneNumber", Qt::UserRole);
-            phoneNumberItem->setText(QString::fromStdString(account.phoneNumber));
-            accountItem->appendRow(phoneNumberItem);
-
-            QStandardItem* UserItem = new QStandardItem();
-            accountItem->setData("user", Qt::UserRole);
-            UserItem->setText(QString::fromStdString(account.User));
-            accountItem->appendRow(UserItem);
-
-            QStandardItem* EncrpyIsIrreversibleItem = new QStandardItem();
-            accountItem->setData("EncrpyIsIrreversible", Qt::UserRole);
-            accountItem->appendRow(EncrpyIsIrreversibleItem);
-            if (account.EncrpyIsIrreversible) {
-                EncrpyIsIrreversibleItem->setText("是");
-            }
-            else {
-                EncrpyIsIrreversibleItem->setText("否");
-            }
-
-            QStandardItem* haveSpecialSymbolsItem = new QStandardItem();
-            accountItem->setData("haveSpecialSymbols", Qt::UserRole);
-            accountItem->appendRow(haveSpecialSymbolsItem);
-            if (account.haveSpecialSymbols) {
-                haveSpecialSymbolsItem->setText("是");
-            }
-            else {
-                haveSpecialSymbolsItem->setText("否");
-            }
-
-            QStandardItem* haveUppercaseLowercaseItem = new QStandardItem();
-            accountItem->setData("haveUppercaseLowercase", Qt::UserRole);
-            accountItem->appendRow(haveUppercaseLowercaseItem);
-            if (account.haveUppercaseLowercase) {
-                haveUppercaseLowercaseItem->setText("是");
-            }
-            else {
-                haveUppercaseLowercaseItem->setText("否");
-            }
 
             platforItem->appendRow(accountItem);
 
@@ -118,10 +81,101 @@ void PasswordGenerator::build_model()
         root->appendRow(platforItem);
         ui->treeView->setExpanded(platforItem->index(),true);
         platforItem->setEditable(false);
+    }
+    m_treeSelection->clearSelection();
+}
+
+void PasswordGenerator::build_treeSelectChange_for_table(const QModelIndex& index) {
+    m_tableModel->clear();
+    
+    auto NodeType = m_treeModel->itemFromIndex(index);
+    
+    QStringList headerList;
+    headerList.push_back("平台");
+    headerList.push_back("账户名");
+    headerList.push_back("密码");
+    headerList.push_back("是否为可逆加密");
+    m_tableModel->setColumnCount(headerList.size());
+    m_tableModel->setHorizontalHeaderLabels(headerList);
+
+    if (NodeType->data(Qt::UserRole)=="platform") {
+        auto platfromName = NodeType->text();
+        auto accountList=m_portalAccountTable->AccountList(platfromName.toStdString());
+        int i = 0;
+        for (const auto & account:accountList) {
+            add_account_forTable(account, platfromName,i);
+            i++;
+        }
+    }
+    else if(NodeType->data(Qt::UserRole) == "account") {
+        auto accountName= NodeType->text();
+        auto platform=NodeType->parent();
+        auto account=m_portalAccountTable->search_account(platform->text().toStdString(),accountName.toStdString());
         
+        add_account_forTable(account,platform->text(),0);
     }
 
-    ui->treeView->setItemsExpandable(false);
-   
+    
+}
+
+void PasswordGenerator::build_table_model_all_account()
+{
+    m_tableModel->clear();
+    m_row = m_portalAccountTable->AccountNumber();
+    m_tableModel->setRowCount(m_row);
+
+    QStringList headerList;
+    headerList.push_back("平台");
+    headerList.push_back("账户名");
+    headerList.push_back("密码");
+    headerList.push_back("是否为可逆加密");
+    m_tableModel->setColumnCount(headerList.size());
+    m_tableModel->setHorizontalHeaderLabels(headerList);
+
+    int i{0};
+    auto platformList = m_portalAccountTable->PlatformList();
+    for (const auto & platform: platformList){
+        auto accountList = m_portalAccountTable->AccountList(platform);
+        for (const auto & account: accountList) {
+            add_account_forTable(account,QString::fromStdString(platform),i);
+            i++;
+        }
+    }
+}
+
+void PasswordGenerator::add_account_forTable(const AccountInfo& account, const QString& platform, int row)
+{
+    QStandardItem* platformItem = new QStandardItem;
+    platformItem->setText(platform);
+    platformItem->setEditable(false);
+    m_tableModel->setItem(row, 0, platformItem);
+
+    QStandardItem* accountNameItem = new QStandardItem;
+    accountNameItem->setText(QString::fromStdString(account.accountName));
+    accountNameItem->setEditable(false);
+    m_tableModel->setItem(row, 1, accountNameItem);
+
+    QStandardItem* passwordItem = new QStandardItem;
+    passwordItem->setText(QString::fromStdString(account.password));
+    passwordItem->setEditable(false);
+    m_tableModel->setItem(row, 2, passwordItem);
+
+    QStandardItem* EncrpyIsIrreversibleItem = new QStandardItem;
+    if (account.EncrpyIsIrreversible) {
+        EncrpyIsIrreversibleItem->setText(QString::fromStdString("是"));
+    }
+    else {
+        EncrpyIsIrreversibleItem->setText(QString::fromStdString("否"));
+    }
+    EncrpyIsIrreversibleItem->setEditable(false);
+    m_tableModel->setItem(row, 3, EncrpyIsIrreversibleItem);
 
 }
+
+void PasswordGenerator::act_newAccount_trigger()
+{
+    m_DlgNewAccount = new DialogNewAccount(this);
+    m_DlgNewAccount->exec();
+
+}
+

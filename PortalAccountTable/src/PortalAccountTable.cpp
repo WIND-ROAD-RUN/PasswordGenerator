@@ -11,7 +11,6 @@ PortalAccountTable::PortalAccountTable
 (const ATMAstring& filePath, const ATMAstring& UID)
     :m_filePath(filePath),m_UID(UID),m_accountTableXML(new AccountTableXML),m_EncrpyCom(new PasswordEncrpySimplyAch)
 {
-
 }
 
 PortalAccountTable::PortalAccountTable()
@@ -177,4 +176,13 @@ ATMAStringList  PortalAccountTable::PlatformList()
 ATMAAccountList PortalAccountTable::AccountList(const ATMAstring& platform)
 {
     return std::move(m_accountTableXML->getAccountList(platform));
+}
+
+ATMAint PortalAccountTable::AccountNumber() {
+    ATMAint result{ 0 };
+
+    for (const auto & platform:m_map) {
+        result+=platform.second.size();
+    }
+    return result;
 }

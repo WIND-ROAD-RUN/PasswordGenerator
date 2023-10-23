@@ -51,6 +51,7 @@ public:
     ErrorAccountTableModule deleteAccount(const  ATMAstring& platform, const ATMAstring& accountName);
     ATMAStringList  PlatformList();
     ATMAAccountList AccountList(const  ATMAstring& platform);
+    ATMAint AccountNumber();
 };
 
 

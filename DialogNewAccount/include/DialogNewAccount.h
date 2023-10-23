@@ -7,6 +7,8 @@ QT_BEGIN_NAMESPACE
 namespace Ui { class DialogNewAccountClass; };
 QT_END_NAMESPACE
 
+class AccountInfo;
+
 class DialogNewAccount : public QDialog
 {
     Q_OBJECT
@@ -17,4 +19,20 @@ public:
 
 private:
     Ui::DialogNewAccountClass *ui;
+private:
+    void build_ui();
+    void build_connect();
+private slots:
+    void cbox_phoneNumber_checked_change();
+    void cbox_user_checked_change();
+public:
+    QString Platform();
+    QString Account();
+    QString Phonenumber();
+    QString User();
+    std::pair<int,int> PasswordLength();
+    bool haveSpecialSymbols();
+    bool haveUpperLowerCase();
+    bool isIrreversibleEncrpy();
+    AccountInfo accountInfo();
 };

@@ -4,8 +4,9 @@
 
 #include<QStandardItemModel>
 #include<QItemSelectionModel>
+#include<QTreeView>
 
-#define PATH R"(G:\project\code_place\vs_code_place\MyPasswordGenerator1\PasswordGenerator\database\AccountTable.xml)"
+#define PATH R"(E:\vs_project_work_place\PasswordGenerator\PasswordGenerator\database\AccountTable.xml)"
 
 PasswordGenerator::PasswordGenerator(QWidget *parent)
     : QMainWindow(parent)
@@ -34,10 +35,12 @@ void PasswordGenerator::build_ui()
     m_portalAccountTable->setUID("root");
     m_portalAccountTable->ini_portal();
 
-    build_model();
     ui->tableView->setModel(m_model);
     ui->tableView->setSelectionModel(m_selection);
     ui->treeView->setModel(m_model);
+
+    build_model();
+    
 
 }
 
@@ -50,7 +53,7 @@ void PasswordGenerator::build_model()
 {
     auto root = m_model->invisibleRootItem();
 
-    /*设置平台节点*/
+    /*节点*/
     auto  platformList = m_portalAccountTable->PlatformList();
     for (const auto & platform: platformList) {
         QStandardItem* platforItem = new QStandardItem();
@@ -58,21 +61,28 @@ void PasswordGenerator::build_model()
         auto accountList=m_portalAccountTable->AccountList(platform);
         for (const auto & account:accountList) {
             QStandardItem* accountItem = new QStandardItem();
+            accountItem->setData("accountName", Qt::UserRole);
             accountItem->setText(QString::fromStdString(account.accountName));
+            ui->treeView->setExpanded(accountItem->index(), true);
+            accountItem->setEditable(false);
 
             QStandardItem* passwordItem = new QStandardItem();
+            accountItem->setData("password", Qt::UserRole);
             passwordItem->setText(QString::fromStdString(account.password));
             accountItem->appendRow(passwordItem);
 
             QStandardItem* phoneNumberItem = new QStandardItem();
+            accountItem->setData("phoneNumber", Qt::UserRole);
             phoneNumberItem->setText(QString::fromStdString(account.phoneNumber));
             accountItem->appendRow(phoneNumberItem);
 
             QStandardItem* UserItem = new QStandardItem();
+            accountItem->setData("user", Qt::UserRole);
             UserItem->setText(QString::fromStdString(account.User));
             accountItem->appendRow(UserItem);
 
             QStandardItem* EncrpyIsIrreversibleItem = new QStandardItem();
+            accountItem->setData("EncrpyIsIrreversible", Qt::UserRole);
             accountItem->appendRow(EncrpyIsIrreversibleItem);
             if (account.EncrpyIsIrreversible) {
                 EncrpyIsIrreversibleItem->setText("是");
@@ -82,6 +92,7 @@ void PasswordGenerator::build_model()
             }
 
             QStandardItem* haveSpecialSymbolsItem = new QStandardItem();
+            accountItem->setData("haveSpecialSymbols", Qt::UserRole);
             accountItem->appendRow(haveSpecialSymbolsItem);
             if (account.haveSpecialSymbols) {
                 haveSpecialSymbolsItem->setText("是");
@@ -91,6 +102,7 @@ void PasswordGenerator::build_model()
             }
 
             QStandardItem* haveUppercaseLowercaseItem = new QStandardItem();
+            accountItem->setData("haveUppercaseLowercase", Qt::UserRole);
             accountItem->appendRow(haveUppercaseLowercaseItem);
             if (account.haveUppercaseLowercase) {
                 haveUppercaseLowercaseItem->setText("是");
@@ -99,12 +111,17 @@ void PasswordGenerator::build_model()
                 haveUppercaseLowercaseItem->setText("否");
             }
 
-
             platforItem->appendRow(accountItem);
 
         }
+
         root->appendRow(platforItem);
+        ui->treeView->setExpanded(platforItem->index(),true);
+        platforItem->setEditable(false);
+        
     }
-    
+
+    ui->treeView->setItemsExpandable(false);
+   
 
 }

@@ -12,18 +12,18 @@ public:
         NewPlatform(const ATMAstring& platform) = 0;
 
     virtual ErrorAccountTableModule
-        ini_module()=0;//ÓÃÀ´³õÊ¼»¯Àà£¬¿´Â·¾¶ÊÇ·ñ´íÎó£¬»òÊÇÄ¿±êÊı¾İÊÇ·ñ´æÔÚ
+        ini_module()=0;//åˆå§‹åŒ–æ¨¡å—
     virtual ErrorAccountTableModule
         save() = 0;
 public:
-    /*ĞÂ½¨½Úµã*/
+    /*æ–°å¢èŠ‚ç‚¹*/
     virtual ErrorAccountTableModule 
         NewAccount(const ATMAstring& platform, const ATMAstring& account) = 0;
 
     virtual ErrorAccountTableModule
         NewAccount(const ATMAstring& platform, const AccountInfo& account) = 0;
 
-    /*ÉèÖÃÔªËØÖµ*/
+    /*è®¾ç½®èŠ‚ç‚¹ä¿¡æ¯*/
     virtual ErrorAccountTableModule
         setAccount(const ATMAstring& platform, const AccountInfo& account) = 0;
 
@@ -52,12 +52,12 @@ public:
     virtual ErrorAccountTableModule 
         setEncrpyIsIrreversible(const ATMAstring& platform, const ATMAstring& account, ATMAbool EncrpyIsIrreversible)=0;
     
-    /*É¾³ı½Úµã*/
+    /*åˆ é™¤èŠ‚ç‚¹ä¿¡æ¯*/
     virtual ErrorAccountTableModule
         deletePlatform(const ATMAstring & platform)=0;
     virtual ErrorAccountTableModule
         deleteAccount(const ATMAstring & platform,const ATMAstring & account) = 0;
-    /*·µ»Ø¶ÔÓ¦½ÚµãµÄĞÅÏ¢*/
+    /*è¿”å›èŠ‚ç‚¹ä¿¡æ¯*/
     virtual AccountInfo
         Account(const ATMAstring& platform, const ATMAstring& account) = 0;
     

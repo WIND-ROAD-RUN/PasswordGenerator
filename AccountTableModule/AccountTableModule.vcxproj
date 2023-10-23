@@ -152,6 +152,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="include\Abstract\README.md" />
+    <None Include="include\achieve\README.md" />
     <None Include="packages.config" />
     <None Include="README.md" />
   </ItemGroup>

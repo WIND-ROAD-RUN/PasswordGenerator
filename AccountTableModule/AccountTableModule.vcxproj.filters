@@ -26,6 +26,7 @@
     <None Include="packages.config" />
     <None Include="README.md" />
     <None Include="include\Abstract\README.md" />
+    <None Include="include\achieve\README.md" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Abstract\AccountTableModuleAbstract.h">

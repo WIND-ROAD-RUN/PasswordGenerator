@@ -45,4 +45,6 @@ private:
 private slots:
     void build_treeSelectChange_for_table(const QModelIndex& index);
     void act_newAccount_trigger();
+    void act_saveInfo_trigger();
+    void act_displayAllAccount_trigger();
 };

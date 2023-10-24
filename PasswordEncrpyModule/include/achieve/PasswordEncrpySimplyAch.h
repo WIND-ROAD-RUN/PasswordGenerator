@@ -7,7 +7,7 @@ class PasswordEncrpySimplyAch
     :public PasswordEncrpyModuleAbstract {
 
 public:
-    // Í¨¹ý PasswordEncrpyModuleAbstract ¼Ì³Ð
+    // Í¨ï¿½ï¿½ PasswordEncrpyModuleAbstract ï¿½Ì³ï¿½
     AccountInfo encrpyForSave(const AccountInfo& accountInfo) override;
 
     AccountInfo decrptForUser(const AccountInfo& accountInfo) override;

@@ -120,7 +120,7 @@ ErrorAccountTableModule PortalAccountTable::newAccount(const ATMAstring& platfor
         [accountInfo](const AccountInfo& account) {
             return account.accountName == accountInfo.accountName;
         });
-    if (findAccountInfo == accountList.end()) {
+    if (findAccountInfo != accountList.end()) {
         return ErrorAccountTableModule::AccountAlreadyExist;
     }
 
@@ -128,6 +128,20 @@ ErrorAccountTableModule PortalAccountTable::newAccount(const ATMAstring& platfor
     if (saveFileResult != ErrorAccountTableModule::No_ERROR) { return saveFileResult; }
 
     accountList.push_back(accountInfo);
+    m_map[platform] = accountList;
+
+    return ErrorAccountTableModule::No_ERROR;
+}
+
+ErrorAccountTableModule PortalAccountTable::newPlatform(const ATMAstring& platform)
+{
+    auto accountListPair = m_map.find(platform);
+    if (accountListPair != m_map.end()) {
+        return ErrorAccountTableModule::PlatformAlreadyExist;
+    }
+    m_map[platform] = ATMAAccountList();
+
+    m_accountTableXML->NewPlatform(platform);
 
     return ErrorAccountTableModule::No_ERROR;
 }
@@ -185,4 +199,9 @@ ATMAint PortalAccountTable::AccountNumber() {
         result+=platform.second.size();
     }
     return result;
+}
+
+ATMAstring PortalAccountTable::encrpyForUser(const AccountInfo& account) {
+   auto result= m_EncrpyCom->encrpyForSave(account);
+   return result.password;
 }

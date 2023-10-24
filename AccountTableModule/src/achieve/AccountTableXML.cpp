@@ -366,12 +366,12 @@ AccountInfo AccountTableXML::Account(const ATMAstring& platform, const ATMAstrin
 
 ErrorAccountTableModule AccountTableXML::NewAccount(const ATMAstring& platform, const AccountInfo& account)
 {
-    /*²éÑ¯ÊÇ·ñº¬ÓÐÄ¿±êÆ½Ì¨µÄ½ÚµãÈôÃ»ÓÐÔò·µ»Ø´íÎó´úÂë*/
+    /*ï¿½ï¿½Ñ¯ï¿½Ç·ï¿½ï¿½ï¿½Ä¿ï¿½ï¿½Æ½Ì¨ï¿½Ä½Úµï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ò·µ»Ø´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/
     pugi::xml_node PlatformNode;
     auto findPlatform = findPlatformNode(platform, PlatformNode);
     if (findPlatform != ErrorAccountTableModule::PlatformAlreadyExist) { return findPlatform; }
 
-    /*²éÑ¯ÊÇ·ñÒÑ¾­º¬ÓÐÍ¬ÃûÕË»§½Úµã£¬ÓÐµÄ»°·µ»Ø´íÎó´úÂë£¬Ã»ÓÐÔòÐÂ½¨Ò»¸ö*/
+    /*ï¿½ï¿½Ñ¯ï¿½Ç·ï¿½ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½ï¿½Í¬ï¿½ï¿½ï¿½Ë»ï¿½ï¿½Úµã£¬ï¿½ÐµÄ»ï¿½ï¿½ï¿½ï¿½Ø´ï¿½ï¿½ï¿½ï¿½ï¿½ë£¬Ã»ï¿½ï¿½ï¿½ï¿½ï¿½Â½ï¿½Ò»ï¿½ï¿½*/
     auto findAccount = findAccountNode(platform, account.accountName);
     if (findAccount == ErrorAccountTableModule::AccountAlreadyExist) {
         return findAccount;
@@ -379,7 +379,7 @@ ErrorAccountTableModule AccountTableXML::NewAccount(const ATMAstring& platform, 
     auto newAccountNode = PlatformNode.append_child("Account");
     if (!newAccountNode) { return ErrorAccountTableModule::NewAccount_ERROR; }
     if (!newAccountNode.append_attribute("USERNAME").set_value(account.accountName.c_str())) { return ErrorAccountTableModule::NewPlatform_ERROR; }
-    /*ÒÔÏÂÔÚAccountÌí¼ÓÐÂµÄ×Ó½Úµã*/
+    /*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Accountï¿½ï¿½ï¿½ï¿½Âµï¿½ï¿½Ó½Úµï¿½*/
     auto newPasswordNode = newAccountNode.append_child("Password");
     if (!newPasswordNode) { return ErrorAccountTableModule::NewPassword_ERROR; }
     newPasswordNode.text().set(account.password.c_str());
@@ -395,7 +395,7 @@ ErrorAccountTableModule AccountTableXML::NewAccount(const ATMAstring& platform, 
     auto newEncryProperty = newAccountNode.append_child("EncrypyProperty");
     if (!newEncryProperty) { return ErrorAccountTableModule::NewEncrpyProperty_ERROR; }
 
-    /*ÒÔÏÂÔÚEncrpyProperty½ÚµãÏÂÌí¼ÓÐÂµÄ×Ó½Úµã*/
+    /*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½EncrpyPropertyï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Âµï¿½ï¿½Ó½Úµï¿½*/
     auto newPasswordLengthNode = newEncryProperty.append_child("PasswordLength");
     if (!newPasswordLengthNode) { return ErrorAccountTableModule::NewPasswordLength_ERROR; }
     if (!newPasswordLengthNode.append_attribute("Minimum").set_value(account.passwordLength.first)) {
@@ -472,12 +472,12 @@ ATMAAccountList AccountTableXML::getAccountList(const ATMAstring& platform)
 
 ErrorAccountTableModule AccountTableXML::NewAccount(const ATMAstring& platform, const ATMAstring& account)
 {
-    /*²éÑ¯ÊÇ·ñº¬ÓÐÄ¿±êÆ½Ì¨µÄ½ÚµãÈôÃ»ÓÐÔò·µ»Ø´íÎó´úÂë*/
+    /*ï¿½ï¿½Ñ¯ï¿½Ç·ï¿½ï¿½ï¿½Ä¿ï¿½ï¿½Æ½Ì¨ï¿½Ä½Úµï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ò·µ»Ø´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/
     pugi::xml_node PlatformNode;
     auto findPlatform = findPlatformNode(platform, PlatformNode);
     if (findPlatform != ErrorAccountTableModule::PlatformAlreadyExist) { return findPlatform; }
 
-    /*²éÑ¯ÊÇ·ñÒÑ¾­º¬ÓÐÍ¬ÃûÕË»§½Úµã£¬ÓÐµÄ»°·µ»Ø´íÎó´úÂë£¬Ã»ÓÐÔòÐÂ½¨Ò»¸ö*/
+    /*ï¿½ï¿½Ñ¯ï¿½Ç·ï¿½ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½ï¿½Í¬ï¿½ï¿½ï¿½Ë»ï¿½ï¿½Úµã£¬ï¿½ÐµÄ»ï¿½ï¿½ï¿½ï¿½Ø´ï¿½ï¿½ï¿½ï¿½ï¿½ë£¬Ã»ï¿½ï¿½ï¿½ï¿½ï¿½Â½ï¿½Ò»ï¿½ï¿½*/
     auto findAccount=findAccountNode(platform,account);
     if (findAccount==ErrorAccountTableModule::AccountAlreadyExist) {
         return findAccount;
@@ -485,7 +485,7 @@ ErrorAccountTableModule AccountTableXML::NewAccount(const ATMAstring& platform, 
     auto newAccountNode=PlatformNode.append_child("Account");
     if (!newAccountNode) { return ErrorAccountTableModule::NewAccount_ERROR; }
     if (!newAccountNode.append_attribute("USERNAME").set_value(account.c_str())) { return ErrorAccountTableModule::NewPlatform_ERROR; }
-   /*ÒÔÏÂÔÚAccountÌí¼ÓÐÂµÄ×Ó½Úµã*/
+   /*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Accountï¿½ï¿½ï¿½ï¿½Âµï¿½ï¿½Ó½Úµï¿½*/
     auto newPasswordNode = newAccountNode.append_child("Password");
     if (!newPasswordNode) { return ErrorAccountTableModule::NewPassword_ERROR; }
 
@@ -498,7 +498,7 @@ ErrorAccountTableModule AccountTableXML::NewAccount(const ATMAstring& platform, 
     auto newEncryProperty = newAccountNode.append_child("EncrypyProperty");
     if (!newEncryProperty) { return ErrorAccountTableModule::NewEncrpyProperty_ERROR; }
     
-    /*ÒÔÏÂÔÚEncrpyProperty½ÚµãÏÂÌí¼ÓÐÂµÄ×Ó½Úµã*/
+    /*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½EncrpyPropertyï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Âµï¿½ï¿½Ó½Úµï¿½*/
     auto newPasswordLength = newEncryProperty.append_child("PasswordLength");
     if (!newPasswordLength) { return ErrorAccountTableModule::NewPasswordLength_ERROR; }
     if (!newPasswordLength.append_attribute("Minimum")) {

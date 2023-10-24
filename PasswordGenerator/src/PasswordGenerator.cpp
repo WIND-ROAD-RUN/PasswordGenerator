@@ -7,6 +7,7 @@
 #include<QItemSelectionModel>
 #include<QTreeView>
 #include<QSortFilterProxyModel>
+#include<QMessagebox>
 
 PasswordGenerator::PasswordGenerator(QWidget *parent)
     : QMainWindow(parent)
@@ -52,12 +53,16 @@ void PasswordGenerator::build_connect()
     QObject::connect(ui->treeView,&QTreeView::clicked, this, &PasswordGenerator::build_treeSelectChange_for_table);
     QObject::connect(ui->act_storeNewAccount,&QAction::triggered,this,&PasswordGenerator::act_newAccount_trigger);
     QObject::connect(ui->pbtn_storeNewAccount,&QPushButton::clicked,ui->act_storeNewAccount,&QAction::trigger);
-
+    QObject::connect(ui->act_saveInfo,&QAction::triggered,this,&PasswordGenerator::act_saveInfo_trigger);
+    QObject::connect(ui->pbtn_saveInfo,&QPushButton::clicked,ui->act_saveInfo,&QAction::trigger);
+    QObject::connect(ui->act_displayAllAccount,&QAction::triggered,this,&PasswordGenerator::act_displayAllAccount_trigger);
+    QObject::connect(ui->pbtn_displayAllAccount,&QPushButton::clicked,ui->act_displayAllAccount, &QAction::trigger);
 }
 
 
 void PasswordGenerator::build_tree_model()
 {
+    m_treeModel->clear();
     auto root = m_treeModel->invisibleRootItem();
 
     /*节点*/
@@ -175,7 +180,36 @@ void PasswordGenerator::add_account_forTable(const AccountInfo& account, const Q
 void PasswordGenerator::act_newAccount_trigger()
 {
     m_DlgNewAccount = new DialogNewAccount(this);
-    m_DlgNewAccount->exec();
+    int ret=m_DlgNewAccount->exec();
+    if (ret==QDialog::Rejected) {
+        return;
+    }
+    auto NewAccount=m_DlgNewAccount->accountInfo();
+    auto NewAccountRet=m_portalAccountTable->newAccount(m_DlgNewAccount->Platform().toStdString(),NewAccount);
+    if (NewAccountRet ==ErrorAccountTableModule::NoPlatformNode) {
+        m_portalAccountTable->newPlatform(m_DlgNewAccount->Platform().toStdString());
+        m_portalAccountTable->newAccount(m_DlgNewAccount->Platform().toStdString(), NewAccount);
+    }
+    delete m_DlgNewAccount;
 
+    build_tree_model();
+    
+}
+
+void PasswordGenerator::act_saveInfo_trigger()
+{
+    auto saveRet = m_portalAccountTable->save_change();
+    if (saveRet!=ErrorAccountTableModule::No_ERROR) {
+        QMessageBox::warning(this,"错误","保存文件错误");
+    }
+    else {
+        QMessageBox::information(this,"成功","数据已保存");
+    }
+
+}
+
+void PasswordGenerator::act_displayAllAccount_trigger()
+{
+    build_table_model_all_account();
 }
 

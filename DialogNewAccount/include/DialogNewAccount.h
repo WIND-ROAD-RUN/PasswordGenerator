@@ -20,11 +20,15 @@ public:
 private:
     Ui::DialogNewAccountClass *ui;
 private:
+    std::string m_password{};
+private:
     void build_ui();
     void build_connect();
 private slots:
     void cbox_phoneNumber_checked_change();
     void cbox_user_checked_change();
+    void pbtn_ok_clicked();
+    void pbtn_cancel_clicked();
 public:
     QString Platform();
     QString Account();
@@ -34,5 +38,6 @@ public:
     bool haveSpecialSymbols();
     bool haveUpperLowerCase();
     bool isIrreversibleEncrpy();
+    std::string Password();
     AccountInfo accountInfo();
 };

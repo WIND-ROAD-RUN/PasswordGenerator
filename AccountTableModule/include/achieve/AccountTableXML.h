@@ -20,17 +20,17 @@ public:
     void setFilePath(const std::string& filePath) { m_filePath = filePath; }
     void setUID(const std::string& UID) { m_UID = UID; }
 public:
-    // Í¨¹ý AccountTableModuleAbstract ¼Ì³Ð
+    // Í¨ï¿½ï¿½ AccountTableModuleAbstract ï¿½Ì³ï¿½
     ErrorAccountTableModule NewAccount(const ATMAstring& platform, const ATMAstring& account) override;
 
     ErrorAccountTableModule NewAccountTable(const ATMAstring& fileName) override;
 
-    ErrorAccountTableModule NewPlatform(const ATMAstring& fileName) override;
+    ErrorAccountTableModule NewPlatform(const ATMAstring& platform) override;
 
     ErrorAccountTableModule ini_module() override;
 
 
-    // Í¨¹ý AccountTableModuleAbstract ¼Ì³Ð
+    // Í¨ï¿½ï¿½ AccountTableModuleAbstract ï¿½Ì³ï¿½
 
     ErrorAccountTableModule setPassword(const ATMAstring& platform, const ATMAstring& account, const ATMAstring& password) override;
 
@@ -47,26 +47,26 @@ public:
     ErrorAccountTableModule setEncrpyIsIrreversible(const ATMAstring& platform, const ATMAstring& account, ATMAbool EncrpyIsIrreversible) override;
 
 
-    // Í¨¹ý AccountTableModuleAbstract ¼Ì³Ð
+    // Í¨ï¿½ï¿½ AccountTableModuleAbstract ï¿½Ì³ï¿½
     ErrorAccountTableModule save() override;
 
 
-    // Í¨¹ý AccountTableModuleAbstract ¼Ì³Ð
+    // Í¨ï¿½ï¿½ AccountTableModuleAbstract ï¿½Ì³ï¿½
     ErrorAccountTableModule setAccount(const ATMAstring& platform, const ATMAstring& orginalAccount, const ATMAstring& newAccount) override;
 
 
-    // Í¨¹ý AccountTableModuleAbstract ¼Ì³Ð
+    // Í¨ï¿½ï¿½ AccountTableModuleAbstract ï¿½Ì³ï¿½
     ErrorAccountTableModule deletePlatform(const ATMAstring& platform) override;
 
     ErrorAccountTableModule deleteAccount(const ATMAstring& platform, const ATMAstring& account) override;
 public :
-    /*ÒÔÏÂÓÃÓÚÊµÏÖÖØ¸´²Ù×÷*/
+    /*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Êµï¿½ï¿½ï¿½Ø¸ï¿½ï¿½ï¿½ï¿½ï¿½*/
     ErrorAccountTableModule findPlatformNode(const ATMAstring & platform,pugi::xml_node & platformNode);
     ErrorAccountTableModule findAccountNode(const ATMAstring & platform,const ATMAstring & account, pugi::xml_node& accountNode);
     ErrorAccountTableModule findPlatformNode(const ATMAstring& platform);
     ErrorAccountTableModule findAccountNode(const ATMAstring& platform, const ATMAstring& account);
 
-    // Í¨¹ý AccountTableModuleAbstract ¼Ì³Ð
+    // Í¨ï¿½ï¿½ AccountTableModuleAbstract ï¿½Ì³ï¿½
     ATMAstring Password(const ATMAstring& platform, const ATMAstring& account) override;
     ATMAstring PhoneNumber(const ATMAstring& platform, const ATMAstring& account) override;
     ATMAstring User(const ATMAstring& platform, const ATMAstring& account) override;
@@ -75,15 +75,15 @@ public :
     ATMAbool haveUppercaseLowercase(const ATMAstring& platform, const ATMAstring& account) override;
     ATMAbool EncrpyIsIrreversible(const ATMAstring& platform, const ATMAstring& account) override;
 
-    // Í¨¹ý AccountTableModuleAbstract ¼Ì³Ð
+    // Í¨ï¿½ï¿½ AccountTableModuleAbstract ï¿½Ì³ï¿½
     AccountInfo Account(const ATMAstring& platform, const ATMAstring& account) override;
 
-    // Í¨¹ý AccountTableModuleAbstract ¼Ì³Ð
+    // Í¨ï¿½ï¿½ AccountTableModuleAbstract ï¿½Ì³ï¿½
     ErrorAccountTableModule NewAccount(const ATMAstring& platform, const AccountInfo& account) override;
     ErrorAccountTableModule setAccount(const ATMAstring& platform, const AccountInfo& account) override;
 
 
-    // Í¨¹ý AccountTableModuleAbstract ¼Ì³Ð
+    // Í¨ï¿½ï¿½ AccountTableModuleAbstract ï¿½Ì³ï¿½
     ATMAStringList getPlatformList() override;
 
     ATMAAccountList getAccountList(const ATMAstring& platform) override;

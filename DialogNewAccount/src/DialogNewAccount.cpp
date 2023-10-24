@@ -1,6 +1,7 @@
 #include "DialogNewAccount.h"
 #include"NameDefineForATMA.h"
 #include"PortalAccountTable.h"
+#include<QMessageBox>
 
 DialogNewAccount::DialogNewAccount(QWidget *parent)
     : QDialog(parent)
@@ -36,11 +37,30 @@ void DialogNewAccount::build_connect()
 {
     QObject::connect(ui->cbox_phoneNumber,&QCheckBox::stateChanged,this,&DialogNewAccount::cbox_phoneNumber_checked_change);
     QObject::connect(ui->cbox_user, &QCheckBox::stateChanged, this, &DialogNewAccount::cbox_user_checked_change);
+    QObject::connect(ui->pbtn_ok,&QPushButton::clicked,this,&DialogNewAccount::pbtn_ok_clicked);
+    QObject::connect(ui->pbtn_cancel,&QPushButton::clicked,this,&DialogNewAccount::pbtn_cancel_clicked);
 }
 void DialogNewAccount::cbox_user_checked_change()
 {
     ui->ledit_user->clear();
     ui->ledit_user->setEnabled(ui->cbox_user->isChecked());
+}
+void DialogNewAccount::pbtn_ok_clicked()
+{
+    auto portal=PortalAccountTable::getInstance();
+    
+    auto AccountName=portal->search_account(Platform().toStdString(),Account().toStdString() );
+    if (!AccountName.accountName.empty()) {
+        QMessageBox::warning(this,"警告","已有该账户");
+    }
+    else {
+        m_password= portal->encrpyForUser(accountInfo()); 
+        this->accept();
+    }
+}
+void DialogNewAccount::pbtn_cancel_clicked()
+{
+    this->reject();
 }
 QString DialogNewAccount::Platform()
 {
@@ -74,6 +94,10 @@ bool DialogNewAccount::isIrreversibleEncrpy()
 {
     return ui->cBox_isIrreversible->isChecked();
 }
+std::string DialogNewAccount::Password()
+{
+    return m_password;
+}
 AccountInfo DialogNewAccount::accountInfo()
 {
     AccountInfo result;
@@ -84,6 +108,7 @@ AccountInfo DialogNewAccount::accountInfo()
     result.passwordLength = this->PasswordLength();
     result.phoneNumber = this->Phonenumber().toStdString();
     result.User = this->User().toStdString();
+    result.password = m_password;
 
     return result;
 }

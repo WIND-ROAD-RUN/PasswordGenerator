@@ -47,11 +47,13 @@ public:
     AccountInfo search_account(const  ATMAstring& platform, const  ATMAstring& accountName);
     ErrorAccountTableModule set_account(const ATMAstring& platform, const AccountInfo & accountInfo);
     ErrorAccountTableModule newAccount(const  ATMAstring& platform,const AccountInfo& accountInfo);
+    ErrorAccountTableModule newPlatform(const  ATMAstring& platform);
     ErrorAccountTableModule deletePlatform(const  ATMAstring& platform);
     ErrorAccountTableModule deleteAccount(const  ATMAstring& platform, const ATMAstring& accountName);
     ATMAStringList  PlatformList();
     ATMAAccountList AccountList(const  ATMAstring& platform);
     ATMAint AccountNumber();
+    ATMAstring encrpyForUser(const AccountInfo & account);
 };
 
 

@@ -2,7 +2,9 @@
 
 AccountInfo PasswordEncrpySimplyAch::encrpyForSave(const AccountInfo& accountInfo)
 {
-    return accountInfo;
+    AccountInfo result = accountInfo;
+    result.password = result.accountName;
+    return result;
 }
 
 AccountInfo PasswordEncrpySimplyAch::decrptForUser(const AccountInfo& accountInfo)

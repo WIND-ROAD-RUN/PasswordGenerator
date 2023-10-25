@@ -70,8 +70,12 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>$(ProjectDir)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\PasswordEncrpyModule\include\achieve;$(SolutionDir)\PasswordEncrpyModule\include\Abstract;$(SolutionDir)\AccountTableModule\include\achieve;$(SolutionDir)\AccountTableModule\include\Abstract;$(SolutionDir)\PortalAccountTable\include;$(ProjectDir)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>$(SolutionDir)\PortalAccountTable\build\x64\Debug;$(SolutionDir)\PasswordEncrpyModule\build\x64\Debug;$(SolutionDir)\AccountTableModule\build\x64\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>PortalAccountTable.obj;PasswordEncrpySimplyAch.obj;AccountTableXML.obj;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -109,10 +113,20 @@
     <ClCompile Include="src\DialogAddExistAccount.cpp" />
     <ClCompile Include="src\main.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
     <Import Project="$(QtMsBuild)\qt.targets" />
   </ImportGroup>
   <ImportGroup Label="ExtensionTargets">
+    <Import Project="..\packages\pugixml.1.14.0\build\native\pugixml.targets" Condition="Exists('..\packages\pugixml.1.14.0\build\native\pugixml.targets')" />
   </ImportGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>这台计算机上缺少此项目引用的 NuGet 程序包。使用“NuGet 程序包还原”可下载这些程序包。有关更多信息，请参见 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的文件是 {0}。</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\pugixml.1.14.0\build\native\pugixml.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\pugixml.1.14.0\build\native\pugixml.targets'))" />
+  </Target>
 </Project>

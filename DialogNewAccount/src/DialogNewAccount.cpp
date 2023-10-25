@@ -47,6 +47,21 @@ void DialogNewAccount::cbox_user_checked_change()
 }
 void DialogNewAccount::pbtn_ok_clicked()
 {
+    if (ui->ledit_accountPlatform->text().isEmpty()) {
+        QMessageBox::warning(this, "错误", "平台名不能为空");
+        return;
+    }
+
+    if (ui->ledit_account->text().isEmpty()) {
+        QMessageBox::warning(this, "错误", "用户名不能为空");
+        return;
+    }
+    
+    if (ui->sBox_passwordLengthMinimum->value()>ui->sBox_passwordLengthMaximum->value()) {
+        QMessageBox::warning(this, "错误", "密码长度格式错误");
+        return;
+    }
+
     auto portal=PortalAccountTable::getInstance();
     
     auto AccountName=portal->search_account(Platform().toStdString(),Account().toStdString() );

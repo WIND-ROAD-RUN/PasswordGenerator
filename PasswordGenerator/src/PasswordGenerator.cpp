@@ -2,20 +2,21 @@
 
 #include"PortalAccountTable.h"
 #include"DialogNewAccount.h"
+#include"DialogAddExistAccount.h"
 
 #include<QStandardItemModel>
 #include<QItemSelectionModel>
 #include<QTreeView>
 #include<QSortFilterProxyModel>
 #include<QMessagebox>
+#include<QContextMenuEvent>
 
 PasswordGenerator::PasswordGenerator(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::PasswordGeneratorClass())
 {
     ui->setupUi(this);
-    build_ui();
-    build_connect();
+    
 }
 
 PasswordGenerator::~PasswordGenerator()
@@ -24,6 +25,7 @@ PasswordGenerator::~PasswordGenerator()
     delete m_treeModel;
     delete m_treeSelection;
     delete m_portalAccountTable;
+    delete m_menu;
 }
 
 void PasswordGenerator::build_ui()
@@ -31,6 +33,8 @@ void PasswordGenerator::build_ui()
     m_treeModel = new QStandardItemModel(this);
     m_tableModel = new QStandardItemModel(this);
     m_treeSelection = new QItemSelectionModel(m_treeModel, this);
+    m_menu = new QMenu(this);
+    m_menu->addAction(ui->act_deleteNode);
 
     m_portalAccountTable = PortalAccountTable::getInstance();
 
@@ -57,6 +61,15 @@ void PasswordGenerator::build_connect()
     QObject::connect(ui->pbtn_saveInfo,&QPushButton::clicked,ui->act_saveInfo,&QAction::trigger);
     QObject::connect(ui->act_displayAllAccount,&QAction::triggered,this,&PasswordGenerator::act_displayAllAccount_trigger);
     QObject::connect(ui->pbtn_displayAllAccount,&QPushButton::clicked,ui->act_displayAllAccount, &QAction::trigger);
+    QObject::connect(ui->act_storeExistAccount,&QAction::triggered,this,&PasswordGenerator::act_storeExistAccount_trigger);
+    QObject::connect(ui->pbtn_storeExistAccount,&QPushButton::clicked,ui->act_storeExistAccount,&QAction::triggered);
+    QObject::connect(ui->act_deleteNode,&QAction::triggered,this,&PasswordGenerator::act_deleteNode_trigger);
+}
+
+void PasswordGenerator::ini_config()
+{
+    build_ui();
+    build_connect();
 }
 
 
@@ -177,6 +190,16 @@ void PasswordGenerator::add_account_forTable(const AccountInfo& account, const Q
 
 }
 
+void PasswordGenerator::contextMenuEvent(QContextMenuEvent* event)
+{
+
+    auto selectedIndexes = ui->treeView->selectionModel()->selectedIndexes();
+    if (selectedIndexes.size() == 1) {
+        m_menu->exec(event->globalPos());
+    }
+}
+
+
 void PasswordGenerator::act_newAccount_trigger()
 {
     m_DlgNewAccount = new DialogNewAccount(this);
@@ -191,6 +214,7 @@ void PasswordGenerator::act_newAccount_trigger()
         m_portalAccountTable->newAccount(m_DlgNewAccount->Platform().toStdString(), NewAccount);
     }
     delete m_DlgNewAccount;
+    QMessageBox::information(this, "成功", "添加成功");
 
     build_tree_model();
     
@@ -211,5 +235,49 @@ void PasswordGenerator::act_saveInfo_trigger()
 void PasswordGenerator::act_displayAllAccount_trigger()
 {
     build_table_model_all_account();
+}
+
+void PasswordGenerator::act_storeExistAccount_trigger()
+{
+    m_DlgAddExistAccount = new DialogAddExistAccount;
+    int ret=m_DlgAddExistAccount->exec();
+
+    if (ret == QDialog::Rejected) {
+        return;
+    }
+    auto NewAccount = m_DlgAddExistAccount->accountInfo();
+    auto NewAccountRet = m_portalAccountTable->newAccount(m_DlgAddExistAccount->Platform().toStdString(), NewAccount);
+    if (NewAccountRet == ErrorAccountTableModule::NoPlatformNode) {
+        m_portalAccountTable->newPlatform(m_DlgAddExistAccount->Platform().toStdString());
+        m_portalAccountTable->newAccount(m_DlgAddExistAccount->Platform().toStdString(), NewAccount);
+    }
+    delete m_DlgAddExistAccount;
+    QMessageBox::information(this,"成功","添加成功");
+
+    build_tree_model();
+}
+
+void PasswordGenerator::act_deleteNode_trigger()
+{
+    auto ret=QMessageBox::question(this, "确认", "你真的要删除么?");
+    if (ret!=QMessageBox::Yes) {
+        return;
+    }
+
+    auto cutIndex=ui->treeView->selectionModel()->currentIndex();
+    auto cutItem = m_treeModel->itemFromIndex(cutIndex);
+
+    if (cutItem->data(Qt::UserRole) == "account") {
+        auto platform=cutItem->parent()->text();
+        m_portalAccountTable->deleteAccount(platform.toStdString(),cutItem->text().toStdString());
+        build_tree_model();
+    }
+    else if (cutItem->data(Qt::UserRole) == "platform") {
+        m_portalAccountTable->deletePlatform(cutItem->text().toStdString());
+        build_tree_model();
+    }
+    
+
+    QMessageBox::information(this,"删除","删除成功");
 }
 

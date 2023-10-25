@@ -68,8 +68,8 @@
       <AdditionalIncludeDirectories>$(ProjectDir)\include\config;$(SolutionDir)\PasswordGenerator\build\x64\Debug\uic;$(SolutionDir)\LocalconfigurationLoader\include\LocalizationStringLoader;$(SolutionDir)\LocalconfigurationLoader\include\ConfigurationLoader;$(SolutionDir)\PasswordGenerator\include;$(ProjectDir)\include\LoginWindow_BLogic\login_regist;$(ProjectDir)\include\LoginWindow_BLogic\accountStore;$(ProjectDir)\include\LoginWindow_UI\UI_tranmist;$(ProjectDir)\include\LoginWindow_UI\UI;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>$(SolutionDir)\LocalizationStringModule\build\x64\Debug;$(SolutionDir)\PasswordGenerator\build\x64\Debug;$(SolutionDir)\Localconfigurationloader\build\x64\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>PasswordGenerator.obj;moc_PasswordGenerator.obj;ConfigurationLoader-XML.obj;LocalizationStringLoader-XML.obj;LocalizationStringModule-XML.obj;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)\PortalAccountTable\build\x64\Debug;$(SolutionDir)\PasswordEncrpyModule\build\x64\Debug;$(SolutionDir)\AccountTableModule\build\x64\Debug;$(SolutionDir)\DialogNewAccount\build\x64\Debug;$(SolutionDir)\DialogAddExistAccount\build\x64\Debug;$(SolutionDir)\LocalizationStringModule\build\x64\Debug;$(SolutionDir)\PasswordGenerator\build\x64\Debug;$(SolutionDir)\Localconfigurationloader\build\x64\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>PortalAccountTable.obj;PasswordEncrpySimplyAch.obj;AccountTableXML.obj;moc_DialogNewAccount.obj;DialogNewAccount.obj;DialogAddExistAccount.obj;moc_DialogAddExistAccount.obj;PasswordGenerator.obj;moc_PasswordGenerator.obj;ConfigurationLoader-XML.obj;LocalizationStringLoader-XML.obj;LocalizationStringModule-XML.obj;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

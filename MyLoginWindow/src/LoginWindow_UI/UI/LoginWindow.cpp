@@ -13,7 +13,7 @@
 #include"PasswordGenerator.h"
 #include"LocalizationStringLoader-XML.h"
 #include"ConfigurationLoader-XML.h"
-
+#include"config.h"
 
 LoginWindow::LoginWindow(QWidget* parent)
     : m_locStCom(LocalizationStringLoaderXML::getInstance()), m_cfgLoCom(ConfigurationLoaderXML::getInstance()), QMainWindow(parent)
@@ -155,6 +155,8 @@ void LoginWindow::pbtn_login_clicked() {
 
     if (login->isLoginSuccess()) {
         if (!generatorWindow) { generatorWindow = new PasswordGenerator(); }
+        generatorWindow->set_filePath(ACCOUNTTABLE);
+        generatorWindow->ini_config();
         generatorWindow->show();
     }
     else {

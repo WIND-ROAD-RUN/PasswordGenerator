@@ -470,6 +470,14 @@ ATMAAccountList AccountTableXML::getAccountList(const ATMAstring& platform)
 
 
 
+void AccountTableXML::setNewFile(const std::string& filePath,const std::string & UID)
+{
+    m_doc.load_file(filePath.c_str());
+    auto AccountTableNode = m_doc.append_child("AccountTable");
+    AccountTableNode.append_attribute("UID").set_value(UID.c_str());
+    m_doc.save_file(filePath.c_str());
+}
+
 ErrorAccountTableModule AccountTableXML::NewAccount(const ATMAstring& platform, const ATMAstring& account)
 {
     /*��ѯ�Ƿ���Ŀ��ƽ̨�Ľڵ���û���򷵻ش������*/

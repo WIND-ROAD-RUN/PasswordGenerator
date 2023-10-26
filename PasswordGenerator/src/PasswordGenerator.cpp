@@ -10,6 +10,7 @@
 #include<QSortFilterProxyModel>
 #include<QMessagebox>
 #include<QContextMenuEvent>
+#include<QDir>
 
 PasswordGenerator::PasswordGenerator(QWidget *parent)
     : QMainWindow(parent)
@@ -36,10 +37,9 @@ void PasswordGenerator::build_ui()
     m_menu = new QMenu(this);
     m_menu->addAction(ui->act_deleteNode);
 
-    m_portalAccountTable = PortalAccountTable::getInstance();
+    m_portalAccountTable->setUID(m_UID);
 
     m_portalAccountTable->setFilePath(m_filePath);
-    m_portalAccountTable->setUID("root");
     m_portalAccountTable->ini_portal();
 
     ui->tableView->setModel(m_tableModel);
@@ -68,6 +68,8 @@ void PasswordGenerator::build_connect()
 
 void PasswordGenerator::ini_config()
 {
+    ini_GlobaComponet();
+    check_filePath();
     build_ui();
     build_connect();
 }
@@ -279,5 +281,23 @@ void PasswordGenerator::act_deleteNode_trigger()
     
 
     QMessageBox::information(this,"删除","删除成功");
+}
+
+void PasswordGenerator::check_filePath()
+{
+    QString path = QString::fromStdString(m_filePath);
+    QFileInfo QPath(path);
+    if (!QPath.exists()) {
+        QFile userData(path);
+        if (userData.open(QFile::ReadWrite)) {
+            userData.close();
+        }
+        m_portalAccountTable->setNewFile(m_filePath,m_UID);
+    }
+}
+
+void PasswordGenerator::ini_GlobaComponet()
+{
+    m_portalAccountTable = PortalAccountTable::getInstance();
 }
 

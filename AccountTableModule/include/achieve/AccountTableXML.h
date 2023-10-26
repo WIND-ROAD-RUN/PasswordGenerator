@@ -20,6 +20,8 @@ public:
     void setFilePath(const std::string& filePath) { m_filePath = filePath; }
     void setUID(const std::string& UID) { m_UID = UID; }
 public:
+    void setNewFile(const std::string & filePath,const std::string & UID);
+public:
     // ͨ�� AccountTableModuleAbstract �̳�
     ErrorAccountTableModule NewAccount(const ATMAstring& platform, const ATMAstring& account) override;
 

@@ -54,6 +54,8 @@ public:
     ATMAAccountList AccountList(const  ATMAstring& platform);
     ATMAint AccountNumber();
     ATMAstring encrpyForUser(const AccountInfo & account);
+public:
+    void setNewFile(const std::string & filePath,const std::string & UID);
 };
 
 

@@ -208,3 +208,8 @@ ATMAstring PortalAccountTable::encrpyForUser(const AccountInfo& account) {
    auto result= m_EncrpyCom->encrpyForSave(account);
    return result.password;
 }
+
+void PortalAccountTable::setNewFile(const std::string& filePath, const std::string& UID)
+{
+    m_accountTableXML->setNewFile(filePath,UID);
+}

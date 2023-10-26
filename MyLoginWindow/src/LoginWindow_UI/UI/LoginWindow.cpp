@@ -211,7 +211,12 @@ void LoginWindow::pbtn_login_clicked() {
 
     if (login->isLoginSuccess()) {
         if (!generatorWindow) { generatorWindow = new PasswordGenerator(); }
-        generatorWindow->set_filePath(ACCOUNTTABLETEST);
+        auto UID = ui->ledit_account->text();
+        
+
+        std::string filtPath = std::string(DATABASEPATH) + std::string(R"(\)") + UID.toStdString()+std::string(".xml");
+        generatorWindow->set_UID(UID.toStdString());
+        generatorWindow->set_filePath(filtPath);
         generatorWindow->ini_config();
         generatorWindow->show();
     }

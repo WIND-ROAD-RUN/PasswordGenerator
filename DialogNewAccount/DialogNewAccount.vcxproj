@@ -79,8 +79,12 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>$(ProjectDir)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\PasswordEncrpyModule\include\achieve;$(SolutionDir)\PasswordEncrpyModule\include\Abstract;$(SolutionDir)\AccountTableModule\include\achieve;$(SolutionDir)\AccountTableModule\include\Abstract;$(SolutionDir)\PortalAccountTable\include;$(ProjectDir)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>$(SolutionDir)\PortalAccountTable\build\x64\Release;$(SolutionDir)\PasswordEncrpyModule\build\x64\Release;$(SolutionDir)\AccountTableModule\build\x64\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>PortalAccountTable.obj;PasswordEncrpySimplyAch.obj;AccountTableXML.obj;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="Configuration">
     <ClCompile>

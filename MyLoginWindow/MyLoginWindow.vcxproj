@@ -58,6 +58,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
     <OutDir>$(ProjectDir)\bin\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(ProjectDir)\build\$(Platform)\$(Configuration)\</IntDir>
+    <TargetName>PasswordManager</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
     <OutDir>$(ProjectDir)\bin\$(Platform)\$(Configuration)\</OutDir>
@@ -74,8 +75,12 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>$(ProjectDir)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)\include\config;$(SolutionDir)\PasswordGenerator\build\x64\Debug\uic;$(SolutionDir)\LocalconfigurationLoader\include\LocalizationStringLoader;$(SolutionDir)\LocalconfigurationLoader\include\ConfigurationLoader;$(SolutionDir)\PasswordGenerator\include;$(ProjectDir)\include\LoginWindow_BLogic\login_regist;$(ProjectDir)\include\LoginWindow_BLogic\accountStore;$(ProjectDir)\include\LoginWindow_UI\UI_tranmist;$(ProjectDir)\include\LoginWindow_UI\UI;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>$(SolutionDir)\PortalAccountTable\build\x64\Release;$(SolutionDir)\PasswordEncrpyModule\build\x64\Release;$(SolutionDir)\AccountTableModule\build\x64\Release;$(SolutionDir)\DialogNewAccount\build\x64\Release;$(SolutionDir)\DialogAddExistAccount\build\x64\Release;$(SolutionDir)\LocalizationStringModule\build\x64\Release;$(SolutionDir)\PasswordGenerator\build\x64\Release;$(SolutionDir)\Localconfigurationloader\build\x64\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>PortalAccountTable.obj;PasswordEncrpySimplyAch.obj;AccountTableXML.obj;moc_DialogNewAccount.obj;DialogNewAccount.obj;DialogAddExistAccount.obj;moc_DialogAddExistAccount.obj;PasswordGenerator.obj;moc_PasswordGenerator.obj;ConfigurationLoader-XML.obj;LocalizationStringLoader-XML.obj;LocalizationStringModule-XML.obj;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="Configuration">
     <ClCompile>

@@ -53,6 +53,8 @@ public:
     void set_isAutoLogin(bool is) { m_isAutoLogin = is; }
     bool isAutoLogin() { return m_isAutoLogin; }
 public:
+    void setNewfile(const std::string & path);
+public:
     // 通过 ConfigurationLoaderAbstract 继承
     bool loadConfig() override;
     bool storeConfig() override;

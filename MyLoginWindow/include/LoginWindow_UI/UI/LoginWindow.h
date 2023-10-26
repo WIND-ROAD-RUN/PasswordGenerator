@@ -11,6 +11,7 @@ QT_END_NAMESPACE
 class PasswordGenerator;
 class LocalizationStringLoaderXML;
 class ConfigurationLoaderXML;
+class AccountStoreSaveInXML;
 
 class LoginWindow 
     : public QMainWindow
@@ -22,6 +23,7 @@ private:
     PasswordGenerator* generatorWindow{ nullptr };
     LocalizationStringLoaderXML* m_locStCom{ nullptr };
     ConfigurationLoaderXML* m_cfgLoCom{ nullptr };
+    AccountStoreSaveInXML* m_accountStore{ nullptr };
 public:
     LoginWindow(QWidget* parent = nullptr);
     ~LoginWindow();
@@ -34,6 +36,10 @@ private:
     inline void set_loginGroup();
     inline void set_WindowBackground();
     void setLanguageString(LocalizationStringLoaderXML* locStCom);
+private:
+    void ini_GlobaComponet();
+    void check_configFile();
+    void prepareForRun();
 public:
     void setlocStCom(LocalizationStringLoaderXML* locStCom);
     void setConfigLoadCom(ConfigurationLoaderXML* cfgLoCom);

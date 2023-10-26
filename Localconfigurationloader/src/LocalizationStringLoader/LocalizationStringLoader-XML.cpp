@@ -2,6 +2,7 @@
 
 #include"LocalizationStringModule-XML.h"
 
+
 LocalizationStringLoaderXML* LocalizationStringLoaderXML::m_instance = nullptr;
 
 LocalizationStringLoaderXML::
@@ -15,6 +16,7 @@ LocalizationStringLoaderXML
 
 LocalizationStringLoaderXML::
 ~LocalizationStringLoaderXML() { delete m_LocalStringComponet; delete m_instance; }
+
 
 bool LocalizationStringLoaderXML::loadData()
 {

@@ -146,9 +146,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Xml Include="config\accountTable.xml" />
-    <Xml Include="config\config.xml" />
-    <Xml Include="config\localizationString.xml" />
+    <Xml Include="localizationString.xml" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

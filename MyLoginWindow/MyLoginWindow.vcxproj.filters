@@ -121,8 +121,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Xml Include="config\config.xml" />
-    <Xml Include="config\localizationString.xml" />
-    <Xml Include="config\accountTable.xml" />
+    <Xml Include="localizationString.xml" />
   </ItemGroup>
 </Project>

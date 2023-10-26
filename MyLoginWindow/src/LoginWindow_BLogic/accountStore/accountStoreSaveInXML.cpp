@@ -2,6 +2,13 @@
 
 AccountStoreSaveInXML* AccountStoreSaveInXML::my_instance = nullptr;
 
+void AccountStoreSaveInXML::setNewFile(const std::string& filePath)
+{
+    m_doc.load_file(filePath.c_str());
+    m_doc.append_child("accountTable");
+    m_doc.save_file(filePath.c_str());
+}
+
 void AccountStoreSaveInXML::ini_accountTable()
 {
     m_doc.load_file(m_accountFilePath.c_str());
@@ -47,7 +54,7 @@ void AccountStoreSaveInXML::save_account(const std::string& account, const std::
     newAccountNode.set_name("account");
     newAttribute.set_value(account.c_str());
     newAccountNode.text().set(password.c_str());
-    m_doc.save_file(m_accountFilePath.c_str());
+    auto ret=m_doc.save_file(m_accountFilePath.c_str());
 
     Account maccount{};
     maccount.account = account;

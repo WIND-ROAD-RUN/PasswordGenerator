@@ -4,14 +4,14 @@
 #include<iostream>
 
 using namespace std;
-#define CONFIGPATH R"(database\configuration.xml)"
+#define CONFIGPATHTEST R"(database\configuration.xml)"
 #define STRINGPATH R"(database\string.xml)"
 
 
 int main() {
 
     ConfigurationLoaderXML * configLoader=ConfigurationLoaderXML::getInstance();
-    configLoader->setFilePath(CONFIGPATH);
+    configLoader->setFilePath(CONFIGPATHTEST);
     cout << configLoader->loadConfig() << endl;
     configLoader->setLocalLanguage("CHN");
     cout << configLoader->storeConfig() << endl;

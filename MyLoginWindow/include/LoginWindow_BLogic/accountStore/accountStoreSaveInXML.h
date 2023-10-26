@@ -37,6 +37,8 @@ public:
 public:
     void setFilePath(const std::string& filePath) { m_accountFilePath = filePath; }
 public:
+    void setNewFile(const std::string & filePath);
+public:
     // 通过 AccountStoreAbstract 继承
     void ini_accountTable() override;
 

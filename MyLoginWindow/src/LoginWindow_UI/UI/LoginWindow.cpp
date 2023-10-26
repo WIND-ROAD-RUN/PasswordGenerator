@@ -5,6 +5,7 @@
 #include<QCloseEvent>
 #include<QString>
 #include<QPainter>
+#include<QDir>
 
 #include<string>
 
@@ -14,12 +15,16 @@
 #include"LocalizationStringLoader-XML.h"
 #include"ConfigurationLoader-XML.h"
 #include"config.h"
+#include"accountStoreSaveInXML.h"
 
 LoginWindow::LoginWindow(QWidget* parent)
     : m_locStCom(LocalizationStringLoaderXML::getInstance()), m_cfgLoCom(ConfigurationLoaderXML::getInstance()), QMainWindow(parent)
-    , ui(new Ui::LoginWindowClass())
+    , ui(new Ui::LoginWindowClass()),m_accountStore(AccountStoreSaveInXML::getInstance())
 {
     ui->setupUi(this);
+    ini_GlobaComponet();
+    check_configFile();
+    prepareForRun();
     build_ui();
     build_connect();
     this->setLanguageString(m_locStCom);
@@ -29,12 +34,16 @@ LoginWindow::LoginWindow(QWidget* parent)
     if (ui->cBox_LoginAuto->isChecked()) {
         this->pbtn_login_clicked();
     }
+
 }
 
 LoginWindow::~LoginWindow()
 {
     delete ui;
     delete generatorWindow;
+    //delete m_accountStore;
+    //delete m_cfgLoCom;
+    //delete m_locStCom;
 }
 
 void LoginWindow::setLanguageString(LocalizationStringLoaderXML* locStCom)
@@ -48,6 +57,53 @@ void LoginWindow::setLanguageString(LocalizationStringLoaderXML* locStCom)
     this->setWindowTitle(QString::fromStdString(locStCom->getString("1")));
     ui->label_accountPassError->setText(QString::fromStdString(locStCom->getString("7")));
     
+}
+
+void LoginWindow::ini_GlobaComponet()
+{
+    LocalizationStringLoaderXML::getInstance();
+    ConfigurationLoaderXML::getInstance();
+    AccountStoreSaveInXML::getInstance();
+}
+
+void LoginWindow::check_configFile()
+{
+    QString configPath = PROGRAMMEDATAPATH;
+    QDir config;
+    config.setPath(configPath);
+    if (!config.exists()) {
+        config.mkpath(configPath);
+        config.mkdir("config");
+        QFile fileConfig(CONFIGPATH);
+        if (fileConfig.open(QFile::ReadWrite)) {
+            fileConfig.close();
+        }
+        m_cfgLoCom->setNewfile(CONFIGPATH);
+
+        QFile fileAccountTable(ACCOUNTTABLEPATH);
+        if (fileAccountTable.open(QFile::ReadWrite)) {
+            fileAccountTable.close();
+        }
+        auto accountSave=AccountStoreSaveInXML::getInstance();
+        accountSave->setNewFile(ACCOUNTTABLEPATH);
+
+        config.mkdir("database");
+    }
+}
+
+void LoginWindow::prepareForRun()
+{
+    m_cfgLoCom->setFilePath(CONFIGPATH);
+    m_cfgLoCom->loadConfig();
+    auto curPath = QDir::currentPath();
+    auto localizationString = curPath + "/localizationString.xml";
+    m_locStCom->setFilePath(localizationString.toStdString());
+    m_locStCom->setLanguage(m_cfgLoCom->Language());
+    m_locStCom->loadData();
+
+    auto accountSave = AccountStoreSaveInXML::getInstance();
+    accountSave->setFilePath(ACCOUNTTABLEPATH);
+    accountSave->ini_accountTable();
 }
 
 void LoginWindow::setlocStCom(LocalizationStringLoaderXML* locStCom)
@@ -136,7 +192,7 @@ inline void LoginWindow::set_loginGroup()
 
 inline void LoginWindow::set_WindowBackground()
 {
-    ui->ptEdit_picture->appendPlainText("这里显示程序左侧图形界面");
+    ui->ptEdit_picture->appendPlainText(QDir::currentPath());
     ui->ptEdit_accountIcon->appendPlainText("这里显示用户图标");
 
     QFont textFont = ui->ptEdit_picture->font();
@@ -155,7 +211,7 @@ void LoginWindow::pbtn_login_clicked() {
 
     if (login->isLoginSuccess()) {
         if (!generatorWindow) { generatorWindow = new PasswordGenerator(); }
-        generatorWindow->set_filePath(ACCOUNTTABLE);
+        generatorWindow->set_filePath(ACCOUNTTABLETEST);
         generatorWindow->ini_config();
         generatorWindow->show();
     }
@@ -189,6 +245,7 @@ void LoginWindow::pbtn_regist_clicked() {
     else {
         return;
     }
+    delete dlgRegist;
 }
 
 void LoginWindow::cBox_languageChanged_indexChanged()

@@ -7,8 +7,7 @@
 
 AccountStoreTranmsit::AccountStoreTranmsit()
 {
-    m_accountStoreAbstract = AccountStoreSaveInXML::getInstance(ACCOUNTTABLEPATH);
-    m_accountStoreAbstract->ini_accountTable();
+    m_accountStoreAbstract = AccountStoreSaveInXML::getInstance();
 }
 
 AccountStoreTranmsit::~AccountStoreTranmsit()

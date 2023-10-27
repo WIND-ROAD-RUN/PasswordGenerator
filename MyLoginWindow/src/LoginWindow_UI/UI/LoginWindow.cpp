@@ -49,14 +49,14 @@ LoginWindow::~LoginWindow()
 
 void LoginWindow::setLanguageString(LocalizationStringLoaderXML* locStCom)
 {
-    ui->pbtn_login->setText(QString::fromStdString(locStCom->getString("1")));
-    ui->pbtn_regist->setText(QString::fromStdString(locStCom->getString("2")));
-    ui->label_password->setText(QString::fromStdString(locStCom->getString("6")));
-    ui->label_account->setText(QString::fromStdString(locStCom->getString("5")));
-    ui->cBox_LoginAuto->setText(QString::fromStdString(locStCom->getString("4")));
-    ui->cBox_savePassword->setText(QString::fromStdString(locStCom->getString("3")));
-    this->setWindowTitle(QString::fromStdString(locStCom->getString("1")));
-    ui->label_accountPassError->setText(QString::fromStdString(locStCom->getString("7")));
+    ui->pbtn_login->setText(localizationString("1"));
+    ui->pbtn_regist->setText(localizationString("2"));
+    ui->label_password->setText(localizationString("6"));
+    ui->label_account->setText(localizationString("5"));
+    ui->cBox_LoginAuto->setText(localizationString("4"));
+    ui->cBox_savePassword->setText(localizationString("3"));
+    this->setWindowTitle(localizationString("1"));
+    ui->label_accountPassError->setText(localizationString("7"));
     
 }
 
@@ -105,6 +105,11 @@ void LoginWindow::prepareForRun()
     auto accountSave = AccountStoreSaveInXML::getInstance();
     accountSave->setFilePath(ACCOUNTTABLEPATH);
     accountSave->ini_accountTable();
+}
+
+inline QString LoginWindow::localizationString(const std::string stringId)
+{
+    return QString(QString::fromStdString(m_locStCom->getString(stringId)));
 }
 
 void LoginWindow::setlocStCom(LocalizationStringLoaderXML* locStCom)
@@ -228,6 +233,11 @@ void LoginWindow::pbtn_login_clicked() {
         generatorWindow->set_filePath(filtPath);
         generatorWindow->ini_config();
 
+        m_cfgLoCom->setLastLoginAccount(ui->ledit_account->text().toStdString(),
+            ui->lEdit_password->text().toStdString());
+
+        m_cfgLoCom->storeConfig();
+
         m_isMessageForClose = false;
         this->close();
 
@@ -237,10 +247,6 @@ void LoginWindow::pbtn_login_clicked() {
         ui->label_accountPassError->setVisible(true);
     }
 
-    m_cfgLoCom->setLastLoginAccount(ui->ledit_account->text().toStdString(),
-        ui->lEdit_password->text().toStdString());
-
-    m_cfgLoCom->storeConfig();
 
     delete login;
 
@@ -257,8 +263,8 @@ void LoginWindow::pbtn_regist_clicked() {
     int ret = dlgRegist->exec();
     if (ret == QDialog::Accepted) {
         QMessageBox::information(this, 
-            QString::fromStdString(m_locStCom->getString("16")), 
-            QString::fromStdString(m_locStCom->getString("16")));
+            localizationString("16"),
+            localizationString("16"));
         return;
     }
     else {

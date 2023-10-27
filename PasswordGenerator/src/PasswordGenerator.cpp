@@ -112,10 +112,10 @@ void PasswordGenerator::build_treeSelectChange_for_table(const QModelIndex& inde
     auto NodeType = m_treeModel->itemFromIndex(index);
     
     QStringList headerList;
-    headerList.push_back(QString::fromStdString(m_locstringLoader->getString("22")));
-    headerList.push_back("账户名");
-    headerList.push_back("密码");
-    headerList.push_back("是否为可逆加密");
+    headerList.push_back(localizationString("22"));
+    headerList.push_back(localizationString("5"));
+    headerList.push_back(localizationString("6"));
+    headerList.push_back(localizationString("23"));
     m_tableModel->setColumnCount(headerList.size());
     m_tableModel->setHorizontalHeaderLabels(headerList);
 
@@ -146,10 +146,10 @@ void PasswordGenerator::build_table_model_all_account()
     m_tableModel->setRowCount(m_row);
 
     QStringList headerList;
-    headerList.push_back("平台");
-    headerList.push_back("账户名");
-    headerList.push_back("密码");
-    headerList.push_back("是否为可逆加密");
+    headerList.push_back(localizationString("22"));
+    headerList.push_back(localizationString("5"));
+    headerList.push_back(localizationString("6"));
+    headerList.push_back(localizationString("23"));
     m_tableModel->setColumnCount(headerList.size());
     m_tableModel->setHorizontalHeaderLabels(headerList);
 
@@ -166,8 +166,23 @@ void PasswordGenerator::build_table_model_all_account()
 
 void PasswordGenerator::build_languageString()
 {
-    m_locstringLoader = LocalizationStringLoaderXML::getInstance();
+    ui->pbtn_displayAllAccount->setText(localizationString("36"));
+    ui->pbtn_saveInfo->setText(localizationString("37"));
+    ui->pbtn_storeExistAccount->setText(localizationString("35"));
+    ui->pbtn_storeNewAccount->setText(localizationString("34"));
+    ui->gBox_yourAccount->setTitle(localizationString("38"));
+    ui->act_storeNewAccount->setText(localizationString("39"));
+    ui->act_storeExistAccount->setText(localizationString("40"));
+    ui->act_deleteNode->setText(localizationString("32"));
+    ui->act_displayAllAccount->setText(localizationString("36"));
+    ui->act_saveInfo->setText(localizationString("37"));
+    this->setWindowTitle(localizationString("41"));
+    ui->menu_edit->setTitle(localizationString("42"));
+}
 
+inline QString PasswordGenerator::localizationString(const std::string stringId)
+{
+    return QString(QString::fromStdString(m_locstringLoader->getString(stringId)));
 }
 
 void PasswordGenerator::build_icon(const QIcon& icon)
@@ -194,10 +209,10 @@ void PasswordGenerator::add_account_forTable(const AccountInfo& account, const Q
 
     QStandardItem* EncrpyIsIrreversibleItem = new QStandardItem;
     if (account.EncrpyIsIrreversible) {
-        EncrpyIsIrreversibleItem->setText(QString::fromStdString("是"));
+        EncrpyIsIrreversibleItem->setText(localizationString("24"));
     }
     else {
-        EncrpyIsIrreversibleItem->setText(QString::fromStdString("否"));
+        EncrpyIsIrreversibleItem->setText(localizationString("25"));
     }
     EncrpyIsIrreversibleItem->setEditable(false);
     m_tableModel->setItem(row, 3, EncrpyIsIrreversibleItem);
@@ -228,7 +243,7 @@ void PasswordGenerator::act_newAccount_trigger()
         m_portalAccountTable->newAccount(m_DlgNewAccount->Platform().toStdString(), NewAccount);
     }
     delete m_DlgNewAccount;
-    QMessageBox::information(this, "成功", "添加成功");
+    QMessageBox::information(this, localizationString("26"), localizationString("27"));
 
     build_tree_model();
     
@@ -238,10 +253,10 @@ void PasswordGenerator::act_saveInfo_trigger()
 {
     auto saveRet = m_portalAccountTable->save_change();
     if (saveRet!=ErrorAccountTableModule::No_ERROR) {
-        QMessageBox::warning(this,"错误","保存文件错误");
+        QMessageBox::warning(this, localizationString("28"), localizationString("29"));
     }
     else {
-        QMessageBox::information(this,"成功","数据已保存");
+        QMessageBox::information(this, localizationString("26"), localizationString("30"));
     }
 
 }
@@ -266,7 +281,7 @@ void PasswordGenerator::act_storeExistAccount_trigger()
         m_portalAccountTable->newAccount(m_DlgAddExistAccount->Platform().toStdString(), NewAccount);
     }
 
-    QMessageBox::information(this,"成功","添加成功");
+    QMessageBox::information(this, localizationString("26"), localizationString("27"));
 
     build_tree_model();
     delete m_DlgAddExistAccount;
@@ -274,7 +289,7 @@ void PasswordGenerator::act_storeExistAccount_trigger()
 
 void PasswordGenerator::act_deleteNode_trigger()
 {
-    auto ret=QMessageBox::question(this, "确认", "你真的要删除么?");
+    auto ret=QMessageBox::question(this, localizationString("14"), localizationString("31"));
     if (ret!=QMessageBox::Yes) {
         return;
     }
@@ -293,7 +308,7 @@ void PasswordGenerator::act_deleteNode_trigger()
     }
     
 
-    QMessageBox::information(this,"删除","删除成功");
+    QMessageBox::information(this, localizationString("32"), localizationString("33"));
 }
 
 void PasswordGenerator::check_filePath()
@@ -312,5 +327,6 @@ void PasswordGenerator::check_filePath()
 void PasswordGenerator::ini_GlobaComponet()
 {
     m_portalAccountTable = PortalAccountTable::getInstance();
+    m_locstringLoader = LocalizationStringLoaderXML::getInstance();
 }
 

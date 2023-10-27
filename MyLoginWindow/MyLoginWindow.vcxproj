@@ -63,6 +63,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
     <OutDir>$(ProjectDir)\bin\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(ProjectDir)\build\$(Platform)\$(Configuration)\</IntDir>
+    <TargetName>PasswordManager</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -136,6 +137,7 @@
     <ClInclude Include="include\LoginWindow_BLogic\login_regist\loginAbstract.h" />
     <ClInclude Include="include\LoginWindow_UI\UI_tranmist\loginTransmit.h" />
     <ClInclude Include="include\LoginWindow_UI\UI_tranmist\RegistTransmit.h" />
+    <ClInclude Include="resource.h" />
     <QtMoc Include="include\LoginWindow_UI\UI\DialogRegist.h" />
   </ItemGroup>
   <ItemGroup>
@@ -152,6 +154,14 @@
   </ItemGroup>
   <ItemGroup>
     <Xml Include="localizationString.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="icon\tool.ico" />
+    <Image Include="ui\icon\data-display.png" />
+    <Image Include="ui\icon\key.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="MyLoginWindow.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

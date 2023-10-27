@@ -1,4 +1,6 @@
 <RCC>
-    <qresource prefix="LoginWindow">
+    <qresource prefix="/LoginWindow">
+        <file>icon/key.png</file>
+        <file>icon/data-display.png</file>
     </qresource>
 </RCC>

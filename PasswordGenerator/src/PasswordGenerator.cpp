@@ -17,7 +17,6 @@ PasswordGenerator::PasswordGenerator(QWidget *parent)
     , ui(new Ui::PasswordGeneratorClass())
 {
     ui->setupUi(this);
-    
 }
 
 PasswordGenerator::~PasswordGenerator()
@@ -163,6 +162,11 @@ void PasswordGenerator::build_table_model_all_account()
     }
 }
 
+void PasswordGenerator::build_icon(const QIcon& icon)
+{
+    this->setWindowIcon(icon);
+}
+
 void PasswordGenerator::add_account_forTable(const AccountInfo& account, const QString& platform, int row)
 {
     QStandardItem* platformItem = new QStandardItem;
@@ -253,10 +257,11 @@ void PasswordGenerator::act_storeExistAccount_trigger()
         m_portalAccountTable->newPlatform(m_DlgAddExistAccount->Platform().toStdString());
         m_portalAccountTable->newAccount(m_DlgAddExistAccount->Platform().toStdString(), NewAccount);
     }
-    delete m_DlgAddExistAccount;
+
     QMessageBox::information(this,"成功","添加成功");
 
     build_tree_model();
+    delete m_DlgAddExistAccount;
 }
 
 void PasswordGenerator::act_deleteNode_trigger()

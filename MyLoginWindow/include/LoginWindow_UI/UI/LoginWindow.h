@@ -24,6 +24,8 @@ private:
     LocalizationStringLoaderXML* m_locStCom{ nullptr };
     ConfigurationLoaderXML* m_cfgLoCom{ nullptr };
     AccountStoreSaveInXML* m_accountStore{ nullptr };
+private:
+    bool m_isMessageForClose{true};
 public:
     LoginWindow(QWidget* parent = nullptr);
     ~LoginWindow();
@@ -32,6 +34,7 @@ private:
 private:
     inline void build_ui();
     inline void build_connect();
+    void build_icon();
     inline void set_label_accountPassError();
     inline void set_loginGroup();
     inline void set_WindowBackground();

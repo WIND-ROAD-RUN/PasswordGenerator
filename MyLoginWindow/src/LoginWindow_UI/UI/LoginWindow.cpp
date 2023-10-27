@@ -25,6 +25,7 @@ LoginWindow::LoginWindow(QWidget* parent)
     ini_GlobaComponet();
     check_configFile();
     prepareForRun();
+    build_icon();
     build_ui();
     build_connect();
     this->setLanguageString(m_locStCom);
@@ -154,17 +155,24 @@ inline void LoginWindow::build_connect()
     QObject::connect(ui->cBox_LoginAuto, &QCheckBox::stateChanged, this, &LoginWindow::cBox_LoginAuto_checked);
 }
 
+void LoginWindow::build_icon()
+{
+    this->setWindowIcon(QIcon(":/LoginWindow/icon/key.png"));
+}
+
 void LoginWindow::closeEvent(QCloseEvent* event)
 {
-    QMessageBox::StandardButton result = 
-        QMessageBox::question(this, 
-            QString::fromStdString(m_locStCom->getString("14")), 
-            QString::fromStdString(m_locStCom->getString("15")));
-    if (result == QMessageBox::Yes) {
-        event->accept();
-    }
-    else {
-        event->ignore();
+    if (m_isMessageForClose) {
+        QMessageBox::StandardButton result =
+            QMessageBox::question(this,
+                QString::fromStdString(m_locStCom->getString("14")),
+                QString::fromStdString(m_locStCom->getString("15")));
+        if (result == QMessageBox::Yes) {
+            event->accept();
+        }
+        else {
+            event->ignore();
+        }
     }
 }
 
@@ -216,8 +224,13 @@ void LoginWindow::pbtn_login_clicked() {
 
         std::string filtPath = std::string(DATABASEPATH) + std::string(R"(\)") + UID.toStdString()+std::string(".xml");
         generatorWindow->set_UID(UID.toStdString());
+        generatorWindow->build_icon(QIcon(":/LoginWindow/icon/data-display.png"));
         generatorWindow->set_filePath(filtPath);
         generatorWindow->ini_config();
+
+        m_isMessageForClose = false;
+        this->close();
+
         generatorWindow->show();
     }
     else {
@@ -230,6 +243,7 @@ void LoginWindow::pbtn_login_clicked() {
     m_cfgLoCom->storeConfig();
 
     delete login;
+
 
 }
 

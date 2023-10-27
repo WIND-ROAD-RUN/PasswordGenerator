@@ -105,6 +105,9 @@
     <ClInclude Include="include\config\config.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="include\LoginWindow_UI\UI\DialogRegist.h">
@@ -122,5 +125,21 @@
   </ItemGroup>
   <ItemGroup>
     <Xml Include="localizationString.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="ui\icon\key.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="ui\icon\data-display.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="icon\tool.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="MyLoginWindow.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>

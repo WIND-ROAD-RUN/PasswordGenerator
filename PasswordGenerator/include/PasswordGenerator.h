@@ -47,6 +47,8 @@ private:
     void build_connect();
     void build_tree_model();
     void build_table_model_all_account();
+public:
+    void build_icon(const QIcon & icon);
 private:
     void add_account_forTable(const AccountInfo & account,const QString & platform ,int row);
     void contextMenuEvent(QContextMenuEvent* event);

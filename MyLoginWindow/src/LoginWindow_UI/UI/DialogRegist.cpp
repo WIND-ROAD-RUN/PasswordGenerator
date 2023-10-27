@@ -45,18 +45,22 @@ bool DialogRegist::registAccount()
     return result;
 }
 
+inline QString DialogRegist::localizationString(const std::string stringId)
+{
+    return QString(QString::fromStdString(m_locStCom->getString(stringId)));
+}
+
 void DialogRegist::on_pbtn_ok_clicked() {
-    auto locLoader=LocalizationStringLoaderXML::getInstance();
     if (ui->ledit_account->text().isEmpty()) {
-        ui->label_error->setText(QString::fromStdString(locLoader->getString("17")));
+        ui->label_error->setText(localizationString("17"));
         return;
     }
     else if (ui->ledit_password->text().isEmpty()) {
-        ui->label_error->setText(QString::fromStdString(locLoader->getString("18")));
+        ui->label_error->setText(localizationString("18"));
         return;
     }
     else if (ui->ledit_password->text() != ui->ledit_passwordAgin->text()) {
-        ui->label_error->setText(QString::fromStdString(locLoader->getString("19")));
+        ui->label_error->setText(localizationString("19"));
         return;
     }
     else {
@@ -64,7 +68,7 @@ void DialogRegist::on_pbtn_ok_clicked() {
             this->accept();
         }
         else {
-            QMessageBox::warning(this, QString::fromStdString(locLoader->getString("21")), QString::fromStdString(locLoader->getString("20")));
+            QMessageBox::warning(this, localizationString("21"), localizationString("20"));
         }
 
     }
@@ -81,12 +85,12 @@ void DialogRegist::on_ledit_password_again_changed() {
 
 void DialogRegist::setLanguageString(LocalizationStringLoaderXML* locStCom)
 {
-    this->setWindowTitle(QString::fromStdString(locStCom->getString("2")));
-    ui->label_account->setText(QString::fromStdString(locStCom->getString("5")));
-    ui->label_accountRegist->setText(QString::fromStdString(locStCom->getString("8")));
-    ui->label_error->setText(QString::fromStdString(locStCom->getString("10")));
-    ui->label_password->setText(QString::fromStdString(locStCom->getString("6")));
-    ui->label_passwordAgain->setText(QString::fromStdString(locStCom->getString("9")));
-    ui->pbtn_cancel->setText(QString::fromStdString(locStCom->getString("12")));
-    ui->pbtn_ok->setText(QString::fromStdString(locStCom->getString("11")));
+    this->setWindowTitle(localizationString("2"));
+    ui->label_account->setText(localizationString("5"));
+    ui->label_accountRegist->setText(localizationString("8"));
+    ui->label_error->setText(localizationString("10"));
+    ui->label_password->setText(localizationString("6"));
+    ui->label_passwordAgain->setText(localizationString("9"));
+    ui->pbtn_cancel->setText(localizationString("12"));
+    ui->pbtn_ok->setText(localizationString("11"));
 }

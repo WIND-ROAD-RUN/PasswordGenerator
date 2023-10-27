@@ -43,6 +43,8 @@ private:
     void ini_GlobaComponet();
     void check_configFile();
     void prepareForRun();
+private:
+    inline QString localizationString(const std::string stringId);
 public:
     void setlocStCom(LocalizationStringLoaderXML* locStCom);
     void setConfigLoadCom(ConfigurationLoaderXML* cfgLoCom);

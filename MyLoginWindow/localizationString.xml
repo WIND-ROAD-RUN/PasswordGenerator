@@ -88,4 +88,84 @@
 		<language language="CHN">平台</language>
 		<language language="USA">platform</language>
 	</string>
+	<string id="23">
+		<language language="CHN">密码加密是否不可以逆</language>
+		<language language="USA">Is password encryption irreversible</language>
+	</string>
+	<string id="24">
+		<language language="CHN">是</language>
+		<language language="USA">true</language>
+	</string>
+	<string id="25">
+		<language language="CHN">否</language>
+		<language language="USA">fasle</language>
+	</string>
+	<string id="26">
+		<language language="CHN">成功</language>
+		<language language="USA">successful</language>
+	</string>
+	<string id="27">
+		<language language="CHN">添加成功</language>
+		<language language="USA">Add successfully</language>
+	</string>
+	<string id="28">
+		<language language="CHN">错误</language>
+		<language language="USA">Error</language>
+	</string>
+	<string id="29">
+		<language language="CHN">保存文件错误</language>
+		<language language="USA">Save file failed</language>
+	</string>
+	<string id="30">
+		<language language="CHN">数据成功保存</language>
+		<language language="USA">Data is saved successfully</language>
+	</string>
+	<string id="31">
+		<language language="CHN">你真的要删除它么</language>
+		<language language="USA">Are you sure delete it</language>
+	</string>
+	<string id="32">
+		<language language="CHN">删除</language>
+		<language language="USA">delete</language>
+	</string>
+	<string id="33">
+		<language language="CHN">删除成功</language>
+		<language language="USA">Delete successfully</language>
+	</string>
+	<string id="34">
+		<language language="CHN">存储新的账户（还未设置密码）</language>
+		<language language="USA">Store a new account (password not yet set)</language>
+	</string>
+	<string id="35">
+		<language language="CHN">存储现有账户（已设置密码）</language>
+		<language language="USA">Store existing account (password set)</language>
+	</string>
+	<string id="36">
+		<language language="CHN">显示全部账户</language>
+		<language language="USA">Show all accounts</language>
+	</string>
+	<string id="37">
+		<language language="CHN">保存信息</language>
+		<language language="USA">save information</language>
+	</string>
+	<string id="38">
+		<language language="CHN">你的账户</language>
+		<language language="USA">your account</language>
+	</string>
+	<string id="39">
+		<language language="CHN">存储新的账户</language>
+		<language language="USA">Store a new account</language>
+	</string>
+	<string id="40">
+		<language language="CHN">存储现有账户</language>
+		<language language="USA">Store existing account</language>
+	</string>
+	<string id="41">
+		<language language="CHN">账户密码管理器</language>
+		<language language="USA">Password manager</language>
+	</string>
+	<string id="42">
+		<language language="CHN">编辑</language>
+		<language language="USA">Edit</language>
+	</string>
 </MyLocalizationStringModele_strings>

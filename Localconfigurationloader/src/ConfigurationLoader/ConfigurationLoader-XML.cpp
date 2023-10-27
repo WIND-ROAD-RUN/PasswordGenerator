@@ -10,7 +10,7 @@ void ConfigurationLoaderXML::setNewfile(const std::string& path)
     auto LocalizationNode = m_doc.append_child("Localization");
     auto stringLanguageNode = LocalizationNode.append_child("stringLanguage");
     stringLanguageNode.text().set("CHN");
-    auto LastRunInformationNode = stringLanguageNode.append_child("stringLanguageNode");
+    auto LastRunInformationNode = LocalizationNode.append_child("LastRunInformation");
     auto LastRunAccountNode = LastRunInformationNode.append_child("LastRunAccount");
     LastRunAccountNode.append_child("Account");
     LastRunAccountNode.append_child("Password");

@@ -51,6 +51,7 @@ private:
     void build_tree_model();
     void build_table_model_all_account();
     void build_languageString();
+    inline QString localizationString(const std::string stringId);
 public:
     void build_icon(const QIcon & icon);
 private:

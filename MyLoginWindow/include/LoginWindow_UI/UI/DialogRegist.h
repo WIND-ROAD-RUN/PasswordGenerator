@@ -23,6 +23,8 @@ private:
     QString get_Account() { return ui->ledit_account->text(); }
     QString get_password() { return ui->ledit_password->text(); }
     bool registAccount();
+private:
+    inline QString localizationString(const std::string stringId);
 public:
     void setLanguageString(LocalizationStringLoaderXML* locStCom);
 

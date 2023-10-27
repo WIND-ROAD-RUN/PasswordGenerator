@@ -3,6 +3,7 @@
 #include"PortalAccountTable.h"
 #include"DialogNewAccount.h"
 #include"DialogAddExistAccount.h"
+#include"LocalizationStringLoader-XML.h"
 
 #include<QStandardItemModel>
 #include<QItemSelectionModel>
@@ -69,6 +70,7 @@ void PasswordGenerator::ini_config()
 {
     ini_GlobaComponet();
     check_filePath();
+    build_languageString();
     build_ui();
     build_connect();
 }
@@ -110,7 +112,7 @@ void PasswordGenerator::build_treeSelectChange_for_table(const QModelIndex& inde
     auto NodeType = m_treeModel->itemFromIndex(index);
     
     QStringList headerList;
-    headerList.push_back("平台");
+    headerList.push_back(QString::fromStdString(m_locstringLoader->getString("22")));
     headerList.push_back("账户名");
     headerList.push_back("密码");
     headerList.push_back("是否为可逆加密");
@@ -160,6 +162,12 @@ void PasswordGenerator::build_table_model_all_account()
             i++;
         }
     }
+}
+
+void PasswordGenerator::build_languageString()
+{
+    m_locstringLoader = LocalizationStringLoaderXML::getInstance();
+
 }
 
 void PasswordGenerator::build_icon(const QIcon& icon)

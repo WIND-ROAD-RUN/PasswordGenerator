@@ -84,4 +84,8 @@
 		<language language="CHN">警告</language>
 		<language language="USA">warning</language>
 	</string>
+	<string id="22">
+		<language language="CHN">平台</language>
+		<language language="USA">platform</language>
+	</string>
 </MyLocalizationStringModele_strings>

@@ -13,6 +13,7 @@ class PortalAccountTable;
 class AccountInfo;
 class DialogNewAccount;
 class DialogAddExistAccount;
+class LocalizationStringLoaderXML;
 
 class PasswordGenerator : public QMainWindow
 {
@@ -29,6 +30,8 @@ private:
     QItemSelectionModel* m_treeSelection{ nullptr };
     PortalAccountTable* m_portalAccountTable{ nullptr };
     QMenu* m_menu{ nullptr };
+private:
+    LocalizationStringLoaderXML* m_locstringLoader{nullptr};
 private:
     std::string m_UID;
     std::string m_filePath;
@@ -47,6 +50,7 @@ private:
     void build_connect();
     void build_tree_model();
     void build_table_model_all_account();
+    void build_languageString();
 public:
     void build_icon(const QIcon & icon);
 private:

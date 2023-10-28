@@ -70,20 +70,20 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>$(SolutionDir)\PasswordEncrpyModule\include\achieve;$(SolutionDir)\PasswordEncrpyModule\include\Abstract;$(SolutionDir)\AccountTableModule\include\achieve;$(SolutionDir)\AccountTableModule\include\Abstract;$(SolutionDir)\PortalAccountTable\include;$(ProjectDir)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\LocalizationStringModule\include;$(SolutionDir)\LocalConfigurationLoader\include\LocalizationStringLoader;$(SolutionDir)\PasswordEncrpyModule\include\achieve;$(SolutionDir)\PasswordEncrpyModule\include\Abstract;$(SolutionDir)\AccountTableModule\include\achieve;$(SolutionDir)\AccountTableModule\include\Abstract;$(SolutionDir)\PortalAccountTable\include;$(ProjectDir)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>$(SolutionDir)\PortalAccountTable\build\x64\Debug;$(SolutionDir)\PasswordEncrpyModule\build\x64\Debug;$(SolutionDir)\AccountTableModule\build\x64\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>PortalAccountTable.obj;PasswordEncrpySimplyAch.obj;AccountTableXML.obj;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)\LocalConfigurationLoader\build\x64\Debug;$(SolutionDir)\LocalizationStringModule\build\x64\Debug;$(SolutionDir)\PortalAccountTable\build\x64\Debug;$(SolutionDir)\PasswordEncrpyModule\build\x64\Debug;$(SolutionDir)\AccountTableModule\build\x64\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>LocalizationStringModule-XML.obj;LocalizationStringLoader-XML.obj;PortalAccountTable.obj;PasswordEncrpySimplyAch.obj;AccountTableXML.obj;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>$(SolutionDir)\PasswordEncrpyModule\include\achieve;$(SolutionDir)\PasswordEncrpyModule\include\Abstract;$(SolutionDir)\AccountTableModule\include\achieve;$(SolutionDir)\AccountTableModule\include\Abstract;$(SolutionDir)\PortalAccountTable\include;$(ProjectDir)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\LocalizationStringModule\include;$(SolutionDir)\LocalConfigurationLoader\include\LocalizationStringLoader;$(SolutionDir)\PasswordEncrpyModule\include\achieve;$(SolutionDir)\PasswordEncrpyModule\include\Abstract;$(SolutionDir)\AccountTableModule\include\achieve;$(SolutionDir)\AccountTableModule\include\Abstract;$(SolutionDir)\PortalAccountTable\include;$(ProjectDir)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>$(SolutionDir)\PortalAccountTable\build\x64\Release;$(SolutionDir)\PasswordEncrpyModule\build\x64\Release;$(SolutionDir)\AccountTableModule\build\x64\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>PortalAccountTable.obj;PasswordEncrpySimplyAch.obj;AccountTableXML.obj;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)\LocalizationStringModule\build\x64\Release;$(SolutionDir)\LocalConfigurationLoader\build\x64\Release;$(SolutionDir)\PortalAccountTable\build\x64\Release;$(SolutionDir)\PasswordEncrpyModule\build\x64\Release;$(SolutionDir)\AccountTableModule\build\x64\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>LocalizationStringModule-XML.obj;LocalizationStringLoader-XML.obj;PortalAccountTable.obj;PasswordEncrpySimplyAch.obj;AccountTableXML.obj;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="Configuration">
@@ -121,6 +121,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Localconfigurationloader\Localconfigurationloader.vcxproj">
+      <Project>{c16f2878-ac9a-481b-9818-9791e9710d06}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\PortalAccountTable\PortalAccountTable.vcxproj">
       <Project>{3d852240-1ca2-4c5d-8476-b0aaace450a8}</Project>
     </ProjectReference>

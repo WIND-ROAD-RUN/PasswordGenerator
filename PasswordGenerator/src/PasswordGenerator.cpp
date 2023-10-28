@@ -18,6 +18,7 @@ PasswordGenerator::PasswordGenerator(QWidget *parent)
     , ui(new Ui::PasswordGeneratorClass())
 {
     ui->setupUi(this);
+
 }
 
 PasswordGenerator::~PasswordGenerator()
@@ -46,9 +47,12 @@ void PasswordGenerator::build_ui()
 
     ui->treeView->setSelectionModel(m_treeSelection);
     ui->treeView->setModel(m_treeModel);
+    ui->treeView->setHeaderHidden(true);
 
     build_tree_model();
     build_table_model_all_account();
+
+    build_icon();
 
 }
 
@@ -80,13 +84,14 @@ void PasswordGenerator::build_tree_model()
 {
     m_treeModel->clear();
     auto root = m_treeModel->invisibleRootItem();
-
+    
     /*节点*/
     auto  platformList = m_portalAccountTable->PlatformList();
     for (const auto & platform: platformList) {
         QStandardItem* platforItem = new QStandardItem();
         platforItem->setText(QString::fromStdString(platform));
         platforItem->setData("platform", Qt::UserRole);
+        platforItem->setIcon(getIcon("peoples.png"));
         auto accountList=m_portalAccountTable->AccountList(platform);
         for (const auto & account:accountList) {
             QStandardItem* accountItem = new QStandardItem();
@@ -94,6 +99,7 @@ void PasswordGenerator::build_tree_model()
             accountItem->setText(QString::fromStdString(account.accountName));
             ui->treeView->setExpanded(accountItem->index(), true);
             accountItem->setEditable(false);
+            accountItem->setIcon(getIcon("people.png"));
 
             platforItem->appendRow(accountItem);
 
@@ -185,9 +191,30 @@ inline QString PasswordGenerator::localizationString(const std::string stringId)
     return QString(QString::fromStdString(m_locstringLoader->getString(stringId)));
 }
 
-void PasswordGenerator::build_icon(const QIcon& icon)
+void PasswordGenerator::build_icon()
 {
-    this->setWindowIcon(icon);
+    auto cutDir = QDir::currentPath();
+    auto IconDir = cutDir + "/icon";
+    ui->act_saveInfo->setIcon(getIcon("people-bottom.png"));
+    ui->act_deleteNode->setIcon(getIcon("people-minus.png"));
+    ui->act_displayAllAccount->setIcon(getIcon("every-user.png"));
+    ui->act_findAccount->setIcon(getIcon("people-search.png"));
+    ui->act_storeExistAccount->setIcon(getIcon("people-plus-one.png"));
+    ui->act_storeNewAccount->setIcon(getIcon("people-plus-one.png"));
+
+    ui->pbtn_displayAllAccount->setIcon(getIcon("every-user.png"));
+    ui->pbtn_saveInfo->setIcon(getIcon("people-bottom.png"));
+    ui->pbtn_storeExistAccount->setIcon(getIcon("people-plus-one.png"));
+    ui->pbtn_storeNewAccount->setIcon(getIcon("people-plus-one.png"));
+
+    this->setWindowIcon(getIcon("data-display.png"));
+}
+
+QIcon PasswordGenerator::getIcon(const QString& fileName)
+{
+    auto cutDir = QDir::currentPath();
+    auto filePath = cutDir + "/icon/"+fileName;
+    return QIcon(filePath);
 }
 
 void PasswordGenerator::add_account_forTable(const AccountInfo& account, const QString& platform, int row)

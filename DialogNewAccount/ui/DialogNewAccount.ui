@@ -12,8 +12,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>457</width>
-    <height>369</height>
+    <width>431</width>
+    <height>407</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -59,7 +59,7 @@
     </widget>
    </item>
    <item>
-    <widget class="QGroupBox" name="groupBox">
+    <widget class="QGroupBox" name="gBox_extraInformation">
      <property name="title">
       <string>包含的附加信息</string>
      </property>
@@ -88,30 +88,20 @@
     </widget>
    </item>
    <item>
-    <widget class="QGroupBox" name="groupBox_2">
+    <widget class="QGroupBox" name="gBox_thePasswordProperty">
      <property name="title">
       <string>选择生成密码的格式</string>
      </property>
-     <layout class="QGridLayout" name="gridLayout_3" rowstretch="1,0,0,0">
-      <item row="0" column="0">
-       <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,0,1,0,1">
-        <item>
-         <widget class="QLabel" name="label_passwordLength">
-          <property name="text">
-           <string>密码位数：</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="label_passwordLengthMinimum">
-          <property name="text">
-           <string>最小位数</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QSpinBox" name="sBox_passwordLengthMinimum"/>
-        </item>
+     <layout class="QVBoxLayout" name="verticalLayout_2">
+      <item>
+       <widget class="QLabel" name="label_passwordLength">
+        <property name="text">
+         <string>密码位数：</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_6" stretch="0,1">
         <item>
          <widget class="QLabel" name="label_passwordLengthMaximum">
           <property name="text">
@@ -124,7 +114,21 @@
         </item>
        </layout>
       </item>
-      <item row="1" column="0">
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,1">
+        <item>
+         <widget class="QLabel" name="label_passwordLengthMinimum">
+          <property name="text">
+           <string>最小位数</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QSpinBox" name="sBox_passwordLengthMinimum"/>
+        </item>
+       </layout>
+      </item>
+      <item>
        <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="0,1">
         <item>
          <widget class="QLabel" name="label_haveSpecialSymbols">
@@ -142,7 +146,7 @@
         </item>
        </layout>
       </item>
-      <item row="2" column="0">
+      <item>
        <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="0,1">
         <item>
          <widget class="QLabel" name="label_haveUpperAndLowerCase">
@@ -160,7 +164,7 @@
         </item>
        </layout>
       </item>
-      <item row="3" column="0">
+      <item>
        <layout class="QHBoxLayout" name="horizontalLayout_4" stretch="0,1">
         <item>
          <widget class="QLabel" name="label_isIrreversible">

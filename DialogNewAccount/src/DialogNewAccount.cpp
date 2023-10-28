@@ -2,15 +2,21 @@
 #include"NameDefineForATMA.h"
 #include"PortalAccountTable.h"
 #include<QMessageBox>
+#include"LocalizationStringLoader-XML.h"
+#include<QDir>
 
 DialogNewAccount::DialogNewAccount(QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::DialogNewAccountClass())
 {
     ui->setupUi(this);
-    setFixedSize(this->width(), this->height());
+    ini_GlobaComponet();
+    build_languageString();
     build_ui();
     build_connect();
+    build_icon();
+    
+    setFixedSize(this->width(), this->height());
 }
 
 DialogNewAccount::~DialogNewAccount()
@@ -40,6 +46,42 @@ void DialogNewAccount::build_connect()
     QObject::connect(ui->pbtn_ok,&QPushButton::clicked,this,&DialogNewAccount::pbtn_ok_clicked);
     QObject::connect(ui->pbtn_cancel,&QPushButton::clicked,this,&DialogNewAccount::pbtn_cancel_clicked);
 }
+void DialogNewAccount::build_languageString()
+{
+    this->setWindowTitle(localizationString("39"));
+    ui->label_AccountPlatform->setText(localizationString("53")+":");
+    ui->labelAccount->setText(localizationString("54") + ":");
+    ui->gBox_extraInformation->setTitle(localizationString("43"));
+    ui->gBox_thePasswordProperty->setTitle(localizationString("46"));
+    ui->label_haveSpecialSymbols->setText(localizationString("50") + ":");
+    ui->label_haveUpperAndLowerCase->setText(localizationString("51") + ":");
+    ui->label_isIrreversible->setText(localizationString("52") + ":");
+    ui->label_passwordLength->setText(localizationString("47") + ":");
+    ui->label_passwordLengthMaximum->setText("       "+localizationString("49") + ":");
+    ui->label_passwordLengthMinimum->setText("       "+localizationString("48") + ":");
+    ui->pbtn_ok->setText(localizationString("11"));
+    ui->pbtn_cancel->setText(localizationString("12"));
+    ui->cbox_phoneNumber->setText(localizationString("45"));
+    ui->cbox_user->setText(localizationString("44"));
+}
+void DialogNewAccount::build_icon()
+{
+    this->setWindowIcon(getIcon("edit-name.png"));
+}
+QIcon DialogNewAccount::getIcon(const QString& fileName)
+{
+    auto cutDir = QDir::currentPath();
+    auto filePath = cutDir + "/icon/" + fileName;
+    return QIcon(filePath);
+}
+void DialogNewAccount::ini_GlobaComponet()
+{
+    m_locstringLoader = LocalizationStringLoaderXML::getInstance();
+}
+inline QString DialogNewAccount::localizationString(const std::string stringId)
+{
+    return QString(QString::fromStdString(m_locstringLoader->getString(stringId)));
+}
 void DialogNewAccount::cbox_user_checked_change()
 {
     ui->ledit_user->clear();
@@ -48,17 +90,17 @@ void DialogNewAccount::cbox_user_checked_change()
 void DialogNewAccount::pbtn_ok_clicked()
 {
     if (ui->ledit_accountPlatform->text().isEmpty()) {
-        QMessageBox::warning(this, "错误", "平台名不能为空");
+        QMessageBox::warning(this, localizationString("28"), localizationString("55"));
         return;
     }
 
     if (ui->ledit_account->text().isEmpty()) {
-        QMessageBox::warning(this, "错误", "用户名不能为空");
+        QMessageBox::warning(this, localizationString("28"), localizationString("56"));
         return;
     }
     
     if (ui->sBox_passwordLengthMinimum->value()>ui->sBox_passwordLengthMaximum->value()) {
-        QMessageBox::warning(this, "错误", "密码长度格式错误");
+        QMessageBox::warning(this, localizationString("28"), localizationString("57"));
         return;
     }
 
@@ -66,7 +108,7 @@ void DialogNewAccount::pbtn_ok_clicked()
     
     auto AccountName=portal->search_account(Platform().toStdString(),Account().toStdString() );
     if (!AccountName.accountName.empty()) {
-        QMessageBox::warning(this,"警告","已有该账户");
+        QMessageBox::warning(this, localizationString("21"), localizationString("58"));
     }
     else {
         m_password= portal->encrpyForUser(accountInfo()); 

@@ -156,9 +156,19 @@
     <Xml Include="localizationString.xml" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="icon\data-display.png" />
+    <Image Include="icon\edit-name.png" />
+    <Image Include="icon\every-user.png" />
+    <Image Include="icon\key.png" />
+    <Image Include="icon\people-bottom.png" />
+    <Image Include="icon\people-delete-one.png" />
+    <Image Include="icon\people-minus.png" />
+    <Image Include="icon\people-plus-one.png" />
+    <Image Include="icon\people-search.png" />
+    <Image Include="icon\people.png" />
+    <Image Include="icon\peoples.png" />
     <Image Include="icon\tool.ico" />
-    <Image Include="ui\icon\data-display.png" />
-    <Image Include="ui\icon\key.png" />
+    <Image Include="icon\user.png" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="MyLoginWindow.rc" />

@@ -168,4 +168,72 @@
 		<language language="CHN">编辑</language>
 		<language language="USA">Edit</language>
 	</string>
+	<string id="43">
+		<language language="CHN">其他信息</language>
+		<language language="USA">Other information</language>
+	</string>
+	<string id="44">
+		<language language="CHN">姓名</language>
+		<language language="USA">Name</language>
+	</string>
+	<string id="45">
+		<language language="CHN">手机号</language>
+		<language language="USA">PhoneNumber</language>
+	</string>
+	<string id="46">
+		<language language="CHN">生成密码属性的设置</language>
+		<language language="USA">Settings for generating password properties</language>
+	</string>
+	<string id="47">
+		<language language="CHN">密码位数</language>
+		<language language="USA">Number of password digits</language>
+	</string>
+	<string id="48">
+		<language language="CHN">最小位数</language>
+		<language language="USA">Minimum number of digits</language>
+	</string>
+	<string id="49">
+		<language language="CHN">最大位数</language>
+		<language language="USA">Maximum number of digits</language>
+	</string>
+	<string id="50">
+		<language language="CHN">是否包含特殊符号</language>
+		<language language="USA">Does it contain special symbols</language>
+	</string>
+	<string id="51">
+		<language language="CHN">是否含有大小写</language>
+		<language language="USA">Does it contain uppercase and lowercase</language>
+	</string>
+	<string id="52">
+		<language language="CHN">密码是否不可逆生成</language>
+		<language language="USA">Is the password irreversibly generated</language>
+	</string>
+	<string id="53">
+		<language language="CHN">平台</language>
+		<language language="USA">Platform</language>
+	</string>
+	<string id="54">
+		<language language="CHN">账号</language>
+		<language language="USA">Account</language>
+	</string>
+	<string id="55">
+		<language language="CHN">平台名不能为空</language>
+		<language language="USA">Platform name cannot be empty</language>
+	</string>
+	<string id="56">
+		<language language="CHN">用户名不能为空</language>
+		<language language="USA">User name cannot be empty</language>
+	</string>
+	<string id="57">
+		<language language="CHN">密码长度格式错误</language>
+		<language language="USA">Password length format error</language>
+	</string>
+	<string id="58">
+		<language language="CHN">已有该账户</language>
+		<language language="USA">This account already exists</language>
+	</string>
+	<string id="59">
+		<language language="CHN">密码</language>
+		<language language="USA">Password</language>
+	</string>
 </MyLocalizationStringModele_strings>

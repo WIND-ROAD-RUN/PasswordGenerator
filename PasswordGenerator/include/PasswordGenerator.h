@@ -52,8 +52,9 @@ private:
     void build_table_model_all_account();
     void build_languageString();
     inline QString localizationString(const std::string stringId);
-public:
-    void build_icon(const QIcon & icon);
+private:
+    void build_icon();
+    QIcon getIcon(const QString & fileName );
 private:
     void add_account_forTable(const AccountInfo & account,const QString & platform ,int row);
     void contextMenuEvent(QContextMenuEvent* event);

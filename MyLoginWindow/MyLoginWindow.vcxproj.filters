@@ -127,13 +127,43 @@
     <Xml Include="localizationString.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="ui\icon\key.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="ui\icon\data-display.png">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="icon\tool.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="icon\every-user.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="icon\people.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="icon\people-bottom.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="icon\people-delete-one.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="icon\people-minus.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="icon\people-plus-one.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="icon\peoples.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="icon\user.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="icon\people-search.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="icon\data-display.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="icon\key.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="icon\edit-name.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

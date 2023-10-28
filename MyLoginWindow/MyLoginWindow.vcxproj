@@ -145,6 +145,12 @@
     <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DialogAddExistAccount\DialogAddExistAccount.vcxproj">
+      <Project>{1f1b9a78-9a39-48bd-92a1-0c1c0b3497ef}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\DialogNewAccount\DialogNewAccount.vcxproj">
+      <Project>{a00cb35f-dfc7-400e-9040-1fa23d5a76d1}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\Localconfigurationloader\Localconfigurationloader.vcxproj">
       <Project>{c16f2878-ac9a-481b-9818-9791e9710d06}</Project>
     </ProjectReference>
@@ -156,9 +162,19 @@
     <Xml Include="localizationString.xml" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="icon\data-display.png" />
+    <Image Include="icon\edit-name.png" />
+    <Image Include="icon\every-user.png" />
+    <Image Include="icon\key.png" />
+    <Image Include="icon\people-bottom.png" />
+    <Image Include="icon\people-delete-one.png" />
+    <Image Include="icon\people-minus.png" />
+    <Image Include="icon\people-plus-one.png" />
+    <Image Include="icon\people-search.png" />
+    <Image Include="icon\people.png" />
+    <Image Include="icon\peoples.png" />
     <Image Include="icon\tool.ico" />
-    <Image Include="ui\icon\data-display.png" />
-    <Image Include="ui\icon\key.png" />
+    <Image Include="icon\user.png" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="MyLoginWindow.rc" />

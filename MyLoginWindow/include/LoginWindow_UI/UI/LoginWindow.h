@@ -35,6 +35,7 @@ private:
     inline void build_ui();
     inline void build_connect();
     void build_icon();
+    QIcon getIcon(const QString & fileName);
     inline void set_label_accountPassError();
     inline void set_loginGroup();
     inline void set_WindowBackground();

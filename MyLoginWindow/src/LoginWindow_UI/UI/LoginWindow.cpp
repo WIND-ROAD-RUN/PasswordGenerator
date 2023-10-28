@@ -162,7 +162,14 @@ inline void LoginWindow::build_connect()
 
 void LoginWindow::build_icon()
 {
-    this->setWindowIcon(QIcon(":/LoginWindow/icon/key.png"));
+    this->setWindowIcon(getIcon("key.png"));
+}
+
+QIcon LoginWindow::getIcon(const QString& fileName)
+{
+    auto cutDir = QDir::currentPath();
+    auto filePath = cutDir + "/icon/" + fileName;
+    return QIcon(filePath);
 }
 
 void LoginWindow::closeEvent(QCloseEvent* event)
@@ -205,8 +212,8 @@ inline void LoginWindow::set_loginGroup()
 
 inline void LoginWindow::set_WindowBackground()
 {
-    ui->ptEdit_picture->appendPlainText(QDir::currentPath());
-    ui->ptEdit_accountIcon->appendPlainText("这里显示用户图标");
+    ui->ptEdit_picture->appendPlainText(R"(软件数据保存在c:\PragrameData\PasswordManager),账户密码数据均在其中)");
+    ui->ptEdit_accountIcon->appendPlainText("开发者(ROADWIND)，仅供内部测试使用");
 
     QFont textFont = ui->ptEdit_picture->font();
     textFont.setPointSize(20);
@@ -229,7 +236,6 @@ void LoginWindow::pbtn_login_clicked() {
 
         std::string filtPath = std::string(DATABASEPATH) + std::string(R"(\)") + UID.toStdString()+std::string(".xml");
         generatorWindow->set_UID(UID.toStdString());
-        generatorWindow->build_icon(QIcon(":/LoginWindow/icon/data-display.png"));
         generatorWindow->set_filePath(filtPath);
         generatorWindow->ini_config();
 

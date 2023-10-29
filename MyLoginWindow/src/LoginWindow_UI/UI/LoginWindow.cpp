@@ -1,7 +1,6 @@
 #include "LoginWindow.h"
 
 #include <QMessageBox>
-
 #include<QCloseEvent>
 #include<QString>
 #include<QPainter>
@@ -22,13 +21,16 @@ LoginWindow::LoginWindow(QWidget* parent)
     , ui(new Ui::LoginWindowClass()),m_accountStore(AccountStoreSaveInXML::getInstance())
 {
     ui->setupUi(this);
+    /*全局资源的加载以及配置*/
     ini_GlobaComponet();
     check_configFile();
     prepareForRun();
+    /*ui界面的设置，依赖于上一步的配置*/
     build_icon();
     build_ui();
     build_connect();
-    this->setLanguageString(m_locStCom);
+    /*ui其他属性的设置*/
+    this->build_languageString(m_locStCom);
     this->setWindowFlag(Qt::WindowMinimizeButtonHint,true);
     this->setWindowFlag(Qt::WindowMaximizeButtonHint, false);
     this->setWindowFlag(Qt::CustomizeWindowHint, false);
@@ -42,12 +44,9 @@ LoginWindow::~LoginWindow()
 {
     delete ui;
     delete generatorWindow;
-    //delete m_accountStore;
-    //delete m_cfgLoCom;
-    //delete m_locStCom;
 }
 
-void LoginWindow::setLanguageString(LocalizationStringLoaderXML* locStCom)
+void LoginWindow::build_languageString(LocalizationStringLoaderXML* locStCom)
 {
     ui->pbtn_login->setText(localizationString("1"));
     ui->pbtn_regist->setText(localizationString("2"));
@@ -57,11 +56,11 @@ void LoginWindow::setLanguageString(LocalizationStringLoaderXML* locStCom)
     ui->cBox_savePassword->setText(localizationString("3"));
     this->setWindowTitle(localizationString("1"));
     ui->label_accountPassError->setText(localizationString("7"));
-    
 }
 
 void LoginWindow::ini_GlobaComponet()
 {
+    /*加载全局资源模块*/
     LocalizationStringLoaderXML::getInstance();
     ConfigurationLoaderXML::getInstance();
     AccountStoreSaveInXML::getInstance();
@@ -69,6 +68,7 @@ void LoginWindow::ini_GlobaComponet()
 
 void LoginWindow::check_configFile()
 {
+    /*检查配置文件路径，如果没有那么就创建配置文件*/
     QString configPath = PROGRAMMEDATAPATH;
     QDir config;
     config.setPath(configPath);
@@ -94,6 +94,7 @@ void LoginWindow::check_configFile()
 
 void LoginWindow::prepareForRun()
 {
+    /*设置全局资源模块，并使得模块加载相关配置信息*/
     m_cfgLoCom->setFilePath(CONFIGPATH);
     m_cfgLoCom->loadConfig();
     auto curPath = QDir::currentPath();
@@ -110,16 +111,6 @@ void LoginWindow::prepareForRun()
 inline QString LoginWindow::localizationString(const std::string stringId)
 {
     return QString(QString::fromStdString(m_locStCom->getString(stringId)));
-}
-
-void LoginWindow::setlocStCom(LocalizationStringLoaderXML* locStCom)
-{
-    m_locStCom = locStCom;
-}
-
-void LoginWindow::setConfigLoadCom(ConfigurationLoaderXML* cfgLoCom)
-{
-    m_cfgLoCom = cfgLoCom;
 }
 
 void LoginWindow::build_ui()
@@ -146,7 +137,7 @@ void LoginWindow::build_ui()
     if (m_cfgLoCom->isRememberPassword()) {
         ui->lEdit_password->setText(QString::fromStdString(m_cfgLoCom->LastLoginAccount().second));
     }
-    
+    ui->lEdit_password->setEchoMode(QLineEdit::Password);
 }
 
 inline void LoginWindow::build_connect()
@@ -174,6 +165,7 @@ QIcon LoginWindow::getIcon(const QString& fileName)
 
 void LoginWindow::closeEvent(QCloseEvent* event)
 {
+    /*在关闭窗口的时候，如果是手动关闭那么就弹出对话框用于确定是否关闭*/
     if (m_isMessageForClose) {
         QMessageBox::StandardButton result =
             QMessageBox::question(this,
@@ -226,6 +218,7 @@ inline void LoginWindow::set_WindowBackground()
 }
 
 void LoginWindow::pbtn_login_clicked() {
+    /*登录时的流程*/
     LoginTransmit* login = new LoginTransmit(ui->ledit_account->text().toStdString(),
         ui->lEdit_password->text().toStdString());
 
@@ -233,15 +226,14 @@ void LoginWindow::pbtn_login_clicked() {
         if (!generatorWindow) { generatorWindow = new PasswordGenerator(); }
         auto UID = ui->ledit_account->text();
         
-
+        /*对登陆后进行的界面进行显示前的配置*/
         std::string filtPath = std::string(DATABASEPATH) + std::string(R"(\)") + UID.toStdString()+std::string(".xml");
         generatorWindow->set_UID(UID.toStdString());
         generatorWindow->set_filePath(filtPath);
         generatorWindow->ini_config();
-
+        /*保存本次登录时的信息*/
         m_cfgLoCom->setLastLoginAccount(ui->ledit_account->text().toStdString(),
             ui->lEdit_password->text().toStdString());
-
         m_cfgLoCom->storeConfig();
 
         m_isMessageForClose = false;
@@ -292,7 +284,7 @@ void LoginWindow::cBox_languageChanged_indexChanged()
             m_cfgLoCom->storeConfig();
             m_locStCom->setLanguage("CHN");
             m_locStCom->loadData();
-            this->setLanguageString(m_locStCom);
+            this->build_languageString(m_locStCom);
             break;
         }
     case 1:
@@ -304,7 +296,7 @@ void LoginWindow::cBox_languageChanged_indexChanged()
             m_cfgLoCom->storeConfig();
             m_locStCom->setLanguage("USA");
             m_locStCom->loadData();
-            this->setLanguageString(m_locStCom);
+            this->build_languageString(m_locStCom);
             break;
         }
     }

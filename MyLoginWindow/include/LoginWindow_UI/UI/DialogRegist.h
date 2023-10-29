@@ -1,8 +1,6 @@
 #include "ui_DialogRegist.h"
 #include <QDialog>
 
-
-
 QT_BEGIN_NAMESPACE
 namespace Ui { class DialogRegistClass; };
 QT_END_NAMESPACE
@@ -20,14 +18,13 @@ public:
 private:
     void build_ui();
     void build_connect();
-    QString get_Account() { return ui->ledit_account->text(); }
+    void build_languageString();
+private:
+    QString get_account() { return ui->ledit_account->text(); }
     QString get_password() { return ui->ledit_password->text(); }
     bool registAccount();
 private:
     inline QString localizationString(const std::string stringId);
-public:
-    void setLanguageString(LocalizationStringLoaderXML* locStCom);
-
 private slots:
     void on_pbtn_ok_clicked();
     void on_ledit_account_changed();

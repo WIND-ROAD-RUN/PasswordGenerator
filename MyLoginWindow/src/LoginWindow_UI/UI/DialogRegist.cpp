@@ -10,7 +10,7 @@ DialogRegist::DialogRegist( QWidget* parent )
     , ui(new Ui::DialogRegistClass())
 {
     ui->setupUi(this);
-    setLanguageString(m_locStCom);
+    build_languageString();
     build_ui();
     build_connect();   
 }
@@ -26,6 +26,8 @@ void DialogRegist::build_ui()
     QPalette plet = ui->label_error->palette();
     plet.setColor(QPalette::WindowText, Qt::red);
     ui->label_error->setPalette(plet);
+    ui->ledit_password->setEchoMode(QLineEdit::Password);
+    ui->ledit_passwordAgin->setEchoMode(QLineEdit::Password);
 }
 
 void DialogRegist::build_connect()
@@ -83,7 +85,7 @@ void DialogRegist::on_ledit_password_again_changed() {
     ui->label_error->setText("");
 }
 
-void DialogRegist::setLanguageString(LocalizationStringLoaderXML* locStCom)
+void DialogRegist::build_languageString()
 {
     this->setWindowTitle(localizationString("2"));
     ui->label_account->setText(localizationString("5"));

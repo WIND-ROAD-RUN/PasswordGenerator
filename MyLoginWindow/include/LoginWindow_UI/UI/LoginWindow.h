@@ -30,25 +30,26 @@ public:
     LoginWindow(QWidget* parent = nullptr);
     ~LoginWindow();
 private:
-    virtual void closeEvent(QCloseEvent* event)override;
-private:
-    inline void build_ui();
-    inline void build_connect();
-    void build_icon();
-    QIcon getIcon(const QString & fileName);
-    inline void set_label_accountPassError();
-    inline void set_loginGroup();
-    inline void set_WindowBackground();
-    void setLanguageString(LocalizationStringLoaderXML* locStCom);
-private:
+    /*ui使用前准备*//*应该找这个接口顺序使用确保ui使用前的正确准备的工作的进行*/
     void ini_GlobaComponet();
     void check_configFile();
     void prepareForRun();
 private:
+    /*重载父类接口*/
+    virtual void closeEvent(QCloseEvent* event)override;
+private:
+    /*生成ui*/
+    inline void build_ui();
+    inline void build_connect();
+    void build_icon();
+    QIcon getIcon(const QString & fileName);
+    void build_languageString(LocalizationStringLoaderXML* locStCom);
+    /*设置ui*/
+    inline void set_label_accountPassError();
+    inline void set_loginGroup();
+    inline void set_WindowBackground();
+private:
     inline QString localizationString(const std::string stringId);
-public:
-    void setlocStCom(LocalizationStringLoaderXML* locStCom);
-    void setConfigLoadCom(ConfigurationLoaderXML* cfgLoCom);
 private slots:
     void pbtn_login_clicked();
     void label_AccountPassError_cancel();

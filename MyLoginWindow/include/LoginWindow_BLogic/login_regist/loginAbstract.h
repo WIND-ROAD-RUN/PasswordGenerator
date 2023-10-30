@@ -14,7 +14,9 @@ public:
         : m_account(account), m_password(password) {}
     ~LoginAbstract() {}
 public:
+    /*模板算法*/
     bool login();
+public:
     void setAccount(const std::string& account, const std::string& password);
     void set_account(const std::string& account) { m_account = account; }
     void set_password(const std::string& password) { m_password = password; }

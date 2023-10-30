@@ -8,12 +8,14 @@ bool RegistAbstract::regist()
     else { return false; }
 }
 
-std::string RegistAbstract::encrpt(const std::string& password)
+std::string RegistAbstract::encrpt
+(const std::string& password)
 {
     return std::string();
 }
 
-void RegistAbstract::setAccount(const std::string& account, const std::string& password)
+void RegistAbstract::setAccount
+(const std::string& account, const std::string& password)
 {
     m_account = account;
     m_password = password;

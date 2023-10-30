@@ -47,7 +47,7 @@ bool DialogRegist::registAccount()
     return result;
 }
 
-inline QString DialogRegist::localizationString(const std::string stringId)
+QString DialogRegist::localizationString(const std::string stringId)
 {
     return QString(QString::fromStdString(m_locStCom->getString(stringId)));
 }

@@ -39,22 +39,23 @@ private:
     virtual void closeEvent(QCloseEvent* event)override;
 private:
     /*生成ui*/
-    inline void build_ui();
-    inline void build_connect();
+    void build_ui();
+    void build_connect();
     void build_icon();
     QIcon getIcon(const QString & fileName);
-    void build_languageString(LocalizationStringLoaderXML* locStCom);
+    void build_languageString();
     /*设置ui*/
-    inline void set_label_accountPassError();
-    inline void set_loginGroup();
-    inline void set_WindowBackground();
+    void set_label_accountPassError();
+    void set_loginGroup();
+    void set_WindowBackground();
 private:
-    inline QString localizationString(const std::string stringId);
+    /*提炼函数如下*/
+    QString localizationString(const std::string stringId);
 private slots:
     void pbtn_login_clicked();
-    void label_AccountPassError_cancel();
     void pbtn_regist_clicked();
     void cBox_languageChanged_indexChanged();
     void cBox_savePassword_checkd();
     void cBox_LoginAuto_checked();
+    void label_AccountPassError_cancel();
 };

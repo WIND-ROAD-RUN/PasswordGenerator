@@ -24,7 +24,8 @@ private:
     QString get_password() { return ui->ledit_password->text(); }
     bool registAccount();
 private:
-    inline QString localizationString(const std::string stringId);
+    /*提炼函数如下*/
+    QString localizationString(const std::string stringId);
 private slots:
     void on_pbtn_ok_clicked();
     void on_ledit_account_changed();

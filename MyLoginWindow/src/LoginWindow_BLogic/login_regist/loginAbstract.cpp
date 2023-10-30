@@ -10,7 +10,8 @@ bool LoginAbstract::login()
     }
 }
 
-void LoginAbstract::setAccount(const std::string& account, const std::string& password)
+void LoginAbstract::setAccount
+(const std::string& account, const std::string& password)
 {
     set_account(account);
     set_password(password);

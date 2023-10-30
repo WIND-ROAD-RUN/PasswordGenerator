@@ -15,10 +15,10 @@ AccountStoreTranmsit::~AccountStoreTranmsit()
     delete m_accountStoreAbstract;
 }
 
-AccountStoreTranmsit::AccountStoreTranmsitResult
-AccountStoreTranmsit::searchAccount(const std::string& account)
+AccountStoreTranmsitResult
+AccountStoreTranmsit::searchAccount
+(const std::string& account)
 {
-    
     if (m_accountStoreAbstract->search_account(account)) {
         return AccountStoreTranmsitResult::ExistingAccount;
     }
@@ -27,10 +27,10 @@ AccountStoreTranmsit::searchAccount(const std::string& account)
     }
 }
 
-AccountStoreTranmsit::AccountStoreTranmsitResult 
-AccountStoreTranmsit::checkPassword(const std::string& account, const std::string& password)
+AccountStoreTranmsitResult 
+AccountStoreTranmsit::checkPassword
+(const std::string& account, const std::string& password)
 {
-    
     if (m_accountStoreAbstract->check_password(account, password)) {
         return AccountStoreTranmsitResult::RightPassword;
     }
@@ -39,10 +39,10 @@ AccountStoreTranmsit::checkPassword(const std::string& account, const std::strin
     }
 }
 
-AccountStoreTranmsit::AccountStoreTranmsitResult
-AccountStoreTranmsit::saveAccountInfo(const std::string& account, const std::string& password)
+AccountStoreTranmsitResult
+AccountStoreTranmsit::saveAccountInfo
+(const std::string& account, const std::string& password)
 {
-  
     if (m_accountStoreAbstract->save_account_exceptExist(account, password)) {
         return AccountStoreTranmsitResult
             ::SavedAccountSucceed;

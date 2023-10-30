@@ -15,6 +15,7 @@ public:
 public:
     virtual void ini_accountTable() = 0;
     virtual void clear_registTable()=0;
+    /*对帐户进行的操作*/
     virtual bool search_account(const std::string& account) = 0;
     virtual void save_account(const std::string& account, const std::string& password)=0;
     virtual bool save_account_exceptExist(const std::string& account, const std::string& password)=0;

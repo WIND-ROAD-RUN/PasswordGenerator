@@ -2,8 +2,10 @@
 
 #include"accountStoreTranmist.h"
 
-Regist::Regist(const std::string& account, const std::string& password)
-    :RegistAbstract(account,password),m_accountStoreTranmsit(new AccountStoreTranmsit())
+Regist::Regist
+(const std::string& account, const std::string& password)
+    :RegistAbstract(account,password),
+    m_accountStoreTranmsit(new AccountStoreTranmsit())
 {
 }
 Regist::~Regist()
@@ -12,14 +14,15 @@ Regist::~Regist()
 }
 bool Regist::have_account_if()
 {
-    if (m_accountStoreTranmsit->searchAccount(account())) { return true; }
+    if (m_accountStoreTranmsit->searchAccount(account())
+        ==AccountStoreTranmsitResult::ExistingAccount) { return true; }
     else { return false; }
 }
 
 bool Regist::save_account()
 {
     if (m_accountStoreTranmsit->saveAccountInfo(account(), password())
-        ==AccountStoreTranmsit::AccountStoreTranmsitResult::SavedAccountSucceed) 
+        ==AccountStoreTranmsitResult::SavedAccountSucceed) 
     { 
         return true; 
     }

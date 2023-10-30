@@ -32,26 +32,31 @@ PasswordGenerator::~PasswordGenerator()
 
 void PasswordGenerator::build_ui()
 {
+    /*模型与视图相关组件的生成*/
     m_treeModel = new QStandardItemModel(this);
     m_tableModel = new QStandardItemModel(this);
     m_treeSelection = new QItemSelectionModel(m_treeModel, this);
+
+    /*右键菜单的设置*/
     m_menu = new QMenu(this);
     m_menu->addAction(ui->act_deleteNode);
 
+    /*账户密码管理模块的配置的设置与加载*/
     m_portalAccountTable->setUID(m_UID);
-
     m_portalAccountTable->setFilePath(m_filePath);
     m_portalAccountTable->ini_portal();
 
+    /*视图的模型设置*/
     ui->tableView->setModel(m_tableModel);
-
     ui->treeView->setSelectionModel(m_treeSelection);
     ui->treeView->setModel(m_treeModel);
     ui->treeView->setHeaderHidden(true);
 
+    /*视图初始数据的填充*/
     build_tree_model();
     build_table_model_all_account();
 
+    /*图标的建立*/
     build_icon();
 
 }
@@ -72,6 +77,7 @@ void PasswordGenerator::build_connect()
 
 void PasswordGenerator::ini_config()
 {
+    /*用于初始化类的配置信息，在类使用前使用，初始化步骤有依赖关系，切忌不要随意更改初始化顺序*/
     ini_GlobaComponet();
     check_filePath();
     build_languageString();
@@ -82,6 +88,7 @@ void PasswordGenerator::ini_config()
 
 void PasswordGenerator::build_tree_model()
 {
+    /*将模型中的数据填充到树视图中*/
     m_treeModel->clear();
     auto root = m_treeModel->invisibleRootItem();
     
@@ -113,10 +120,12 @@ void PasswordGenerator::build_tree_model()
 }
 
 void PasswordGenerator::build_treeSelectChange_for_table(const QModelIndex& index) {
+    /*将树视图中的节点选择信息同步到表格视图中*/
     m_tableModel->clear();
     
     auto NodeType = m_treeModel->itemFromIndex(index);
     
+    //表头的添加
     QStringList headerList;
     headerList.push_back(localizationString("22"));
     headerList.push_back(localizationString("5"));
@@ -125,6 +134,7 @@ void PasswordGenerator::build_treeSelectChange_for_table(const QModelIndex& inde
     m_tableModel->setColumnCount(headerList.size());
     m_tableModel->setHorizontalHeaderLabels(headerList);
 
+    //根据不同的节点实行不同的操作也即显示的数据方式不一样
     if (NodeType->data(Qt::UserRole)=="platform") {
         auto platfromName = NodeType->text();
         auto accountList=m_portalAccountTable->AccountList(platfromName.toStdString());
@@ -147,6 +157,7 @@ void PasswordGenerator::build_treeSelectChange_for_table(const QModelIndex& inde
 
 void PasswordGenerator::build_table_model_all_account()
 {
+    /*表格视图显示全部账户的信息*/
     m_tableModel->clear();
     m_row = m_portalAccountTable->AccountNumber();
     m_tableModel->setRowCount(m_row);
@@ -186,7 +197,7 @@ void PasswordGenerator::build_languageString()
     ui->menu_edit->setTitle(localizationString("42"));
 }
 
-inline QString PasswordGenerator::localizationString(const std::string stringId)
+QString PasswordGenerator::localizationString(const std::string stringId)
 {
     return QString(QString::fromStdString(m_locstringLoader->getString(stringId)));
 }
@@ -219,6 +230,7 @@ QIcon PasswordGenerator::getIcon(const QString& fileName)
 
 void PasswordGenerator::add_account_forTable(const AccountInfo& account, const QString& platform, int row)
 {
+    /*提炼的函数，方便对一个Account数据条目添加到表格视图中*/
     QStandardItem* platformItem = new QStandardItem;
     platformItem->setText(platform);
     platformItem->setEditable(false);
@@ -340,6 +352,9 @@ void PasswordGenerator::act_deleteNode_trigger()
 
 void PasswordGenerator::check_filePath()
 {
+    /*检查配置文件，若没有配置文件那么就生成一个*/
+
+    //查询是否含有当前账户对应的数据文件，如果没有那么就生成一个
     QString path = QString::fromStdString(m_filePath);
     QFileInfo QPath(path);
     if (!QPath.exists()) {

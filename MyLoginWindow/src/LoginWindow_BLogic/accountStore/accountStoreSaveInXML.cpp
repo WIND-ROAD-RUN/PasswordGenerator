@@ -29,7 +29,8 @@ void AccountStoreSaveInXML::clear_registTable()
     m_doc.save_file(m_accountFilePath.c_str());
 }
 
-bool AccountStoreSaveInXML::search_account(const std::string& account)
+bool AccountStoreSaveInXML::search_account
+(const std::string& account)
 {
     auto result = std::find_if(
         m_accountTable.begin(),
@@ -46,7 +47,8 @@ bool AccountStoreSaveInXML::search_account(const std::string& account)
     }
 }
 
-void AccountStoreSaveInXML::save_account(const std::string& account, const std::string& password)
+void AccountStoreSaveInXML::save_account
+(const std::string& account, const std::string& password)
 {
     auto accountTableNode = m_doc.child("accountTable");
     auto newAccountNode=accountTableNode.append_child();
@@ -62,7 +64,8 @@ void AccountStoreSaveInXML::save_account(const std::string& account, const std::
     m_accountTable.push_back(maccount);
 }
 
-bool AccountStoreSaveInXML::save_account_exceptExist(const std::string& account, const std::string& password)
+bool AccountStoreSaveInXML::save_account_exceptExist
+(const std::string& account, const std::string& password)
 {
     if (search_account(account)) {
         return false;
@@ -73,7 +76,8 @@ bool AccountStoreSaveInXML::save_account_exceptExist(const std::string& account,
     }
 }
 
-bool AccountStoreSaveInXML::check_password(const std::string& account, const std::string& password)
+bool AccountStoreSaveInXML::check_password
+(const std::string& account, const std::string& password)
 {
     auto iter = std::find_if(
         m_accountTable.begin(),

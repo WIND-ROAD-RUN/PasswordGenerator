@@ -14,12 +14,18 @@ enum AccountStoreTranmsitResult {
 class AccountStoreTranmsit {
 private:
     AccountStoreAbstract* m_accountStoreAbstract;
+
 public:
     AccountStoreTranmsit();
+
     ~AccountStoreTranmsit();
+
     AccountStoreTranmsitResult searchAccount(const std::string& account);
+
     AccountStoreTranmsitResult checkPassword(const std::string& account, const std::string& password);
+
     AccountStoreTranmsitResult saveAccountInfo(const std::string& account, const std::string& password);
+
 };
 
 

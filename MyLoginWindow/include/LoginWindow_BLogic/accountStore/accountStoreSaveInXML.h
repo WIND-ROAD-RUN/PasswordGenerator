@@ -13,13 +13,19 @@ class AccountStoreSaveInXML
 private:
     /*数据加载到内存中的形式*/
     std::vector<Account> m_accountTable;
+
 private:
     std::string m_accountFilePath{};
+
     pugi::xml_document m_doc;
+
 private:
     static AccountStoreSaveInXML* my_instance;
+
     AccountStoreSaveInXML() {}
+
     AccountStoreSaveInXML(const std::string& filePath) :m_accountFilePath(filePath) {}
+
 public:
     static AccountStoreSaveInXML* getInstance() {
         if (!my_instance) {
@@ -27,6 +33,7 @@ public:
         }
         return my_instance;
     }
+
     static AccountStoreSaveInXML* getInstance(const std::string& filePath) {
         if (!my_instance) {
             my_instance = new AccountStoreSaveInXML(filePath);
@@ -37,9 +44,11 @@ public:
     ~AccountStoreSaveInXML() {}
 public:
     void setFilePath(const std::string& filePath) { m_accountFilePath = filePath; }
+
 public:
     /*当对一个空文件（新文件）操作时先使用此函数对其进行初始化*/
     void setNewFile(const std::string & filePath);
+
 public:
     // 通过 AccountStoreAbstract 继承
     void ini_accountTable() override;

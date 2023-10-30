@@ -22,18 +22,17 @@ public:
 public:
     void setNewFile(const std::string & filePath,const std::string & UID);
 public:
-    // ͨ�� AccountTableModuleAbstract �̳�
+    /*新增节点*/
     ErrorAccountTableModule NewAccount(const ATMAstring& platform, const ATMAstring& account) override;
 
     ErrorAccountTableModule NewAccountTable(const ATMAstring& fileName) override;
 
     ErrorAccountTableModule NewPlatform(const ATMAstring& platform) override;
 
+    /*初始化模块*/
     ErrorAccountTableModule ini_module() override;
 
-
-    // ͨ�� AccountTableModuleAbstract �̳�
-
+    /*设置数据信息*/
     ErrorAccountTableModule setPassword(const ATMAstring& platform, const ATMAstring& account, const ATMAstring& password) override;
 
     ErrorAccountTableModule setPhoneNumber(const ATMAstring& platform, const ATMAstring& account, const ATMAstring& phoneNumber) override;
@@ -48,44 +47,46 @@ public:
 
     ErrorAccountTableModule setEncrpyIsIrreversible(const ATMAstring& platform, const ATMAstring& account, ATMAbool EncrpyIsIrreversible) override;
 
-
-    // ͨ�� AccountTableModuleAbstract �̳�
+    ErrorAccountTableModule setAccount(const ATMAstring& platform, const ATMAstring& orginalAccount, const ATMAstring& newAccount) override;
+    
+    /*保存数据信息*/
     ErrorAccountTableModule save() override;
 
-
-    // ͨ�� AccountTableModuleAbstract �̳�
-    ErrorAccountTableModule setAccount(const ATMAstring& platform, const ATMAstring& orginalAccount, const ATMAstring& newAccount) override;
-
-
-    // ͨ�� AccountTableModuleAbstract �̳�
+    /*删除数据信息*/
     ErrorAccountTableModule deletePlatform(const ATMAstring& platform) override;
 
     ErrorAccountTableModule deleteAccount(const ATMAstring& platform, const ATMAstring& account) override;
 public :
-    /*��������ʵ���ظ�����*/
+    /*提炼函数*/
     ErrorAccountTableModule findPlatformNode(const ATMAstring & platform,pugi::xml_node & platformNode);
+    
     ErrorAccountTableModule findAccountNode(const ATMAstring & platform,const ATMAstring & account, pugi::xml_node& accountNode);
+    
     ErrorAccountTableModule findPlatformNode(const ATMAstring& platform);
+    
     ErrorAccountTableModule findAccountNode(const ATMAstring& platform, const ATMAstring& account);
-
-    // ͨ�� AccountTableModuleAbstract �̳�
+public:
+    /*返回数据信息*/
     ATMAstring Password(const ATMAstring& platform, const ATMAstring& account) override;
+    
     ATMAstring PhoneNumber(const ATMAstring& platform, const ATMAstring& account) override;
+    
     ATMAstring User(const ATMAstring& platform, const ATMAstring& account) override;
+    
     ATMApair PasswordLength(const ATMAstring& platform, const ATMAstring& account) override;
+    
     ATMAbool haveSpecialSymbols(const ATMAstring& platform, const ATMAstring& account) override;
+    
     ATMAbool haveUppercaseLowercase(const ATMAstring& platform, const ATMAstring& account) override;
+    
     ATMAbool EncrpyIsIrreversible(const ATMAstring& platform, const ATMAstring& account) override;
 
-    // ͨ�� AccountTableModuleAbstract �̳�
     AccountInfo Account(const ATMAstring& platform, const ATMAstring& account) override;
 
-    // ͨ�� AccountTableModuleAbstract �̳�
     ErrorAccountTableModule NewAccount(const ATMAstring& platform, const AccountInfo& account) override;
+    
     ErrorAccountTableModule setAccount(const ATMAstring& platform, const AccountInfo& account) override;
 
-
-    // ͨ�� AccountTableModuleAbstract �̳�
     ATMAStringList getPlatformList() override;
 
     ATMAAccountList getAccountList(const ATMAstring& platform) override;

@@ -10,11 +10,16 @@ class AccountStoreTranmsit;
 class Regist :public RegistAbstract{
 private:
     AccountStoreTranmsit* m_accountStoreTranmsit;
+
     bool have_account_if() override;
+
     bool save_account() override;
+
 public:
     Regist(const std::string& account, const std::string& password);
+
     ~Regist();
+
 };
 
 

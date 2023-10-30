@@ -7,22 +7,29 @@ ConfigurationLoaderXML* ConfigurationLoaderXML::m_instance = nullptr;
 void ConfigurationLoaderXML::setNewfile(const std::string& path)
 {
     m_doc.load_file(path.c_str());
+
     auto LocalizationNode = m_doc.append_child("Localization");
+
     auto stringLanguageNode = LocalizationNode.append_child("stringLanguage");
     stringLanguageNode.text().set("CHN");
+
     auto LastRunInformationNode = LocalizationNode.append_child("LastRunInformation");
     auto LastRunAccountNode = LastRunInformationNode.append_child("LastRunAccount");
     LastRunAccountNode.append_child("Account");
     LastRunAccountNode.append_child("Password");
+
     auto IsRemerberPasswordNode = LastRunInformationNode.append_child("IsRemerberPassword");
     IsRemerberPasswordNode.text().set(false);
+
     auto IsAutoLoginNode = LastRunInformationNode.append_child("IsAutoLogin");
     IsAutoLoginNode.text().set(false);
+
     m_doc.save_file(path.c_str());
 }
 
 bool ConfigurationLoaderXML::loadConfig()
 {
+    /*读取配置文件信息*/
     auto Loadresult=m_doc.load_file(m_configFilePath.c_str());
     if (!Loadresult) { return false; }
     auto LocalizationNode = m_doc.child("Localization");
@@ -56,6 +63,7 @@ bool ConfigurationLoaderXML::loadConfig()
 
 bool ConfigurationLoaderXML::storeConfig()
 {
+    /*保存当且的配置信息到配置文件中*/
     auto LocalizationNode = m_doc.child("Localization");
     if (!LocalizationNode) { return false; }
 

@@ -366,12 +366,10 @@ AccountInfo AccountTableXML::Account(const ATMAstring& platform, const ATMAstrin
 
 ErrorAccountTableModule AccountTableXML::NewAccount(const ATMAstring& platform, const AccountInfo& account)
 {
-    /*��ѯ�Ƿ���Ŀ��ƽ̨�Ľڵ���û���򷵻ش������*/
     pugi::xml_node PlatformNode;
     auto findPlatform = findPlatformNode(platform, PlatformNode);
     if (findPlatform != ErrorAccountTableModule::PlatformAlreadyExist) { return findPlatform; }
 
-    /*��ѯ�Ƿ��Ѿ�����ͬ���˻��ڵ㣬�еĻ����ش�����룬û�����½�һ��*/
     auto findAccount = findAccountNode(platform, account.accountName);
     if (findAccount == ErrorAccountTableModule::AccountAlreadyExist) {
         return findAccount;
@@ -379,7 +377,7 @@ ErrorAccountTableModule AccountTableXML::NewAccount(const ATMAstring& platform, 
     auto newAccountNode = PlatformNode.append_child("Account");
     if (!newAccountNode) { return ErrorAccountTableModule::NewAccount_ERROR; }
     if (!newAccountNode.append_attribute("USERNAME").set_value(account.accountName.c_str())) { return ErrorAccountTableModule::NewPlatform_ERROR; }
-    /*������Account����µ��ӽڵ�*/
+    
     auto newPasswordNode = newAccountNode.append_child("Password");
     if (!newPasswordNode) { return ErrorAccountTableModule::NewPassword_ERROR; }
     newPasswordNode.text().set(account.password.c_str());
@@ -395,7 +393,6 @@ ErrorAccountTableModule AccountTableXML::NewAccount(const ATMAstring& platform, 
     auto newEncryProperty = newAccountNode.append_child("EncrypyProperty");
     if (!newEncryProperty) { return ErrorAccountTableModule::NewEncrpyProperty_ERROR; }
 
-    /*������EncrpyProperty�ڵ�������µ��ӽڵ�*/
     auto newPasswordLengthNode = newEncryProperty.append_child("PasswordLength");
     if (!newPasswordLengthNode) { return ErrorAccountTableModule::NewPasswordLength_ERROR; }
     if (!newPasswordLengthNode.append_attribute("Minimum").set_value(account.passwordLength.first)) {
@@ -480,12 +477,10 @@ void AccountTableXML::setNewFile(const std::string& filePath,const std::string &
 
 ErrorAccountTableModule AccountTableXML::NewAccount(const ATMAstring& platform, const ATMAstring& account)
 {
-    /*��ѯ�Ƿ���Ŀ��ƽ̨�Ľڵ���û���򷵻ش������*/
     pugi::xml_node PlatformNode;
     auto findPlatform = findPlatformNode(platform, PlatformNode);
     if (findPlatform != ErrorAccountTableModule::PlatformAlreadyExist) { return findPlatform; }
 
-    /*��ѯ�Ƿ��Ѿ�����ͬ���˻��ڵ㣬�еĻ����ش�����룬û�����½�һ��*/
     auto findAccount=findAccountNode(platform,account);
     if (findAccount==ErrorAccountTableModule::AccountAlreadyExist) {
         return findAccount;
@@ -493,7 +488,7 @@ ErrorAccountTableModule AccountTableXML::NewAccount(const ATMAstring& platform, 
     auto newAccountNode=PlatformNode.append_child("Account");
     if (!newAccountNode) { return ErrorAccountTableModule::NewAccount_ERROR; }
     if (!newAccountNode.append_attribute("USERNAME").set_value(account.c_str())) { return ErrorAccountTableModule::NewPlatform_ERROR; }
-   /*������Account����µ��ӽڵ�*/
+
     auto newPasswordNode = newAccountNode.append_child("Password");
     if (!newPasswordNode) { return ErrorAccountTableModule::NewPassword_ERROR; }
 
@@ -506,7 +501,6 @@ ErrorAccountTableModule AccountTableXML::NewAccount(const ATMAstring& platform, 
     auto newEncryProperty = newAccountNode.append_child("EncrypyProperty");
     if (!newEncryProperty) { return ErrorAccountTableModule::NewEncrpyProperty_ERROR; }
     
-    /*������EncrpyProperty�ڵ�������µ��ӽڵ�*/
     auto newPasswordLength = newEncryProperty.append_child("PasswordLength");
     if (!newPasswordLength) { return ErrorAccountTableModule::NewPasswordLength_ERROR; }
     if (!newPasswordLength.append_attribute("Minimum")) {

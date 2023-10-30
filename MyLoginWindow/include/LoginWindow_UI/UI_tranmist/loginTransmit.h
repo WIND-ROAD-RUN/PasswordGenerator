@@ -8,16 +8,24 @@ class Login;
 
 class LoginTransmit {
 private:
+
     std::string m_account;
+
     std::string m_password;
+
 private:
     Login* m_login;
+
 public:
     LoginTransmit(const std::string& account, const std::string& password);
+
     ~LoginTransmit() {};
+
 public:
     bool isLoginSuccess();
+
     void setAccount(const std::string& account, const std::string& password);
+
 };
 
 

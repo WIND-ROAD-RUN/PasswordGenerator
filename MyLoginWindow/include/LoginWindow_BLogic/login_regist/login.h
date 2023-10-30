@@ -10,9 +10,12 @@ class AccountStoreTranmsit;
 class Login :public LoginAbstract {
 private:
     AccountStoreTranmsit* m_accountStoreTranmsit;
+
 public:
     Login(const std::string& account, const std::string& password);
+
     ~Login();
+
 public:
     // 通过 loginAbstract 继承
     bool check_Account() override;

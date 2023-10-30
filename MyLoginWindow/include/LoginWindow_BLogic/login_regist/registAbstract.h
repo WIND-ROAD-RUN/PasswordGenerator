@@ -16,7 +16,9 @@ private:
     virtual bool have_account_if() = 0;
     virtual bool save_account() = 0;
 public:
+    /*模板算法*/
     bool regist();
+public:
     void setAccount(const std::string& account, const std::string& password);
     void set_account(const std::string& account) { m_account = account; }
     void set_password(const std::string& password) { m_password = password; }

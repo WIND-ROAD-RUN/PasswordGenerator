@@ -10,36 +10,40 @@ QT_END_NAMESPACE
 class AccountInfo;
 class LocalizationStringLoaderXML;
 
-class DialogNewAccount : public QDialog
+class DialogNewAccount 
+    : public QDialog
 {
     Q_OBJECT
 
 public:
     DialogNewAccount(QWidget *parent = nullptr);
     ~DialogNewAccount();
-
 private:
     Ui::DialogNewAccountClass *ui;
 private:
     std::string m_password{};
 private:
+    /*使用的全局资源组件模块*/
     LocalizationStringLoaderXML* m_locstringLoader{ nullptr };
 private:
     void build_ui();
     void build_connect();
     void build_languageString();
     void build_icon();
-    QIcon getIcon(const QString& fileName);
 private:
+    /*类配置设置相关的函数*/
     void ini_GlobaComponet();
 private:
-    inline QString localizationString(const std::string stringId);
+    /*提炼函数*/
+    QIcon getIcon(const QString& fileName);
+    QString localizationString(const std::string stringId);
 private slots:
     void cbox_phoneNumber_checked_change();
     void cbox_user_checked_change();
     void pbtn_ok_clicked();
     void pbtn_cancel_clicked();
 public:
+    /*返回新增的账户信息*/
     QString Platform();
     QString Account();
     QString Phonenumber();

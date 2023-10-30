@@ -32,10 +32,17 @@ void DialogRegist::build_ui()
 
 void DialogRegist::build_connect()
 {
-    QObject::connect(ui->pbtn_cancel, &QPushButton::clicked, this, &DialogRegist::close);
-    QObject::connect(ui->ledit_account, &QLineEdit::textChanged, this, &DialogRegist::on_ledit_account_changed);
-    QObject::connect(ui->ledit_password, &QLineEdit::textChanged, this, &DialogRegist::on_ledit_password_changed);
-    QObject::connect(ui->ledit_passwordAgin, &QLineEdit::textChanged, this, &DialogRegist::on_ledit_password_again_changed);
+    QObject::connect(ui->pbtn_cancel, &QPushButton::clicked, 
+        this, &DialogRegist::close);
+
+    QObject::connect(ui->ledit_account, &QLineEdit::textChanged, 
+        this, &DialogRegist::on_ledit_account_changed);
+
+    QObject::connect(ui->ledit_password, &QLineEdit::textChanged, 
+        this, &DialogRegist::on_ledit_password_changed);
+
+    QObject::connect(ui->ledit_passwordAgin, &QLineEdit::textChanged,
+        this, &DialogRegist::on_ledit_password_again_changed);
 }
 
 bool DialogRegist::registAccount()
@@ -47,7 +54,7 @@ bool DialogRegist::registAccount()
     return result;
 }
 
-inline QString DialogRegist::localizationString(const std::string stringId)
+QString DialogRegist::localizationString(const std::string stringId)
 {
     return QString(QString::fromStdString(m_locStCom->getString(stringId)));
 }
@@ -93,6 +100,7 @@ void DialogRegist::build_languageString()
     ui->label_error->setText(localizationString("10"));
     ui->label_password->setText(localizationString("6"));
     ui->label_passwordAgain->setText(localizationString("9"));
+
     ui->pbtn_cancel->setText(localizationString("12"));
     ui->pbtn_ok->setText(localizationString("11"));
 }

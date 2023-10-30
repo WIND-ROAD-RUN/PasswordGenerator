@@ -15,7 +15,6 @@ private:
 public:
     Regist(const std::string& account, const std::string& password);
     ~Regist();
-    // 通过 RegistAbstract 继承
 };
 
 

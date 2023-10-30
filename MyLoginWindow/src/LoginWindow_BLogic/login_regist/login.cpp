@@ -2,8 +2,10 @@
 
 #include"accountStoreTranmist.h"
 
-Login::Login(const std::string& account, const std::string& password)
-    : LoginAbstract(account, password),m_accountStoreTranmsit(new AccountStoreTranmsit) {}
+Login::Login
+(const std::string& account, const std::string& password)
+    : LoginAbstract(account, password),
+    m_accountStoreTranmsit(new AccountStoreTranmsit) {}
 
 Login::~Login()
 {
@@ -13,7 +15,7 @@ Login::~Login()
 bool Login::check_Account()
 {
     if (m_accountStoreTranmsit->checkPassword(account(), password())
-        ==AccountStoreTranmsit::AccountStoreTranmsitResult::RightPassword) {
+        ==AccountStoreTranmsitResult::RightPassword) {
         return true; 
     }
     else { 

@@ -9,6 +9,7 @@ class RegistTransmit {
 private:
     std::string m_account;
     std::string m_password;
+private:
     Regist* m_regist;
 public:
     RegistTransmit(const std::string& account, const std::string& password);

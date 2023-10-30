@@ -9,13 +9,12 @@
 
 #include"LocalizationStringModule-XML.h"
 
-
-
 LocalizationStringManager::LocalizationStringManager(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::LocalizationStringManagerClass())
 {
     ui->setupUi(this);
+
     build_connect();
     build_ui();
 }
@@ -27,10 +26,17 @@ LocalizationStringManager::~LocalizationStringManager()
 
 void LocalizationStringManager::build_connect()
 {
-    QObject::connect(ui->pbtn_openFile,&QPushButton::clicked,this,&LocalizationStringManager::pbtn_openFile_clicked);
-    QObject::connect(ui->pbtn_search,&QPushButton::clicked,this,&LocalizationStringManager::pbtn_search_clicked);
-    QObject::connect(ui->pbtn_store, &QPushButton::clicked, this, &LocalizationStringManager::pbtn_store_clicked);
-    QObject::connect(ui->pbtn_saveData, &QPushButton::clicked, this, &LocalizationStringManager::pbtn_saveData_clicked);
+    QObject::connect(ui->pbtn_openFile,&QPushButton::clicked,
+        this,&LocalizationStringManager::pbtn_openFile_clicked);
+
+    QObject::connect(ui->pbtn_search,&QPushButton::clicked,
+        this,&LocalizationStringManager::pbtn_search_clicked);
+
+    QObject::connect(ui->pbtn_store, &QPushButton::clicked, 
+        this, &LocalizationStringManager::pbtn_store_clicked);
+
+    QObject::connect(ui->pbtn_saveData, &QPushButton::clicked, 
+        this, &LocalizationStringManager::pbtn_saveData_clicked);
 }
 
 void LocalizationStringManager::build_ui()

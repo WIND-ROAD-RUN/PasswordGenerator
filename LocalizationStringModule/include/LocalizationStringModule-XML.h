@@ -28,6 +28,7 @@ public:
     ~LocalizationStringXML() {}
 public:
     void setFilePath(const std::string& filePath) { m_filePath = filePath; }//设置文件路径
+    /*将数据转换为map*/
     bool getMap(std::unordered_map<std::string,std::string> & map,const std::string & language);
 public:
     // 通过 LocalizationStringModuleAbstract 继承
@@ -37,9 +38,10 @@ public:
 
     bool storeLocalString(const std::string& id, const std::string& language, const std::string& src) override;
    
+    /*加载数据文件*/
     bool loadFile()override;
 
-    // 通过 LocalizationStringModuleAbstract 继承
+    /*将内存中的数据保存在数据文件中*/
     bool saveFile() override;
 
     // 通过 LocalizationStringModuleAbstract 继承

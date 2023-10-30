@@ -2,7 +2,8 @@
 
 #include"regist.h"
 
-RegistTransmit::RegistTransmit(const std::string& account, const std::string& password)
+RegistTransmit::RegistTransmit
+(const std::string& account, const std::string& password)
     :m_regist(new Regist(account,password))
 {
 }

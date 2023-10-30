@@ -29,8 +29,8 @@ LoginWindow::LoginWindow(QWidget* parent)
     build_icon();
     build_ui();
     build_connect();
+    build_languageString();
     /*ui其他属性的设置*/
-    this->build_languageString(m_locStCom);
     this->setWindowFlag(Qt::WindowMinimizeButtonHint,true);
     this->setWindowFlag(Qt::WindowMaximizeButtonHint, false);
     this->setWindowFlag(Qt::CustomizeWindowHint, false);
@@ -46,16 +46,19 @@ LoginWindow::~LoginWindow()
     delete generatorWindow;
 }
 
-void LoginWindow::build_languageString(LocalizationStringLoaderXML* locStCom)
+void LoginWindow::build_languageString()
 {
     ui->pbtn_login->setText(localizationString("1"));
     ui->pbtn_regist->setText(localizationString("2"));
+
     ui->label_password->setText(localizationString("6"));
     ui->label_account->setText(localizationString("5"));
+    ui->label_accountPassError->setText(localizationString("7"));
+
     ui->cBox_LoginAuto->setText(localizationString("4"));
     ui->cBox_savePassword->setText(localizationString("3"));
+
     this->setWindowTitle(localizationString("1"));
-    ui->label_accountPassError->setText(localizationString("7"));
 }
 
 void LoginWindow::ini_GlobaComponet()
@@ -108,7 +111,7 @@ void LoginWindow::prepareForRun()
     accountSave->ini_accountTable();
 }
 
-inline QString LoginWindow::localizationString(const std::string stringId)
+QString LoginWindow::localizationString(const std::string stringId)
 {
     return QString(QString::fromStdString(m_locStCom->getString(stringId)));
 }
@@ -140,15 +143,28 @@ void LoginWindow::build_ui()
     ui->lEdit_password->setEchoMode(QLineEdit::Password);
 }
 
-inline void LoginWindow::build_connect()
+void LoginWindow::build_connect()
 {
-    QObject::connect(ui->pbtn_login, SIGNAL(clicked()), this, SLOT(pbtn_login_clicked()));
-    QObject::connect(ui->pbtn_regist, SIGNAL(clicked()), this, SLOT(pbtn_regist_clicked()));
-    QObject::connect(ui->ledit_account, &QLineEdit::textChanged, this, &LoginWindow::label_AccountPassError_cancel);
-    QObject::connect(ui->lEdit_password, &QLineEdit::textChanged, this, &LoginWindow::label_AccountPassError_cancel);
-    QObject::connect(ui->cBox_languageChange,&QComboBox::currentIndexChanged,this,&LoginWindow::cBox_languageChanged_indexChanged);
-    QObject::connect(ui->cBox_savePassword,&QCheckBox::stateChanged,this,&LoginWindow::cBox_savePassword_checkd);
-    QObject::connect(ui->cBox_LoginAuto, &QCheckBox::stateChanged, this, &LoginWindow::cBox_LoginAuto_checked);
+    QObject::connect(ui->pbtn_login, SIGNAL(clicked()), 
+        this, SLOT(pbtn_login_clicked()));
+
+    QObject::connect(ui->pbtn_regist, SIGNAL(clicked()),
+        this, SLOT(pbtn_regist_clicked()));
+
+    QObject::connect(ui->ledit_account, &QLineEdit::textChanged, 
+        this, &LoginWindow::label_AccountPassError_cancel);
+
+    QObject::connect(ui->lEdit_password, &QLineEdit::textChanged,
+        this, &LoginWindow::label_AccountPassError_cancel);
+
+    QObject::connect(ui->cBox_languageChange,&QComboBox::currentIndexChanged,
+        this,&LoginWindow::cBox_languageChanged_indexChanged);
+
+    QObject::connect(ui->cBox_savePassword,&QCheckBox::stateChanged,
+        this,&LoginWindow::cBox_savePassword_checkd);
+
+    QObject::connect(ui->cBox_LoginAuto, &QCheckBox::stateChanged, 
+        this, &LoginWindow::cBox_LoginAuto_checked);
 }
 
 void LoginWindow::build_icon()
@@ -180,7 +196,7 @@ void LoginWindow::closeEvent(QCloseEvent* event)
     }
 }
 
-inline void LoginWindow::set_label_accountPassError()
+void LoginWindow::set_label_accountPassError()
 {
     QPalette plet = ui->label_accountPassError->palette();
     plet.setColor(QPalette::WindowText, Qt::red);
@@ -188,7 +204,7 @@ inline void LoginWindow::set_label_accountPassError()
     ui->label_accountPassError->setVisible(false);
 }
 
-inline void LoginWindow::set_loginGroup()
+void LoginWindow::set_loginGroup()
 {
     QFont font = ui->label_account->font();
     font.setBold(true);
@@ -202,7 +218,7 @@ inline void LoginWindow::set_loginGroup()
     ui->lEdit_password->setText("");
 }
 
-inline void LoginWindow::set_WindowBackground()
+void LoginWindow::set_WindowBackground()
 {
     ui->ptEdit_picture->appendPlainText(R"(软件数据保存在c:\PragrameData\PasswordManager),账户密码数据均在其中)");
     ui->ptEdit_accountIcon->appendPlainText("开发者(ROADWIND)，仅供内部测试使用");
@@ -284,7 +300,7 @@ void LoginWindow::cBox_languageChanged_indexChanged()
             m_cfgLoCom->storeConfig();
             m_locStCom->setLanguage("CHN");
             m_locStCom->loadData();
-            this->build_languageString(m_locStCom);
+            build_languageString();
             break;
         }
     case 1:
@@ -296,7 +312,7 @@ void LoginWindow::cBox_languageChanged_indexChanged()
             m_cfgLoCom->storeConfig();
             m_locStCom->setLanguage("USA");
             m_locStCom->loadData();
-            this->build_languageString(m_locStCom);
+            build_languageString();
             break;
         }
     }

@@ -11,10 +11,12 @@ DialogAddExistAccount::DialogAddExistAccount(QWidget *parent)
 {
     ui->setupUi(this);
     ini_GlobaComponet();
+
     build_languageString();
     build_connect();
     build_ui();
     build_icon();
+
     setFixedSize(this->width(), this->height());
 }
 
@@ -30,8 +32,11 @@ void DialogAddExistAccount::build_ui()
 
 void DialogAddExistAccount::build_connect()
 {
-    QObject::connect(ui->pbtn_cancel,&QPushButton::clicked,this,&DialogAddExistAccount::pbtn_cancel_clicked);
-    QObject::connect(ui->pbtn_ok, &QPushButton::clicked, this, &DialogAddExistAccount::pbtn_ok_clicked);
+    QObject::connect(ui->pbtn_cancel,&QPushButton::clicked,
+        this,&DialogAddExistAccount::pbtn_cancel_clicked);
+
+    QObject::connect(ui->pbtn_ok, &QPushButton::clicked, 
+        this, &DialogAddExistAccount::pbtn_ok_clicked);
 }
 
 void DialogAddExistAccount::build_languageString()
@@ -39,8 +44,10 @@ void DialogAddExistAccount::build_languageString()
     ui->label_platform->setText(localizationString("53")+":");
     ui->label_account->setText(localizationString("54") + ":");
     ui->label_password->setText(localizationString("59") + ":");
+
     ui->pbtn_ok->setText(localizationString("11"));
     ui->pbtn_cancel->setText(localizationString("12"));
+
     this->setWindowTitle(localizationString("40"));
 }
 
@@ -61,7 +68,7 @@ void DialogAddExistAccount::ini_GlobaComponet()
     m_locstringLoader = LocalizationStringLoaderXML::getInstance();
 }
 
-inline QString DialogAddExistAccount::localizationString(const std::string stringId)
+QString DialogAddExistAccount::localizationString(const std::string stringId)
 {
     return QString(QString::fromStdString(m_locstringLoader->getString(stringId)));
 }

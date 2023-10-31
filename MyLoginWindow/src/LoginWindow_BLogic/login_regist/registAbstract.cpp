@@ -4,6 +4,7 @@ bool RegistAbstract::regist()
 {
     if (have_account_if()) { return false; }
     std::string encPassword = encrpt(m_password);
+    set_password(encPassword);
     if (save_account()) { return true; }
     else { return false; }
 }

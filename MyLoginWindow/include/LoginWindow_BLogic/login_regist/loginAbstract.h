@@ -11,6 +11,7 @@ private:
 
 private:
     virtual bool check_Account() = 0;
+    virtual std::string encrpy(const std::string& password) = 0;
 
 public:
     LoginAbstract(const std::string& account, const std::string& password)

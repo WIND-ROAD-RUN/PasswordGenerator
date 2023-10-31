@@ -15,10 +15,14 @@ public:
     Login(const std::string& account, const std::string& password);
 
     ~Login();
-
+private:
+    std::string sha256(const std::string& data);
 public:
     // 通过 loginAbstract 继承
     bool check_Account() override;
+
+    // 通过 LoginAbstract 继承
+    std::string encrpy(const std::string& password) override;
 };
 
 

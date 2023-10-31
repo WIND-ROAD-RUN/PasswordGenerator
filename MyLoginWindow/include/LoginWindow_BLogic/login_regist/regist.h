@@ -15,6 +15,9 @@ private:
 
     bool save_account() override;
 
+    virtual std::string encrpt(const std::string& password)override;
+
+    std::string sha256(const std::string& data);
 public:
     Regist(const std::string& account, const std::string& password);
 

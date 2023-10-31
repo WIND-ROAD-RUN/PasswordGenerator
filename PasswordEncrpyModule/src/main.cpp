@@ -1,8 +1,8 @@
-#include<iostream>
-
-using namespace std;
+#include <openssl/sha.h>
+#include <iostream>
+#include <string>
 
 int main() {
-
     return 0;
+
 }

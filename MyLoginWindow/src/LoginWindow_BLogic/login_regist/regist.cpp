@@ -2,6 +2,8 @@
 
 #include"accountStoreTranmist.h"
 #include <openssl/sha.h>
+#include<sstream>
+#include <iomanip>
 
 std::string Regist::sha256(const std::string& data)
 {
@@ -12,12 +14,14 @@ std::string Regist::sha256(const std::string& data)
     unsigned char hash[SHA256_DIGEST_LENGTH];
     SHA256_Final(hash, &sha256);
 
-    std::string hashString;
-    for (int i = 0; i < SHA256_DIGEST_LENGTH; i++) {
-        hashString += hash[i];
+    std::stringstream ss;
+    ss << std::hex << std::uppercase;
+
+    for (int i = 0; i < 32; i++) {
+        ss << std::setw(2) << std::setfill('0') << static_cast<int>(hash[i]);
     }
 
-    return hashString;
+    return ss.str();
 }
 
 Regist::Regist

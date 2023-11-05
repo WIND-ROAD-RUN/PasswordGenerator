@@ -1,6 +1,10 @@
 #include "AccountTableXML.h"
-
+#include <openssl/evp.h>
+#include <openssl/rand.h>
 #include <fstream>
+#include<sstream>
+#include <iomanip>
+#include <openssl/sha.h>
 
 ErrorAccountTableModule AccountTableXML::NewAccountTable(const ATMAstring& fileName)
 {
@@ -464,8 +468,6 @@ ATMAAccountList AccountTableXML::getAccountList(const ATMAstring& platform)
     }
     return std::move(result);
 }
-
-
 
 void AccountTableXML::setNewFile(const std::string& filePath,const std::string & UID)
 {

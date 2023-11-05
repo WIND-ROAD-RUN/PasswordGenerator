@@ -38,6 +38,8 @@ public:
         return m_instance;
     }
     ~PortalAccountTable();
+private:
+    std::string getKey();
 public:
     void setFilePath(const ATMAstring& filePath) { m_filePath = filePath; }
     void setUID(const ATMAstring& UID) { m_UID = UID; }

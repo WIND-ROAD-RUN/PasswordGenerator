@@ -4,6 +4,10 @@
 #include"PasswordEncrpySimplyAch.h"
 
 #include<algorithm>
+#include <fstream>
+#include<sstream>
+#include <iomanip>
+#include <openssl/sha.h>
 
 PortalAccountTable* PortalAccountTable::m_instance = nullptr;
 
@@ -27,12 +31,33 @@ PortalAccountTable::~PortalAccountTable()
     delete m_EncrpyCom;
 }
 
+std::string PortalAccountTable::getKey()
+{
+    const auto& data = m_UID;
+    SHA256_CTX sha256;
+    SHA256_Init(&sha256);
+    SHA256_Update(&sha256, data.c_str(), data.length());
+
+    unsigned char hash[SHA256_DIGEST_LENGTH];
+    SHA256_Final(hash, &sha256);
+
+    std::stringstream ss;
+    ss << std::hex << std::uppercase;
+
+    for (int i = 0; i < 32; i++) {
+        ss << std::setw(2) << std::setfill('0') << static_cast<int>(hash[i]);
+    }
+
+    return ss.str();
+}
+
 ErrorPortalAccountTable PortalAccountTable::ini_portal()
 {
     if (m_filePath.empty()) { return ErrorPortalAccountTable::PATH_ERROR; }
     
     m_accountTableXML->setFilePath(m_filePath);
     m_accountTableXML->setUID(m_UID);
+    m_EncrpyCom->setKey(getKey());
     
     auto iniResult=m_accountTableXML->ini_module();
     if (iniResult!=ErrorAccountTableModule::No_ERROR) {

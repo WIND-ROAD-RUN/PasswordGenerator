@@ -157,6 +157,9 @@
     <ProjectReference Include="..\PasswordGenerator\PasswordGenerator.vcxproj">
       <Project>{7a686c9d-2011-4f86-a51b-6dd9348571c9}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\PortalAccountTable\PortalAccountTable.vcxproj">
+      <Project>{3d852240-1ca2-4c5d-8476-b0aaace450a8}</Project>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Xml Include="localizationString.xml" />

@@ -6,14 +6,23 @@
 class PasswordEncrpyModuleAbstract {
 public:
     AccountInfo encrpyForUser(AccountInfo & accountInfo);
+
     virtual AccountInfo  encrpyForSave(const AccountInfo& accountInfo)=0;
+
+    virtual void  encrpyForSave(AccountInfo& accountInfo) = 0;
+
     virtual AccountInfo decrptForUser(const AccountInfo& accountInfo)=0;
+    
+    virtual void decrptForUser(AccountInfo& accountInfo) = 0;
+
 protected:
     virtual void encrpy_PasswordLength(AccountInfo& accountInfo)=0;
-    virtual void encrpy_haveSpecialSymbols(AccountInfo& accountInfo)=0;
-    virtual void encrpy_haveUppercaseLowercase(AccountInfo& accountInfo)=0;
-    virtual void encrpy_EncrpyIsIrreversible(AccountInfo& accountInfo)=0;
 
+    virtual void encrpy_haveSpecialSymbols(AccountInfo& accountInfo)=0;
+
+    virtual void encrpy_haveUppercaseLowercase(AccountInfo& accountInfo)=0;
+
+    virtual void encrpy_EncrpyIsIrreversible(AccountInfo& accountInfo)=0;
 };
 
 

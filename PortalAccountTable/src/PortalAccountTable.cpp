@@ -51,7 +51,8 @@ std::string PortalAccountTable::getKey()
     return ss.str();
 }
 
-ErrorPortalAccountTable PortalAccountTable::ini_portal()
+ErrorPortalAccountTable 
+PortalAccountTable::ini_portal()
 {
     if (m_filePath.empty()) { return ErrorPortalAccountTable::PATH_ERROR; }
     
@@ -64,9 +65,9 @@ ErrorPortalAccountTable PortalAccountTable::ini_portal()
         return ErrorPortalAccountTable::initialization_ERROR;
     }
     auto Platformlist = m_accountTableXML->getPlatformList();
-    for (const auto & platform:Platformlist) {
+    for (auto & platform:Platformlist) {
         auto accountList = m_accountTableXML->getAccountList(platform);
-        for (const auto & account:accountList) {
+        for (auto & account:accountList) {
             m_EncrpyCom->decrptForUser(account);
         }
         m_map[platform] = accountList;
@@ -74,12 +75,15 @@ ErrorPortalAccountTable PortalAccountTable::ini_portal()
     return ErrorPortalAccountTable::NO_ERROR;
 }
 
-ErrorAccountTableModule PortalAccountTable::save_change()
+ErrorAccountTableModule 
+PortalAccountTable::save_change()
 {
    return m_accountTableXML->save();
 }
 
-AccountInfo PortalAccountTable::search_account(const ATMAstring& platform, const ATMAstring& accountName)
+AccountInfo 
+PortalAccountTable::search_account
+(const ATMAstring& platform, const ATMAstring& accountName)
 {
     AccountInfo result;
     auto accountListPair = m_map.find(platform);
@@ -104,7 +108,9 @@ AccountInfo PortalAccountTable::search_account(const ATMAstring& platform, const
     return result;
 }
 
-ErrorAccountTableModule PortalAccountTable::set_account(const ATMAstring& platform, const AccountInfo& accountInfo)
+ErrorAccountTableModule 
+PortalAccountTable::set_account
+(const ATMAstring& platform, const AccountInfo& accountInfo)
 {
     AccountInfo result;
     auto accountListPair = m_map.find(platform);
@@ -134,7 +140,9 @@ ErrorAccountTableModule PortalAccountTable::set_account(const ATMAstring& platfo
     return ErrorAccountTableModule::No_ERROR;
 }
 
-ErrorAccountTableModule PortalAccountTable::newAccount(const ATMAstring& platform, const AccountInfo& accountInfo)
+ErrorAccountTableModule 
+PortalAccountTable::newAccount
+(const ATMAstring& platform, const AccountInfo& accountInfo)
 {
     auto accountListPair = m_map.find(platform);
     if (accountListPair == m_map.end()) {
@@ -161,7 +169,9 @@ ErrorAccountTableModule PortalAccountTable::newAccount(const ATMAstring& platfor
     return ErrorAccountTableModule::No_ERROR;
 }
 
-ErrorAccountTableModule PortalAccountTable::newPlatform(const ATMAstring& platform)
+ErrorAccountTableModule 
+PortalAccountTable::newPlatform
+(const ATMAstring& platform)
 {
     auto accountListPair = m_map.find(platform);
     if (accountListPair != m_map.end()) {
@@ -174,7 +184,9 @@ ErrorAccountTableModule PortalAccountTable::newPlatform(const ATMAstring& platfo
     return ErrorAccountTableModule::No_ERROR;
 }
 
-ErrorAccountTableModule PortalAccountTable::deletePlatform(const ATMAstring& platform)
+ErrorAccountTableModule 
+PortalAccountTable::deletePlatform
+(const ATMAstring& platform)
 {
     auto accountListPair = m_map.find(platform);
     if (accountListPair == m_map.end()) {
@@ -186,7 +198,9 @@ ErrorAccountTableModule PortalAccountTable::deletePlatform(const ATMAstring& pla
     return deleteResult;
 }
 
-ErrorAccountTableModule PortalAccountTable::deleteAccount(const ATMAstring& platform, const ATMAstring& accountName)
+ErrorAccountTableModule 
+PortalAccountTable::deleteAccount
+(const ATMAstring& platform, const ATMAstring& accountName)
 {
     auto accountListPair = m_map.find(platform);
     if (accountListPair == m_map.end()) {
@@ -210,14 +224,21 @@ ErrorAccountTableModule PortalAccountTable::deleteAccount(const ATMAstring& plat
     return deleteResult;
 }
 
-ATMAStringList  PortalAccountTable::PlatformList()
+ATMAStringList  
+PortalAccountTable::PlatformList()
 {
     return std::move(m_accountTableXML->getPlatformList());
 }
 
-ATMAAccountList PortalAccountTable::AccountList(const ATMAstring& platform)
+ATMAAccountList 
+PortalAccountTable::AccountList
+(const ATMAstring& platform)
 {
-    return std::move(m_accountTableXML->getAccountList(platform));
+    auto accountList = m_accountTableXML->getAccountList(platform);
+    for (auto & account:accountList) {
+        m_EncrpyCom->decrptForUser(account);
+    }
+    return std::move(accountList);
 }
 
 ATMAint PortalAccountTable::AccountNumber() {
@@ -229,12 +250,16 @@ ATMAint PortalAccountTable::AccountNumber() {
     return result;
 }
 
-ATMAstring PortalAccountTable::encrpyForUser(const AccountInfo& account) {
+ATMAstring 
+PortalAccountTable::encrpyForUser
+(const AccountInfo& account) {
    auto result= m_EncrpyCom->encrpyForSave(account);
    return result.password;
 }
 
-void PortalAccountTable::setNewFile(const std::string& filePath, const std::string& UID)
+void 
+PortalAccountTable::setNewFile
+(const std::string& filePath, const std::string& UID)
 {
     m_accountTableXML->setNewFile(filePath,UID);
 }

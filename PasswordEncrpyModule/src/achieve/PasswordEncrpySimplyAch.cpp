@@ -103,15 +103,23 @@ std::string PasswordEncrpySimplyAch::fromHex(const std::string& input)
 AccountInfo PasswordEncrpySimplyAch::encrpyForSave(const AccountInfo& accountInfo)
 {
     AccountInfo result = accountInfo;
-    result.password = encryptAES(accountInfo.password,m_key);
+    encrpyForSave(result);
     return result;
+}
+
+void PasswordEncrpySimplyAch::encrpyForSave(AccountInfo& accountInfo) {
+    accountInfo.password = encryptAES(accountInfo.password, m_key);
 }
 
 AccountInfo PasswordEncrpySimplyAch::decrptForUser(const AccountInfo& accountInfo)
 {
     AccountInfo result = accountInfo;
-    result.password = decryptAES(accountInfo.password, m_key);
+    decrptForUser(result);
     return result;
+}
+
+void PasswordEncrpySimplyAch::decrptForUser(AccountInfo& accountInfo) {
+    accountInfo.password= decryptAES(accountInfo.password, m_key);
 }
 
 void PasswordEncrpySimplyAch::encrpy_PasswordLength(AccountInfo& accountInfo)

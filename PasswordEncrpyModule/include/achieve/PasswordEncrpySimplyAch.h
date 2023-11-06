@@ -2,39 +2,55 @@
 #define PASSWORDENCRPYSIMPLYACH_H_
 
 #include<string>
+#include<vector>
 #include"PasswordEncrpyModuleAbstract.h"
 
 class PasswordEncrpySimplyAch
     :public PasswordEncrpyModuleAbstract {
-private:
+public:
     std::string m_key;
+public:
+    std::string m_passwordHash;
 private:
     std::string encryptAES(const std::string& plaintext, const std::string& key);
 
     std::string decryptAES(const std::string& ciphertext, const std::string& key);
 
-    std::string toHex(const std::string& input);
+    std::string toHex_forString(const std::string& input);
 
-    std::string fromHex(const std::string& input);
-
+    std::string fromHex_forString(const std::string& input);
+public:
+    std::string getHash(const std::string& data);
+    std::string combineHash(const std::string& first, const std::string second);
+    std::vector<uint32_t> hashToVector(const std::string& hexString);
+    std::string getPasswordPart(uint32_t value, const std::string& characterSet);
+    std::string getSpecialSymbols(uint32_t value);
+    std::string getNumber(uint32_t value);
+    std::string getSmallLetter(uint32_t value);
+    std::string getBigLetter(uint32_t value);
+    std::string getBigAndSmallLetter(uint32_t forSmall, uint32_t forBig);
 public:
     void setKey(const std::string& key) { m_key = key; }
 
-    AccountInfo encrpyForSave(const AccountInfo& accountInfo) override;
+    AccountInfo encrptForSave(const AccountInfo& accountInfo) override;
 
-    void encrpyForSave(AccountInfo& accountInfo) override;
+    void encrptForSave(AccountInfo& accountInfo) override;
 
     AccountInfo decrptForUser(const AccountInfo& accountInfo) override;
 
     void decrptForUser(AccountInfo& accountInfo) override;
 
-    void encrpy_PasswordLength(AccountInfo& accountInfo) override;
+    void encrpt_PasswordLength(AccountInfo& accountInfo) override;
 
-    void encrpy_haveSpecialSymbols(AccountInfo& accountInfo) override;
+    void encrpt_haveSpecialSymbols(AccountInfo& accountInfo) override;
 
-    void encrpy_haveUppercaseLowercase(AccountInfo& accountInfo) override;
+    void encrpt_haveUppercaseLowercase(AccountInfo& accountInfo) override;
 
-    void encrpy_EncrpyIsIrreversible(AccountInfo& accountInfo) override;
+    void encrpt_EncrpyIsIrreversible(AccountInfo& accountInfo) override;
+
+
+    // 通过 PasswordEncrpyModuleAbstract 继承
+    void encrpt_build_hash(AccountInfo& accountInfo) override;
 
 };
 

@@ -15,7 +15,7 @@ Login::~Login()
     delete m_accountStoreTranmsit;
 }
 
-std::string Login::sha256(const std::string& data)
+std::string Login::encrpt_bySha256(const std::string& data)
 {
     SHA256_CTX sha256;
     SHA256_Init(&sha256);
@@ -36,7 +36,7 @@ std::string Login::sha256(const std::string& data)
 
 bool Login::check_Account()
 {
-    if (m_accountStoreTranmsit->checkPassword(account(), encrpy(password()))
+    if (m_accountStoreTranmsit->checkPassword(account(), encrpt(password()))
         ==AccountStoreTranmsitResult::RightPassword) {
         return true; 
     }
@@ -45,7 +45,7 @@ bool Login::check_Account()
     }
 }
 
-std::string Login::encrpy(const std::string & password)
+std::string Login::encrpt(const std::string & password)
 {
-    return sha256(password);
+    return encrpt_bySha256(password);
 }

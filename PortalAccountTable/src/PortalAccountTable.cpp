@@ -130,7 +130,7 @@ PortalAccountTable::set_account
     }
 
 
-    auto saveFileResult=m_accountTableXML->setAccount(platform, m_EncrpyCom->encrpyForSave(accountInfo));
+    auto saveFileResult=m_accountTableXML->setAccount(platform, m_EncrpyCom->encrptForSave(accountInfo));
     if (saveFileResult!=ErrorAccountTableModule::No_ERROR) {
         return saveFileResult;
     }
@@ -160,7 +160,7 @@ PortalAccountTable::newAccount
         return ErrorAccountTableModule::AccountAlreadyExist;
     }
 
-    auto saveFileResult= m_accountTableXML->NewAccount(platform, m_EncrpyCom->encrpyForSave(accountInfo));
+    auto saveFileResult= m_accountTableXML->NewAccount(platform, m_EncrpyCom->encrptForSave(accountInfo));
     if (saveFileResult != ErrorAccountTableModule::No_ERROR) { return saveFileResult; }
 
     accountList.push_back(accountInfo);
@@ -253,7 +253,7 @@ ATMAint PortalAccountTable::AccountNumber() {
 ATMAstring 
 PortalAccountTable::encrpyForUser
 (const AccountInfo& account) {
-   auto result= m_EncrpyCom->encrpyForSave(account);
+   auto result= m_EncrpyCom->encrptForSave(account);
    return result.password;
 }
 

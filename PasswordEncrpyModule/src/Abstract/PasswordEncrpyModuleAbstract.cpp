@@ -1,11 +1,13 @@
 #include "PasswordEncrpyModuleAbstract.h"
 
-AccountInfo PasswordEncrpyModuleAbstract::encrpyForUser(AccountInfo& accountInfo)
+AccountInfo PasswordEncrpyModuleAbstract::encrpyForGeneratePassoword(const AccountInfo & accountInfo)
 {
-    encrpy_haveSpecialSymbols(accountInfo);
-    encrpy_haveUppercaseLowercase(accountInfo);
-    encrpy_EncrpyIsIrreversible(accountInfo);
-    encrpy_PasswordLength(accountInfo);
+    AccountInfo result = accountInfo;
+    encrpt_build_hash(result);
+    encrpt_haveSpecialSymbols(result);
+    encrpt_haveUppercaseLowercase(result);
+    encrpt_EncrpyIsIrreversible(result);
+    encrpt_PasswordLength(result);
 
-    return accountInfo;
+    return result;
 }   

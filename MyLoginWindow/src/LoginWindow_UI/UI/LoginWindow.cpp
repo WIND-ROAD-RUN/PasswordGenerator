@@ -121,6 +121,7 @@ void LoginWindow::build_ui()
     set_WindowBackground();
     set_label_accountPassError();
     set_loginGroup();
+
     auto language = m_cfgLoCom->Language();
     if (language == "CHN") {
         ui->cBox_languageChange->setCurrentIndex(0);
@@ -137,10 +138,12 @@ void LoginWindow::build_ui()
         ui->cBox_LoginAuto->setEnabled(false);
     }
     ui->ledit_account->setText(QString::fromStdString(m_cfgLoCom->LastLoginAccount().first));
+
     if (m_cfgLoCom->isRememberPassword()) {
         ui->lEdit_password->setText(QString::fromStdString(m_cfgLoCom->LastLoginAccount().second));
     }
     ui->lEdit_password->setEchoMode(QLineEdit::Password);
+
 }
 
 void LoginWindow::build_connect()

@@ -59,6 +59,8 @@ void PasswordGenerator::build_ui()
     /*图标的建立*/
     build_icon();
 
+    /*状态栏的组件补充*/
+    set_label_UID();
 }
 
 void PasswordGenerator::build_connect()
@@ -92,6 +94,9 @@ void PasswordGenerator::build_connect()
 
     QObject::connect(ui->act_deleteNode,&QAction::triggered,
         this,&PasswordGenerator::act_deleteNode_trigger);
+
+    QObject::connect(ui->act_exit,&QAction::triggered,
+        this,&PasswordGenerator::act_exit_trigger);
 }
 
 void PasswordGenerator::ini_config()
@@ -214,9 +219,12 @@ void PasswordGenerator::build_languageString()
     ui->act_deleteNode->setText(localizationString("32"));
     ui->act_displayAllAccount->setText(localizationString("36"));
     ui->act_saveInfo->setText(localizationString("37"));
+    ui->act_exit->setText(localizationString("63"));
+    ui->act_log_off->setText(localizationString("64"));
 
     this->setWindowTitle(localizationString("41"));
     ui->menu_edit->setTitle(localizationString("42"));
+    ui->menu_exit->setTitle(localizationString("65"));
 }
 
 QString PasswordGenerator::localizationString(const std::string stringId)
@@ -234,6 +242,8 @@ void PasswordGenerator::build_icon()
     ui->act_findAccount->setIcon(getIcon("people-search.png"));
     ui->act_storeExistAccount->setIcon(getIcon("people-plus-one.png"));
     ui->act_storeNewAccount->setIcon(getIcon("people-plus-one.png"));
+    ui->act_exit->setIcon(getIcon("exit.png"));
+    ui->act_log_off->setIcon(getIcon("switch_account.png"));
 
     ui->pbtn_displayAllAccount->setIcon(getIcon("every-user.png"));
     ui->pbtn_saveInfo->setIcon(getIcon("people-bottom.png"));
@@ -280,12 +290,39 @@ void PasswordGenerator::add_account_forTable(const AccountInfo& account, const Q
 
 }
 
+void PasswordGenerator::set_label_UID()
+{
+    m_label_UID_statue = new QLabel(this);
+    QString text_label_UID = "UID: ";
+    text_label_UID += m_UID;
+    m_label_UID_statue->setText(text_label_UID);
+    QFont label_UID_statue_font = m_label_UID_statue->font();
+    label_UID_statue_font.setPointSize(10);
+    m_label_UID_statue->setFont(label_UID_statue_font);
+    ui->statusBar->addWidget(m_label_UID_statue);
+}
+
 void PasswordGenerator::contextMenuEvent(QContextMenuEvent* event)
 {
 
     auto selectedIndexes = ui->treeView->selectionModel()->selectedIndexes();
     if (selectedIndexes.size() == 1) {
         m_menu->exec(event->globalPos());
+    }
+}
+
+void PasswordGenerator::closeEvent(QCloseEvent* event)
+{
+    QMessageBox::StandardButton result =
+        QMessageBox::question(this,
+            localizationString("14"),
+            localizationString("62"));
+    if (result==QMessageBox::Yes) {
+        act_saveInfo_trigger();
+        event->accept();
+    }
+    else if (result==QMessageBox::No) {
+        event->accept();
     }
 }
 
@@ -370,6 +407,11 @@ void PasswordGenerator::act_deleteNode_trigger()
     
 
     QMessageBox::information(this, localizationString("32"), localizationString("33"));
+}
+
+void PasswordGenerator::act_exit_trigger()
+{
+    this->close();
 }
 
 void PasswordGenerator::check_filePath()

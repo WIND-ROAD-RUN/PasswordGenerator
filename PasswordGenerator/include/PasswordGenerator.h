@@ -14,6 +14,7 @@ class AccountInfo;
 class DialogNewAccount;
 class DialogAddExistAccount;
 class LocalizationStringLoaderXML;
+class QLabel;
 
 class PasswordGenerator 
     : public QMainWindow
@@ -37,6 +38,8 @@ private:
     QItemSelectionModel* m_treeSelection{ nullptr };
 
     QMenu* m_menu{ nullptr };
+
+    QLabel* m_label_UID_statue;
 
 private:
     /*使用的全局数据模块*/
@@ -92,6 +95,8 @@ private:
 
     void add_account_forTable(const AccountInfo& account, const QString& platform, int row);
 
+    void set_label_UID();
+
 private:
     /*与配置相关的一些工作*/
     void check_filePath();
@@ -101,6 +106,8 @@ private:
 private:
     /*重写父类的函数*/
     void contextMenuEvent(QContextMenuEvent* event);
+
+    virtual void closeEvent(QCloseEvent* event)override;
 
 private slots:
     void build_treeSelectChange_for_table(const QModelIndex& index);
@@ -114,5 +121,7 @@ private slots:
     void act_storeExistAccount_trigger();
 
     void act_deleteNode_trigger();
+
+    void act_exit_trigger();
 
 };

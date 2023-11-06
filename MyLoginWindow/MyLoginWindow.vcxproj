@@ -168,6 +168,7 @@
     <Image Include="icon\data-display.png" />
     <Image Include="icon\edit-name.png" />
     <Image Include="icon\every-user.png" />
+    <Image Include="icon\exit.png" />
     <Image Include="icon\key.png" />
     <Image Include="icon\people-bottom.png" />
     <Image Include="icon\people-delete-one.png" />
@@ -176,6 +177,7 @@
     <Image Include="icon\people-search.png" />
     <Image Include="icon\people.png" />
     <Image Include="icon\peoples.png" />
+    <Image Include="icon\switch_account.png" />
     <Image Include="icon\tool.ico" />
     <Image Include="icon\user.png" />
   </ItemGroup>

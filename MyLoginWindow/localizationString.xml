@@ -244,4 +244,20 @@
 		<language language="CHN">密码长度最大值过大，应该小于20</language>
 		<language language="USA">The maximum password length is too large and should be less than 20</language>
 	</string>
+	<string id="62">
+		<language language="CHN">数据还未保存，是否保存并退出</language>
+		<language language="USA">The data has not been saved yet. Do you want to save and exit</language>
+	</string>
+	<string id="63">
+		<language language="CHN">退出</language>
+		<language language="USA">exit</language>
+	</string>
+	<string id="64">
+		<language language="CHN">切换账户</language>
+		<language language="USA">switch accounts</language>
+	</string>
+	<string id="65">
+		<language language="CHN">退出</language>
+		<language language="USA">Exit</language>
+	</string>
 </MyLocalizationStringModele_strings>

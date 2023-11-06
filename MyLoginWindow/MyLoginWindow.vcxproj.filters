@@ -166,6 +166,12 @@
     <Image Include="icon\edit-name.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="icon\exit.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="icon\switch_account.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="MyLoginWindow.rc">

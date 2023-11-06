@@ -242,6 +242,6 @@
 	</string>
 	<string id="61">
 		<language language="CHN">密码长度最大值过大，应该小于20</language>
-		<language language="USA">The minimum password length is too small and should be greater than 6. The maximum password length is too large and should be less than 20</language>
+		<language language="USA">The maximum password length is too large and should be less than 20</language>
 	</string>
 </MyLocalizationStringModele_strings>

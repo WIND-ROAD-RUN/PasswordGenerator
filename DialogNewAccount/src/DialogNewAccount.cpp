@@ -97,7 +97,9 @@ void DialogNewAccount::ini_GlobaComponet()
     m_locstringLoader = LocalizationStringLoaderXML::getInstance();
 }
 
-QString DialogNewAccount::localizationString(const std::string stringId)
+QString 
+DialogNewAccount::localizationString
+(const std::string stringId)
 {
     return QString(QString::fromStdString(m_locstringLoader->getString(stringId)));
 }

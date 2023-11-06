@@ -1,6 +1,7 @@
 #include "LocalizationStringModule-XML.h"
 
-bool LocalizationStringXML::getMap
+bool 
+LocalizationStringXML::getMap
 (std::unordered_map<std::string, std::string>& map, const std::string& language)
 {
     auto LocalStringNode = m_doc.child("MyLocalizationStringModele_strings");
@@ -13,7 +14,8 @@ bool LocalizationStringXML::getMap
     return true;
 }
 
-std::string LocalizationStringXML::localString
+std::string 
+LocalizationStringXML::localString
 (const std::string& id, const std::string & language)
 {
     std::string result{};
@@ -21,7 +23,8 @@ std::string LocalizationStringXML::localString
     return result;
 }
 
-bool LocalizationStringXML::storeLocalString
+bool 
+LocalizationStringXML::storeLocalString
 (const std::string& id, const std::string& language, const std::string& src)
 {
     auto LocalStringNode = m_doc.child("MyLocalizationStringModele_strings");
@@ -46,18 +49,21 @@ bool LocalizationStringXML::storeLocalString
     return false;
 }
 
-bool LocalizationStringXML::loadFile()
+bool 
+LocalizationStringXML::loadFile()
 {
     if (m_doc.load_file(m_filePath.c_str())) { return true; }
     else { return false; }
 }
 
-bool LocalizationStringXML::saveFile()
+bool 
+LocalizationStringXML::saveFile()
 {
     return m_doc.save_file(m_filePath.c_str());
 }
 
-bool LocalizationStringXML::changeLocalString
+bool 
+LocalizationStringXML::changeLocalString
 (const std::string& id, const std::string& language, const std::string& src)
 {
     auto LocalStringNode = m_doc.child("MyLocalizationStringModele_strings");
@@ -71,7 +77,8 @@ bool LocalizationStringXML::changeLocalString
     return findLanguageNode.text().set(src.c_str());
 }
 
-bool LocalizationStringXML::localString
+bool 
+LocalizationStringXML::localString
 (std::string& target, const std::string& id, const std::string& language)
 {
     auto LocalStringNode = m_doc.child("MyLocalizationStringModele_strings");

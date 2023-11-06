@@ -8,7 +8,9 @@
 #include <chrono>
 #include <ctime>
 
-std::string PasswordEncrpySimplyAch::encryptAES(const std::string& plaintext, const std::string& key)
+std::string 
+PasswordEncrpySimplyAch::encryptAES
+(const std::string& plaintext, const std::string& key)
 {
     // 设置密钥和初始化向量
     unsigned char iv[EVP_MAX_IV_LENGTH];
@@ -44,7 +46,9 @@ std::string PasswordEncrpySimplyAch::encryptAES(const std::string& plaintext, co
     return toHex_forString(ivData + encryptedData);
 }
 
-std::string PasswordEncrpySimplyAch::decryptAES(const std::string& ciphertext, const std::string& key)
+std::string 
+PasswordEncrpySimplyAch::decryptAES
+(const std::string& ciphertext, const std::string& key)
 {
     // 提取初始化向量和加密后的数据
     std::string hexData = fromHex_forString(ciphertext);
@@ -80,7 +84,9 @@ std::string PasswordEncrpySimplyAch::decryptAES(const std::string& ciphertext, c
     return decryptedData;
 }
 
-std::string PasswordEncrpySimplyAch::toHex_forString(const std::string& input)
+std::string 
+PasswordEncrpySimplyAch::toHex_forString
+(const std::string& input)
 {
     std::stringstream ss;
     ss << std::hex << std::setfill('0');
@@ -90,7 +96,9 @@ std::string PasswordEncrpySimplyAch::toHex_forString(const std::string& input)
     return ss.str();
 }
 
-std::string PasswordEncrpySimplyAch::fromHex_forString(const std::string& input)
+std::string 
+PasswordEncrpySimplyAch::fromHex_forString
+(const std::string& input)
 {
     std::string output;
     output.reserve(input.length() / 2);
@@ -102,7 +110,8 @@ std::string PasswordEncrpySimplyAch::fromHex_forString(const std::string& input)
     return output;
 }
 
-std::string PasswordEncrpySimplyAch::getCurrentTime()
+std::string 
+PasswordEncrpySimplyAch::getCurrentTime()
 {
     auto now = std::chrono::system_clock::now();
     auto time = std::chrono::system_clock::to_time_t(now);
@@ -111,7 +120,9 @@ std::string PasswordEncrpySimplyAch::getCurrentTime()
     return std::string(buffer);
 }
 
-std::string PasswordEncrpySimplyAch::getHash(const std::string& data)
+std::string 
+PasswordEncrpySimplyAch::getHash
+(const std::string& data)
 {
     SHA256_CTX sha256;
     SHA256_Init(&sha256);
@@ -130,12 +141,16 @@ std::string PasswordEncrpySimplyAch::getHash(const std::string& data)
     return ss.str();
 }
 
-std::string PasswordEncrpySimplyAch::combineHash(const std::string& first, const std::string second)
+std::string 
+PasswordEncrpySimplyAch::combineHash
+(const std::string& first, const std::string second)
 {
     return getHash(first + second);
 }
 
-std::vector<uint32_t> PasswordEncrpySimplyAch::hashToVector(const std::string& hexString)
+std::vector<uint32_t> 
+PasswordEncrpySimplyAch::hashToVector
+(const std::string& hexString)
 {
     std::vector<uint32_t> result;
     for (size_t i = 0; i < hexString.size(); i += 8) {
@@ -148,7 +163,9 @@ std::vector<uint32_t> PasswordEncrpySimplyAch::hashToVector(const std::string& h
     return result;
 }
 
-std::string PasswordEncrpySimplyAch::getPasswordPart(uint32_t value, const std::string& characterSet)
+std::string 
+PasswordEncrpySimplyAch::getPasswordPart
+(uint32_t value, const std::string& characterSet)
 {
     std::string result;
     while (value > 0) {
@@ -159,31 +176,41 @@ std::string PasswordEncrpySimplyAch::getPasswordPart(uint32_t value, const std::
     return result;
 }
 
-std::string PasswordEncrpySimplyAch::getSpecialSymbols(uint32_t value)
+std::string 
+PasswordEncrpySimplyAch::getSpecialSymbols
+(uint32_t value)
 {
     std::string characterSet = R"(!@#$%^&*)";
     return getPasswordPart(value, characterSet);
 }
 
-std::string PasswordEncrpySimplyAch::getNumber(uint32_t value)
+std::string 
+PasswordEncrpySimplyAch::getNumber
+(uint32_t value)
 {
     std::string characterSet = R"(192837465)";
     return getPasswordPart(value, characterSet);
 }
 
-std::string PasswordEncrpySimplyAch::getSmallLetter(uint32_t value)
+std::string 
+PasswordEncrpySimplyAch::getSmallLetter
+(uint32_t value)
 {
     std::string characterSet = R"(abcdefghijklmnopqrstuvwxyz)";
     return getPasswordPart(value, characterSet);
 }
 
-std::string PasswordEncrpySimplyAch::getBigLetter(uint32_t value)
+std::string 
+PasswordEncrpySimplyAch::getBigLetter
+(uint32_t value)
 {
     std::string characterSet = R"(ABCDEFGHIJKLMNOPQRSTUVWXYZ)";
     return getPasswordPart(value, characterSet);
 }
 
-std::string PasswordEncrpySimplyAch::getBigAndSmallLetter(uint32_t forSmall, uint32_t forBig)
+std::string 
+PasswordEncrpySimplyAch::getBigAndSmallLetter
+(uint32_t forSmall, uint32_t forBig)
 {
     std::string result;
     auto small = getSmallLetter(forSmall);
@@ -197,29 +224,39 @@ std::string PasswordEncrpySimplyAch::getBigAndSmallLetter(uint32_t forSmall, uin
     return result;
 }
 
-AccountInfo PasswordEncrpySimplyAch::encrptForSave(const AccountInfo& accountInfo)
+AccountInfo 
+PasswordEncrpySimplyAch::encrptForSave
+(const AccountInfo& accountInfo)
 {
     AccountInfo result = accountInfo;
     encrptForSave(result);
     return result;
 }
 
-void PasswordEncrpySimplyAch::encrptForSave(AccountInfo& accountInfo) {
+void 
+PasswordEncrpySimplyAch::encrptForSave
+(AccountInfo& accountInfo) {
     accountInfo.password = encryptAES(accountInfo.password, m_key);
 }
 
-AccountInfo PasswordEncrpySimplyAch::decrptForUser(const AccountInfo& accountInfo)
+AccountInfo 
+PasswordEncrpySimplyAch::decrptForUser
+(const AccountInfo& accountInfo)
 {
     AccountInfo result = accountInfo;
     decrptForUser(result);
     return result;
 }
 
-void PasswordEncrpySimplyAch::decrptForUser(AccountInfo& accountInfo) {
+void 
+PasswordEncrpySimplyAch::decrptForUser
+(AccountInfo& accountInfo) {
     accountInfo.password= decryptAES(accountInfo.password, m_key);
 }
 
-void PasswordEncrpySimplyAch::encrpt_PasswordLength(AccountInfo& accountInfo)
+void 
+PasswordEncrpySimplyAch::encrpt_PasswordLength
+(AccountInfo& accountInfo)
 {
     std::string numberStr1 = getNumber(hashToVector(m_passwordHash)[3]);
     std::string numberStr2 = getNumber(hashToVector(m_passwordHash)[4]);
@@ -287,7 +324,9 @@ void PasswordEncrpySimplyAch::encrpt_PasswordLength(AccountInfo& accountInfo)
     accountInfo.password = password;
 }
 
-void PasswordEncrpySimplyAch::encrpt_haveSpecialSymbols(AccountInfo& accountInfo)
+void 
+PasswordEncrpySimplyAch::encrpt_haveSpecialSymbols
+(AccountInfo& accountInfo)
 {
     std::string specailSymbols{};
     if (accountInfo.haveSpecialSymbols) {
@@ -296,7 +335,9 @@ void PasswordEncrpySimplyAch::encrpt_haveSpecialSymbols(AccountInfo& accountInfo
     m_passwordSrc.push_back(specailSymbols);
 }
 
-void PasswordEncrpySimplyAch::encrpt_haveUppercaseLowercase(AccountInfo& accountInfo)
+void 
+PasswordEncrpySimplyAch::encrpt_haveUppercaseLowercase
+(AccountInfo& accountInfo)
 {
     std::string letterSymbols;
     if (accountInfo.haveUppercaseLowercase) {
@@ -309,14 +350,18 @@ void PasswordEncrpySimplyAch::encrpt_haveUppercaseLowercase(AccountInfo& account
 }
 
 /*密码位数至少为6位最多为20位*/
-void PasswordEncrpySimplyAch::encrpt_EncrpyIsIrreversible(AccountInfo& accountInfo)
+void 
+PasswordEncrpySimplyAch::encrpt_EncrpyIsIrreversible
+(AccountInfo& accountInfo)
 {
     if (accountInfo.EncrpyIsIrreversible) {
         m_passwordHash = combineHash(m_passwordHash, getHash(getCurrentTime()));
     }
 }
 
-void PasswordEncrpySimplyAch::encrpt_build_hash(AccountInfo& accountInfo)
+void 
+PasswordEncrpySimplyAch::encrpt_build_hash
+(AccountInfo& accountInfo)
 {
     m_passwordHash = getHash(m_key);
     m_passwordHash = combineHash(m_passwordHash, getHash(accountInfo.accountName));

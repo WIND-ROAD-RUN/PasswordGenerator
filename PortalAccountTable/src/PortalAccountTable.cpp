@@ -31,7 +31,8 @@ PortalAccountTable::~PortalAccountTable()
     delete m_EncrpyCom;
 }
 
-std::string PortalAccountTable::getKey()
+std::string 
+PortalAccountTable::getKey()
 {
     const auto& data = m_UID;
     SHA256_CTX sha256;

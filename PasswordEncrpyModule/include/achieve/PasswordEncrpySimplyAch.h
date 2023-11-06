@@ -10,6 +10,7 @@ class PasswordEncrpySimplyAch
 public:
     std::string m_key;
 public:
+    std::string m_platform;
     std::string m_passwordHash;
     std::vector<std::string> m_passwordSrc;
 private:
@@ -20,7 +21,10 @@ private:
     std::string toHex_forString(const std::string& input);
 
     std::string fromHex_forString(const std::string& input);
-public:
+
+    std::string getCurrentTime();
+
+private:
     std::string getHash(const std::string& data);
 
     std::string combineHash(const std::string& first, const std::string second);
@@ -40,6 +44,8 @@ public:
     std::string getBigAndSmallLetter(uint32_t forSmall, uint32_t forBig);
 
 public:
+    void setPlatform(const std::string platform) { m_platform = platform; }
+
     void clearPasswordData() { m_passwordSrc.clear(); }
 
     void setKey(const std::string& key) { m_key = key; }

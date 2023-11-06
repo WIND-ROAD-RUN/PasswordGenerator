@@ -34,8 +34,8 @@ void DialogNewAccount::build_ui()
     ui->ledit_user->setEnabled(false);
     ui->ledit_user->clear();
 
-    ui->sBox_passwordLengthMinimum->setValue(0);
-    ui->sBox_passwordLengthMaximum->setValue(0);
+    ui->sBox_passwordLengthMinimum->setValue(6);
+    ui->sBox_passwordLengthMaximum->setValue(20);
 
     ui->cBox_haveSpecalSymbols->setChecked(false);
     ui->cBox_haveUpperAndLowerCase->setChecked(false);
@@ -125,6 +125,16 @@ void DialogNewAccount::pbtn_ok_clicked()
         return;
     }
 
+    if (ui->sBox_passwordLengthMinimum->value()<6) {
+        QMessageBox::warning(this, localizationString("28"), localizationString("60"));
+        return;
+    }
+
+    if (ui->sBox_passwordLengthMaximum->value() > 20) {
+        QMessageBox::warning(this, localizationString("28"), localizationString("61"));
+        return;
+    }
+
     auto portal=PortalAccountTable::getInstance();
     
     auto AccountName=portal->search_account(Platform().toStdString(),Account().toStdString() );
@@ -132,7 +142,7 @@ void DialogNewAccount::pbtn_ok_clicked()
         QMessageBox::warning(this, localizationString("21"), localizationString("58"));
     }
     else {
-        m_password= portal->encrpyForUser(accountInfo()); 
+        m_password= portal->encrpyForUser(accountInfo(),ui->ledit_accountPlatform->text().toStdString() ); 
         this->accept();
     }
 }

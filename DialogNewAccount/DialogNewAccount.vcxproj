@@ -74,7 +74,7 @@
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(SolutionDir)\LocalConfigurationLoader\build\x64\Debug;$(SolutionDir)\LocalizationStringModule\build\x64\Debug;$(SolutionDir)\PortalAccountTable\build\x64\Debug;$(SolutionDir)\PasswordEncrpyModule\build\x64\Debug;$(SolutionDir)\AccountTableModule\build\x64\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>LocalizationStringModule-XML.obj;LocalizationStringLoader-XML.obj;PortalAccountTable.obj;PasswordEncrpySimplyAch.obj;AccountTableXML.obj;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>PasswordEncrpyModuleAbstract.obj;LocalizationStringModule-XML.obj;LocalizationStringLoader-XML.obj;PortalAccountTable.obj;PasswordEncrpySimplyAch.obj;AccountTableXML.obj;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -83,7 +83,7 @@
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(SolutionDir)\LocalizationStringModule\build\x64\Release;$(SolutionDir)\LocalConfigurationLoader\build\x64\Release;$(SolutionDir)\PortalAccountTable\build\x64\Release;$(SolutionDir)\PasswordEncrpyModule\build\x64\Release;$(SolutionDir)\AccountTableModule\build\x64\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>LocalizationStringModule-XML.obj;LocalizationStringLoader-XML.obj;PortalAccountTable.obj;PasswordEncrpySimplyAch.obj;AccountTableXML.obj;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>PasswordEncrpyModuleAbstract.obj;LocalizationStringModule-XML.obj;LocalizationStringLoader-XML.obj;PortalAccountTable.obj;PasswordEncrpySimplyAch.obj;AccountTableXML.obj;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="Configuration">

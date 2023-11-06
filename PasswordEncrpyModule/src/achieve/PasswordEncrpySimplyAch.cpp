@@ -5,6 +5,8 @@
 #include<sstream>
 #include <iomanip>
 #include <openssl/sha.h>
+#include <chrono>
+#include <ctime>
 
 std::string PasswordEncrpySimplyAch::encryptAES(const std::string& plaintext, const std::string& key)
 {
@@ -98,6 +100,15 @@ std::string PasswordEncrpySimplyAch::fromHex_forString(const std::string& input)
         output.push_back(byte);
     }
     return output;
+}
+
+std::string PasswordEncrpySimplyAch::getCurrentTime()
+{
+    auto now = std::chrono::system_clock::now();
+    auto time = std::chrono::system_clock::to_time_t(now);
+    char buffer[26];
+    ctime_s(buffer, sizeof buffer, &time);
+    return std::string(buffer);
 }
 
 std::string PasswordEncrpySimplyAch::getHash(const std::string& data)
@@ -214,6 +225,66 @@ void PasswordEncrpySimplyAch::encrpt_PasswordLength(AccountInfo& accountInfo)
     std::string numberStr2 = getNumber(hashToVector(m_passwordHash)[4]);
     m_passwordSrc.push_back(numberStr1);
     m_passwordSrc.push_back(numberStr2);
+
+    int predictLength = (accountInfo.passwordLength.first + accountInfo.passwordLength.second) / 2;
+
+    /*获取每一个密码单位类型的包含数量*/
+    int NumberForPasswordPart = 3;
+    if (accountInfo.haveSpecialSymbols) {
+        NumberForPasswordPart++;
+    }
+    NumberForPasswordPart = predictLength / NumberForPasswordPart;
+
+    std::string password;
+    for (int i = 0;i<NumberForPasswordPart;i++) {
+        if (m_passwordSrc[3].at(i) != std::string::npos) {
+            password.push_back(m_passwordSrc[3][i]);
+        }
+
+        if (accountInfo.haveSpecialSymbols) {
+            if (m_passwordSrc[0].at(i)!=std::string::npos) {
+                password.push_back(m_passwordSrc[0][i]);
+            }
+        }
+
+        if (m_passwordSrc[1].at(i) != std::string::npos) {
+              password.push_back(m_passwordSrc[1][i]);
+        }
+        
+        if (m_passwordSrc[2].at(i) != std::string::npos) {
+            password.push_back(m_passwordSrc[2][i]);
+        }
+
+    }
+
+    int passwordLength = password.size();
+
+    if (passwordLength<accountInfo.passwordLength.first) {
+        int extraNumber = accountInfo.passwordLength.first - passwordLength;
+
+        for (int i = 0; i < extraNumber; i++) {
+            if (i==0) {
+                /*补充一个大写字母*/
+                password.push_back(m_passwordSrc[1].at(1));
+            }
+            else if (m_passwordSrc[2].at(i) != std::string::npos) {
+                password.push_back(m_passwordSrc[2][i]);
+            }
+        }
+    }
+    passwordLength = password.size();
+
+    if (passwordLength< (predictLength+ accountInfo.passwordLength.first)/2) {
+        int extraNumber = (accountInfo.passwordLength.second - passwordLength) / 2;
+        int lastNumber = m_passwordSrc[2].size() - 1;
+        for (int i = 0;i<extraNumber;i++) {
+            if (m_passwordSrc[2].at(lastNumber - i) != std::string::npos) {
+                password.push_back(m_passwordSrc[3][lastNumber - i]);
+            }
+        }
+    }
+    
+    accountInfo.password = password;
 }
 
 void PasswordEncrpySimplyAch::encrpt_haveSpecialSymbols(AccountInfo& accountInfo)
@@ -237,14 +308,19 @@ void PasswordEncrpySimplyAch::encrpt_haveUppercaseLowercase(AccountInfo& account
     m_passwordSrc.push_back(letterSymbols);
 }
 
+/*密码位数至少为6位最多为20位*/
 void PasswordEncrpySimplyAch::encrpt_EncrpyIsIrreversible(AccountInfo& accountInfo)
 {
+    if (accountInfo.EncrpyIsIrreversible) {
+        m_passwordHash = combineHash(m_passwordHash, getHash(getCurrentTime()));
+    }
 }
 
 void PasswordEncrpySimplyAch::encrpt_build_hash(AccountInfo& accountInfo)
 {
     m_passwordHash = getHash(m_key);
-    m_passwordHash = getHash(accountInfo.accountName);
+    m_passwordHash = combineHash(m_passwordHash, getHash(accountInfo.accountName));
+    m_passwordHash = combineHash(m_passwordHash, getHash(m_platform));
     if (!accountInfo.phoneNumber.empty()) {
         m_passwordHash = combineHash(m_passwordHash,getHash(accountInfo.phoneNumber));
     }

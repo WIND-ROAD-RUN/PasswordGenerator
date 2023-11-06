@@ -252,8 +252,11 @@ ATMAint PortalAccountTable::AccountNumber() {
 
 ATMAstring 
 PortalAccountTable::encrpyForUser
-(const AccountInfo& account) {
-   auto result= m_EncrpyCom->encrptForSave(account);
+(const AccountInfo& account, const ATMAstring & platform) {
+    m_EncrpyCom->setKey(getKey());
+    m_EncrpyCom->setPlatform(platform);
+    m_EncrpyCom->clearPasswordData();
+   auto result= m_EncrpyCom->encrpyForGeneratePassoword(account);
    return result.password;
 }
 

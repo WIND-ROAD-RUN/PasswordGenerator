@@ -83,7 +83,7 @@ public:
 
     ATMAint AccountNumber();
 
-    ATMAstring encrpyForUser(const AccountInfo & account);
+    ATMAstring encrpyForUser(const AccountInfo & account, const ATMAstring & platform);
 
 public:
     /*当使用空的数据文件（新的数据文件）的时候使用这个函数初始化这个文件保证数据文件的格式正确以供使用*/

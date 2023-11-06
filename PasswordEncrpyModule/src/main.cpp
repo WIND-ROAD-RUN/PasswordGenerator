@@ -18,19 +18,19 @@ void printAll(std::vector<std::string> passwordSrc) {
 
 int main() {
     PasswordEncrpySimplyAch PESAtest;
-    PESAtest.setKey(PESAtest.getHash("root"));
     AccountInfo test;
-    test.accountName = "root";
+    test.accountName = "1root1231";
     test.EncrpyIsIrreversible = false;
-    test.haveSpecialSymbols = true;
+    test.haveSpecialSymbols = false;
     test.haveUppercaseLowercase = true;
     test.phoneNumber = "";
     test.User = "";
+    test.passwordLength = {6,6};
 
-    PESAtest.encrpyForGeneratePassoword(test);
+    auto result=PESAtest.encrpyForGeneratePassoword(test);
     cout << PESAtest.m_passwordHash << endl;
     printAll(PESAtest.m_passwordSrc);
+    cout << result.password;
     
-
     return 0;
 }

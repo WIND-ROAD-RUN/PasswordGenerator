@@ -71,7 +71,7 @@
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(SolutionDir)\PortalAccountTable\build\x64\Debug;$(SolutionDir)\PasswordEncrpyModule\build\x64\Debug;$(SolutionDir)\AccountTableModule\build\x64\Debug;$(SolutionDir)\DialogNewAccount\build\x64\Debug;$(SolutionDir)\DialogAddExistAccount\build\x64\Debug;$(SolutionDir)\LocalizationStringModule\build\x64\Debug;$(SolutionDir)\PasswordGenerator\build\x64\Debug;$(SolutionDir)\Localconfigurationloader\build\x64\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>PortalAccountTable.obj;PasswordEncrpySimplyAch.obj;AccountTableXML.obj;moc_DialogNewAccount.obj;DialogNewAccount.obj;DialogAddExistAccount.obj;moc_DialogAddExistAccount.obj;PasswordGenerator.obj;moc_PasswordGenerator.obj;ConfigurationLoader-XML.obj;LocalizationStringLoader-XML.obj;LocalizationStringModule-XML.obj;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>PasswordEncrpyModuleAbstract.obj;PortalAccountTable.obj;PasswordEncrpySimplyAch.obj;AccountTableXML.obj;moc_DialogNewAccount.obj;DialogNewAccount.obj;DialogAddExistAccount.obj;moc_DialogAddExistAccount.obj;PasswordGenerator.obj;moc_PasswordGenerator.obj;ConfigurationLoader-XML.obj;LocalizationStringLoader-XML.obj;LocalizationStringModule-XML.obj;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -80,7 +80,7 @@
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(SolutionDir)\PortalAccountTable\build\x64\Release;$(SolutionDir)\PasswordEncrpyModule\build\x64\Release;$(SolutionDir)\AccountTableModule\build\x64\Release;$(SolutionDir)\DialogNewAccount\build\x64\Release;$(SolutionDir)\DialogAddExistAccount\build\x64\Release;$(SolutionDir)\LocalizationStringModule\build\x64\Release;$(SolutionDir)\PasswordGenerator\build\x64\Release;$(SolutionDir)\Localconfigurationloader\build\x64\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>PortalAccountTable.obj;PasswordEncrpySimplyAch.obj;AccountTableXML.obj;moc_DialogNewAccount.obj;DialogNewAccount.obj;DialogAddExistAccount.obj;moc_DialogAddExistAccount.obj;PasswordGenerator.obj;moc_PasswordGenerator.obj;ConfigurationLoader-XML.obj;LocalizationStringLoader-XML.obj;LocalizationStringModule-XML.obj;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>PasswordEncrpyModuleAbstract.obj;PortalAccountTable.obj;PasswordEncrpySimplyAch.obj;AccountTableXML.obj;moc_DialogNewAccount.obj;DialogNewAccount.obj;DialogAddExistAccount.obj;moc_DialogAddExistAccount.obj;PasswordGenerator.obj;moc_PasswordGenerator.obj;ConfigurationLoader-XML.obj;LocalizationStringLoader-XML.obj;LocalizationStringModule-XML.obj;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="Configuration">

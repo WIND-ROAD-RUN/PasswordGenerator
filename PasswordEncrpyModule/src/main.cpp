@@ -10,27 +10,27 @@
 
 using namespace std;
 
+void printAll(std::vector<std::string> passwordSrc) {
+    for (const auto & item:passwordSrc) {
+        cout << item << endl;
+    }
+}
+
 int main() {
     PasswordEncrpySimplyAch PESAtest;
     PESAtest.setKey(PESAtest.getHash("root"));
     AccountInfo test;
     test.accountName = "root";
     test.EncrpyIsIrreversible = false;
-    test.haveSpecialSymbols = false;
-    test.haveUppercaseLowercase = false;
+    test.haveSpecialSymbols = true;
+    test.haveUppercaseLowercase = true;
     test.phoneNumber = "";
     test.User = "";
 
     PESAtest.encrpyForGeneratePassoword(test);
     cout << PESAtest.m_passwordHash << endl;
-
-    test.phoneNumber = "13461360865";
-    PESAtest.encrpyForGeneratePassoword(test);
-    cout << PESAtest.m_passwordHash << endl;
-
-    test.User = "user";
-    PESAtest.encrpyForGeneratePassoword(test);
-    cout << PESAtest.m_passwordHash << endl;
+    printAll(PESAtest.m_passwordSrc);
+    
 
     return 0;
 }

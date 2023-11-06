@@ -210,19 +210,35 @@ void PasswordEncrpySimplyAch::decrptForUser(AccountInfo& accountInfo) {
 
 void PasswordEncrpySimplyAch::encrpt_PasswordLength(AccountInfo& accountInfo)
 {
+    std::string numberStr1 = getNumber(hashToVector(m_passwordHash)[3]);
+    std::string numberStr2 = getNumber(hashToVector(m_passwordHash)[4]);
+    m_passwordSrc.push_back(numberStr1);
+    m_passwordSrc.push_back(numberStr2);
 }
 
 void PasswordEncrpySimplyAch::encrpt_haveSpecialSymbols(AccountInfo& accountInfo)
 {
+    std::string specailSymbols{};
+    if (accountInfo.haveSpecialSymbols) {
+        specailSymbols = getSpecialSymbols(hashToVector(m_passwordHash)[0]);
+    }
+    m_passwordSrc.push_back(specailSymbols);
 }
 
 void PasswordEncrpySimplyAch::encrpt_haveUppercaseLowercase(AccountInfo& accountInfo)
 {
+    std::string letterSymbols;
+    if (accountInfo.haveUppercaseLowercase) {
+        letterSymbols = getBigAndSmallLetter(hashToVector(m_passwordHash)[1], hashToVector(m_passwordHash)[2]);
+    }
+    else {
+        letterSymbols = getSmallLetter(hashToVector(m_passwordHash)[1]);
+    }
+    m_passwordSrc.push_back(letterSymbols);
 }
 
 void PasswordEncrpySimplyAch::encrpt_EncrpyIsIrreversible(AccountInfo& accountInfo)
 {
-    accountInfo.password = accountInfo.accountName;
 }
 
 void PasswordEncrpySimplyAch::encrpt_build_hash(AccountInfo& accountInfo)

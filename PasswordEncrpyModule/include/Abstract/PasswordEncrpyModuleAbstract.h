@@ -17,6 +17,7 @@ public:
 
 protected:
     virtual void encrpt_build_hash(AccountInfo & accountInfo)=0;
+
     virtual void encrpt_PasswordLength(AccountInfo& accountInfo)=0;
 
     virtual void encrpt_haveSpecialSymbols(AccountInfo& accountInfo)=0;

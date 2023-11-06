@@ -39,13 +39,13 @@ std::string PasswordEncrpySimplyAch::encryptAES(const std::string& plaintext, co
     delete[] ciphertext;
 
     // 返回加密后的数据和初始化向量的十六进制表示
-    return toHex(ivData + encryptedData);
+    return toHex_forString(ivData + encryptedData);
 }
 
 std::string PasswordEncrpySimplyAch::decryptAES(const std::string& ciphertext, const std::string& key)
 {
     // 提取初始化向量和加密后的数据
-    std::string hexData = fromHex(ciphertext);
+    std::string hexData = fromHex_forString(ciphertext);
     std::string ivData = hexData.substr(0, EVP_MAX_IV_LENGTH);
     std::string encryptedData = hexData.substr(EVP_MAX_IV_LENGTH);
 
@@ -78,7 +78,7 @@ std::string PasswordEncrpySimplyAch::decryptAES(const std::string& ciphertext, c
     return decryptedData;
 }
 
-std::string PasswordEncrpySimplyAch::toHex(const std::string& input)
+std::string PasswordEncrpySimplyAch::toHex_forString(const std::string& input)
 {
     std::stringstream ss;
     ss << std::hex << std::setfill('0');
@@ -88,7 +88,7 @@ std::string PasswordEncrpySimplyAch::toHex(const std::string& input)
     return ss.str();
 }
 
-std::string PasswordEncrpySimplyAch::fromHex(const std::string& input)
+std::string PasswordEncrpySimplyAch::fromHex_forString(const std::string& input)
 {
     std::string output;
     output.reserve(input.length() / 2);
@@ -100,14 +100,14 @@ std::string PasswordEncrpySimplyAch::fromHex(const std::string& input)
     return output;
 }
 
-AccountInfo PasswordEncrpySimplyAch::encrpyForSave(const AccountInfo& accountInfo)
+AccountInfo PasswordEncrpySimplyAch::encrptForSave(const AccountInfo& accountInfo)
 {
     AccountInfo result = accountInfo;
-    encrpyForSave(result);
+    encrptForSave(result);
     return result;
 }
 
-void PasswordEncrpySimplyAch::encrpyForSave(AccountInfo& accountInfo) {
+void PasswordEncrpySimplyAch::encrptForSave(AccountInfo& accountInfo) {
     accountInfo.password = encryptAES(accountInfo.password, m_key);
 }
 
@@ -122,19 +122,19 @@ void PasswordEncrpySimplyAch::decrptForUser(AccountInfo& accountInfo) {
     accountInfo.password= decryptAES(accountInfo.password, m_key);
 }
 
-void PasswordEncrpySimplyAch::encrpy_PasswordLength(AccountInfo& accountInfo)
+void PasswordEncrpySimplyAch::encrpt_PasswordLength(AccountInfo& accountInfo)
 {
 }
 
-void PasswordEncrpySimplyAch::encrpy_haveSpecialSymbols(AccountInfo& accountInfo)
+void PasswordEncrpySimplyAch::encrpt_haveSpecialSymbols(AccountInfo& accountInfo)
 {
 }
 
-void PasswordEncrpySimplyAch::encrpy_haveUppercaseLowercase(AccountInfo& accountInfo)
+void PasswordEncrpySimplyAch::encrpt_haveUppercaseLowercase(AccountInfo& accountInfo)
 {
 }
 
-void PasswordEncrpySimplyAch::encrpy_EncrpyIsIrreversible(AccountInfo& accountInfo)
+void PasswordEncrpySimplyAch::encrpt_EncrpyIsIrreversible(AccountInfo& accountInfo)
 {
     accountInfo.password = accountInfo.accountName;
 }

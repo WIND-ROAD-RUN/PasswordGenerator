@@ -23,6 +23,7 @@ private:
 private:
     PasswordGenerator* generatorWindow{ nullptr };
 
+private:
     LocalizationStringLoaderXML* m_locStCom{ nullptr };
 
     ConfigurationLoaderXML* m_cfgLoCom{ nullptr };

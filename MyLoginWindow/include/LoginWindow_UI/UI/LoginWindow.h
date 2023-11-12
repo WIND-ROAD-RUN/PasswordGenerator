@@ -3,7 +3,6 @@
 #include "ui_LoginWindow.h"
 #include <QtWidgets/QMainWindow>
 
-
 QT_BEGIN_NAMESPACE
 namespace Ui { class LoginWindowClass; };
 QT_END_NAMESPACE

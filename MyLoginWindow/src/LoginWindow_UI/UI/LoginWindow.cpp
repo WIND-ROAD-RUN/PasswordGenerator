@@ -17,8 +17,11 @@
 #include"accountStoreSaveInXML.h"
 
 LoginWindow::LoginWindow(QWidget* parent)
-    : m_locStCom(LocalizationStringLoaderXML::getInstance()), m_cfgLoCom(ConfigurationLoaderXML::getInstance()), QMainWindow(parent)
-    , ui(new Ui::LoginWindowClass()),m_accountStore(AccountStoreSaveInXML::getInstance())
+    : m_locStCom(LocalizationStringLoaderXML::getInstance()),
+    m_cfgLoCom(ConfigurationLoaderXML::getInstance()), 
+    QMainWindow(parent)
+    , ui(new Ui::LoginWindowClass()),
+    m_accountStore(AccountStoreSaveInXML::getInstance())
 {
     ui->setupUi(this);
     /*全局资源的加载以及配置*/
@@ -37,7 +40,6 @@ LoginWindow::LoginWindow(QWidget* parent)
     if (ui->cBox_LoginAuto->isChecked()) {
         this->pbtn_login_clicked();
     }
-
 }
 
 LoginWindow::~LoginWindow()
